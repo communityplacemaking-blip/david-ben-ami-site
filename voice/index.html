@@ -45,10 +45,10 @@
   <h2>הקלטות וסרטים</h2>
   <ul class="headings"><li>הקלטות שיחות עם אבא <em class="pending">מחכה לקבצים</em></li><li>אבא מספר <em class="pending">מחכה לקבצים</em></li></ul>
 <figure class="film" id="itay-film">
-    <a class="frame" href="https://www.youtube.com/watch?v=EzQtXzoZZkc" target="_blank" rel="noopener">
+    <a class="frame" href="https://www.youtube.com/watch?v=EzQtXzoZZkc" target="_blank" rel="noopener" data-yt="EzQtXzoZZkc">
       <img src="https://i.ytimg.com/vi/EzQtXzoZZkc/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">
       <span class="play" aria-hidden="true"></span>
-      <span class="film-title">הסרט של איתי על אבא<small>לצפייה ביוטיוב</small></span>
+      <span class="film-title">הסרט של איתי על אבא<small>לחצו לצפייה</small></span>
     </a>
     <figcaption><span class="src"><a href="/david-ben-ami-site/sources/#V1" title="מקור: דוד בן עמי">V1</a> <a href="/david-ben-ami-site/sources/#T1" title="מקור: עדות בעל הפרויקט בשיחה">T1</a></span></figcaption>
   </figure>
@@ -60,5 +60,18 @@
   <p>האתר בבנייה. הטקסטים נאספו ממצגות ההנצחה המשפחתיות (<bdi dir="ltr">2021–2024</bdi>) ועדיין נבדקים מול המקור. <a href="/david-ben-ami-site/sources/">על המקורות</a></p>
 </footer>
 
+<script>
+// a click swaps the film card for the YouTube player in place; without script the card opens YouTube
+document.addEventListener('click', function (e) {
+  var a = e.target.closest('a[data-yt]'); if (!a) return;
+  e.preventDefault();
+  var f = document.createElement('iframe');
+  f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.yt + '?autoplay=1&rel=0';
+  f.title = a.querySelector('.film-title').firstChild.textContent;
+  f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
+  f.className = 'frame player';
+  a.replaceWith(f);
+});
+</script>
 </body>
 </html>

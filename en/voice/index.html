@@ -45,10 +45,10 @@
   <h2>Recordings and Films</h2>
   <ul class="headings"><li>Recordings of conversations with Dad <em class="pending">awaiting files</em></li><li>Dad Tells <em class="pending">awaiting files</em></li></ul>
 <figure class="film" id="itay-film">
-    <a class="frame" href="https://www.youtube.com/watch?v=EzQtXzoZZkc" target="_blank" rel="noopener">
+    <a class="frame" href="https://www.youtube.com/watch?v=EzQtXzoZZkc" target="_blank" rel="noopener" data-yt="EzQtXzoZZkc">
       <img src="https://i.ytimg.com/vi/EzQtXzoZZkc/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">
       <span class="play" aria-hidden="true"></span>
-      <span class="film-title">Itay&#39;s film about Dad<small>Watch on YouTube</small></span>
+      <span class="film-title">Itay&#39;s film about Dad<small>Click to watch</small></span>
     </a>
     <figcaption><span class="src"><a href="/david-ben-ami-site/en/sources/#V1" title="Source: David Ben Ami">V1</a> <a href="/david-ben-ami-site/en/sources/#T1" title="Source: The project owner&#39;s testimony in conversation">T1</a></span></figcaption>
   </figure>
@@ -60,5 +60,18 @@
   <p>This site is under construction. The texts were gathered from the family&#39;s memorial presentations (2021–2024) and are still being checked against the originals. The English is a draft translation awaiting family review. <a href="/david-ben-ami-site/en/sources/">About the sources</a></p>
 </footer>
 
+<script>
+// a click swaps the film card for the YouTube player in place; without script the card opens YouTube
+document.addEventListener('click', function (e) {
+  var a = e.target.closest('a[data-yt]'); if (!a) return;
+  e.preventDefault();
+  var f = document.createElement('iframe');
+  f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.yt + '?autoplay=1&rel=0';
+  f.title = a.querySelector('.film-title').firstChild.textContent;
+  f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
+  f.className = 'frame player';
+  a.replaceWith(f);
+});
+</script>
 </body>
 </html>

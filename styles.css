@@ -363,6 +363,7 @@ aside.missing p { margin: 0; color: var(--ink-2); font-size: 0.95rem; }
 .film .frame:hover .play { transform: scale(1.08); }
 .film .film-title { position: absolute; z-index: 1; inset-inline: 1.25rem; bottom: 1rem; font-family: var(--display); font-weight: 700; font-size: 1.3rem; text-shadow: 0 1px 3px rgb(0 0 0 / 0.5); }
 .film .film-title small { display: block; font-family: var(--sans); font-weight: 400; font-size: 0.9rem; opacity: 0.9; }
+.film .player { width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 10px; display: block; background: #000; }
 .film figcaption { margin-top: 0.5rem; font-size: 0.9rem; color: var(--ink-2); }
 main section.wars { margin-block: 0; }
 

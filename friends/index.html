@@ -23,10 +23,10 @@
 <header class="page band"><h1>החבר&#39;ה</h1><p class="lede">החבר&#39;ה של אבא ואמא, משנות ה-70 ולכל החיים.</p></header>
 <ul class="headings large"><li>אבאלה של שנות ה 70</li><li>חברים לכל החיים</li><li>חברים מאותם הימים</li></ul>
 <figure class="film" id="friends-film">
-    <a class="frame" href="https://www.youtube.com/watch?v=7fhbJbDLVZw" target="_blank" rel="noopener">
+    <a class="frame" href="https://www.youtube.com/watch?v=7fhbJbDLVZw" target="_blank" rel="noopener" data-yt="7fhbJbDLVZw">
       <img src="https://i.ytimg.com/vi/7fhbJbDLVZw/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">
       <span class="play" aria-hidden="true"></span>
-      <span class="film-title">סרט על החבר&#39;ה של אבא<small>לצפייה ביוטיוב</small></span>
+      <span class="film-title">סרט על החבר&#39;ה של אבא<small>לחצו לצפייה</small></span>
     </a>
     <figcaption><span class="src"><a href="/david-ben-ami-site/sources/#V3" title="מקור: סרט על החבר&#39;ה של אבא">V3</a> <a href="/david-ben-ami-site/sources/#T1" title="מקור: עדות בעל הפרויקט בשיחה">T1</a></span></figcaption>
   </figure>
@@ -38,5 +38,18 @@
   <p>האתר בבנייה. הטקסטים נאספו ממצגות ההנצחה המשפחתיות (<bdi dir="ltr">2021–2024</bdi>) ועדיין נבדקים מול המקור. <a href="/david-ben-ami-site/sources/">על המקורות</a></p>
 </footer>
 
+<script>
+// a click swaps the film card for the YouTube player in place; without script the card opens YouTube
+document.addEventListener('click', function (e) {
+  var a = e.target.closest('a[data-yt]'); if (!a) return;
+  e.preventDefault();
+  var f = document.createElement('iframe');
+  f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.yt + '?autoplay=1&rel=0';
+  f.title = a.querySelector('.film-title').firstChild.textContent;
+  f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
+  f.className = 'frame player';
+  a.replaceWith(f);
+});
+</script>
 </body>
 </html>
