@@ -1,0 +1,496 @@
+/* Visual direction from the family's palette (docs/design/palette-from-tm-2026-10-13.png),
+   with the turquoise deepened into several sea tones at Tm's request (13.10.2026):
+   sea blues and soft mustard carry the colour; cream is the ground;
+   terracotta-burgundy appears only as thin lines and text, never as a block;
+   walnut and sepia browns stay quiet, in text and fine rules ("אבא איש של ברזל").
+   Layout: full-bleed turquoise bands (header, hero, wartime) over a cream reading
+   column; gateways as tiles; the timeline as a turquoise line with mustard year chips. */
+:root {
+  --bg: #f3ecdd;            /* Warm Cream */
+  --surface: #ebe0c9;
+  --ink: #5c4a32;           /* Deep Walnut */
+  --ink-2: #7b5e41;         /* Muted Sepia */
+  --ink-strong: #3d2f1f;
+  --turq: #1f6f80;          /* Sea: the main fill */
+  --sea-deep: #134b5a;      /* deep water: header, top of the sky */
+  --sea-mid: #2c8a96;       /* water near the shore */
+  --sea-light: #8cc4c2;     /* shallow water */
+  --sea-foam: #d4e8e2;      /* foam */
+  --turq-ink: #175c6b;      /* sea, dark enough for text on cream */
+  --on-turq: #fbf6ea;       /* text on sea fills is cream */
+  --cream-on-turq: #fbf6ea;
+  --on-sea-light: #1d3a40;
+  --silhouette: #1a130d;
+  --mustard: #e9d085;       /* Subtle Ochre */
+  --mustard-soft: #f2e4b6;
+  --on-mustard: #4a3a26;
+  --burgundy: #7a3a2c;      /* Subtle Terracotta-Burgundy: lines and text only */
+  --rule: #d6c7aa;
+  --display: 'Rubik', 'Segoe UI', Arial, sans-serif;
+  --sans: 'Assistant', 'Segoe UI', Arial, sans-serif;
+  --measure: 40rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1f1a14; --surface: #2a231b; --ink: #ece2cf; --ink-2: #c9b79a; --ink-strong: #f6efe2;
+    --turq: #1f6f80; --sea-deep: #0e3a45; --sea-mid: #2c8a96; --sea-light: #5f9fa0; --sea-foam: #2f4a4a; --turq-ink: #7fc4c8; --on-turq: #fbf6ea; --on-sea-light: #10262a;
+    --mustard: #e9d085; --mustard-soft: #3d3420; --on-mustard: #2b2117;
+    --burgundy: #d4846f; --rule: #4a3d2e; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1f1a14; --surface: #2a231b; --ink: #ece2cf; --ink-2: #c9b79a; --ink-strong: #f6efe2;
+  --turq: #1f6f80; --sea-deep: #0e3a45; --sea-mid: #2c8a96; --sea-light: #5f9fa0; --sea-foam: #2f4a4a; --turq-ink: #7fc4c8; --on-turq: #fbf6ea; --on-sea-light: #10262a;
+  --mustard: #e9d085; --mustard-soft: #3d3420; --on-mustard: #2b2117;
+  --burgundy: #d4846f; --rule: #4a3d2e; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 1.125rem/1.75 var(--sans);
+  overflow-x: clip;
+}
+a { color: var(--burgundy); text-decoration-thickness: 1px; text-underline-offset: 0.25em; }
+a:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 3px; border-radius: 3px; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.2; margin: 0 0 0.5em; text-wrap: balance; color: var(--ink-strong); }
+
+/* full-bleed band inside the centred main column */
+.band { margin-inline: calc(50% - 50vw); padding-inline: max(1rem, calc(50vw - 50%)); }
+
+.skip { position: absolute; inset-inline-start: -999px; }
+.skip:focus { inset-inline-start: 1rem; top: 1rem; background: var(--bg); padding: 0.5rem 1rem; z-index: 10; }
+
+/* header / footer */
+header.site {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 2rem;
+  padding: 1rem clamp(1rem, 4vw, 3rem);
+  background: var(--sea-deep); color: var(--cream-on-turq);
+  text-shadow: 0 1px 2px rgb(0 40 45 / 0.35);
+}
+header.site .name { font-family: var(--display); font-weight: 700; font-size: 1.3rem; color: var(--cream-on-turq); text-decoration: none; }
+header.site .name span { font-weight: 400; font-size: 0.85em; }
+header.site nav ul { list-style: none; display: flex; flex-wrap: wrap; gap: 0.25rem 1.25rem; margin: 0; padding: 0; }
+header.site nav a { color: var(--cream-on-turq); font-weight: 500; text-decoration: none; font-size: 1rem; padding-block: 0.15rem; border-bottom: 2px solid transparent; }
+header.site nav a:hover { border-color: var(--cream-on-turq); }
+/* language switch: at the end of the header line; on narrow screens beside the name */
+header.site nav { order: 1; }
+.lang-switch {
+  order: 2; margin-inline-start: auto;
+  color: var(--cream-on-turq); text-decoration: none; font-size: 0.9rem; font-weight: 500; line-height: 1.6;
+  border: 1px solid color-mix(in srgb, var(--cream-on-turq) 70%, transparent); border-radius: 999px; padding: 0 0.75rem;
+}
+.lang-switch:hover { background: color-mix(in srgb, var(--cream-on-turq) 15%, transparent); }
+.lang-switch:focus-visible { outline-color: var(--cream-on-turq); }
+@media (max-width: 48rem) { .lang-switch { order: 0; } header.site nav { flex-basis: 100%; } }
+body[data-section="life"] nav a[href*="life/"],
+body[data-section="wars"] nav a[href*="wars/"],
+body[data-section="love"] nav a[href*="love/"],
+body[data-section="family"] nav a[href*="family/"],
+body[data-section="writing"] nav a[href*="writing/"],
+body[data-section="voice"] nav a[href*="voice/"],
+body[data-section="tastes"] nav a[href*="tastes/"],
+body[data-section="friends"] nav a[href*="friends/"] { font-weight: 700; border-color: var(--cream-on-turq); }
+
+main { max-width: 64rem; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 3rem) 4rem; }
+footer.site { padding: 1.5rem clamp(1rem, 4vw, 3rem); font-size: 0.95rem; color: var(--ink-2); }
+footer.site p { max-width: var(--measure); margin: 0; }
+
+/* home: a real sea behind the hero, the saying and the lures */
+[data-page="home"] header.site { background: rgb(19 75 90 / 0.72); }
+.shore { position: relative; isolation: isolate; }
+.shore-sea { position: absolute; inset-block: 0; inset-inline: calc(50% - 50vw); z-index: -1; overflow: hidden; background: var(--sea-mid) url(media/sea/sea-wide.jpg) center / cover; }
+.shore-sea video { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+/* a sea-coloured veil keeps the cream text readable over the sky, and the
+   bottom dissolves into the cream page like water running up the sand */
+.shore-sea::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgb(19 75 90 / 0.72) 0, rgb(19 75 90 / 0.42) 22rem, rgb(19 75 90 / 0.3) 55%, rgb(19 75 90 / 0.22) calc(100% - 14rem), color-mix(in srgb, var(--bg) 70%, transparent) calc(100% - 5rem), var(--bg) 100%); }
+.shore blockquote.feature { color: var(--cream-on-turq); border: 0; text-shadow: 0 1px 3px rgb(0 30 36 / 0.6); }
+.shore blockquote.feature footer { color: var(--cream-on-turq); opacity: 0.9; }
+.shore .lines { padding-block-end: 5rem; margin-bottom: -2rem; overflow: visible; }
+.shore .lines li { border-top-color: color-mix(in srgb, var(--cream-on-turq) 85%, transparent); }
+.shore .lines .fl path { stroke: var(--cream-on-turq); }
+.shore .lure::before { border-color: var(--cream-on-turq); background: transparent; }
+.shore .lines-hint { display: inline-block; color: var(--ink-strong); background: color-mix(in srgb, var(--bg) 80%, transparent); border-radius: 999px; padding: 0.15rem 0.8rem; }
+.shore .lines-hint button { color: var(--burgundy); }
+.shore blockquote.feature .src a { color: var(--cream-on-turq); border-color: color-mix(in srgb, var(--cream-on-turq) 60%, transparent); }
+.shore .sea-sound { bottom: 3rem; }
+.shore .lines li.later .lure { background: color-mix(in srgb, var(--bg) 85%, transparent); color: var(--ink-strong); }
+
+.hero {
+  position: relative; overflow: hidden;
+  color: var(--cream-on-turq);
+  padding-block: clamp(3rem, 8vw, 5.5rem) clamp(3rem, 7vw, 4.5rem);
+  min-height: clamp(26rem, 48vw, 34rem);
+  text-shadow: 0 1px 2px rgb(0 40 45 / 0.35);
+}
+main section.hero { margin-block: 0; }
+.hero-text { position: relative; z-index: 1; max-width: 30rem; }
+.hero .epigraph { font-size: 1.25rem; font-weight: 600; margin: 0 0 1rem; }
+.hero h1 { font-size: clamp(2.75rem, 9vw, 5rem); font-weight: 700; margin: 0; color: var(--cream-on-turq); }
+.hero h1 span { font-size: 0.5em; font-weight: 400; }
+.hero .years {
+  display: inline-block; margin: 1rem 0 0; padding: 0.1rem 1rem; border-radius: 999px;
+  background: var(--bg); color: var(--burgundy); border: 1px solid var(--burgundy); text-shadow: none;
+  font-family: var(--display); font-weight: 600; direction: ltr; font-variant-numeric: tabular-nums;
+}
+.hero .memory { margin: 1.25rem 0 0; font-size: 1.1rem; font-weight: 600; }
+.hero .memory .teller { display: block; font-size: 0.9rem; font-weight: 400; opacity: 0.9; }
+
+/* the sunset scene sits at the inline end (left in RTL) */
+.scene { position: absolute; inset-inline-end: 0; bottom: 0; width: min(46%, 26rem); height: auto; max-width: 100%; overflow: visible; }
+.scene .sun { fill: var(--mustard); }
+.scene .water path { stroke: var(--cream-on-turq); stroke-width: 1.5; stroke-linecap: round; opacity: 0.6; fill: none; }
+.scene .sun { stroke: var(--burgundy); stroke-width: 1.2; }
+/* the float never rests: it bobs on the water and sends out small rings */
+.scene .figure .strap { fill: none; stroke: #4d3d2d; stroke-width: 2.2; }
+.scene .figure .dough { fill: #efe2c4; }
+.scene .rod { fill: none; stroke: var(--silhouette); stroke-width: 1.4; stroke-linecap: round; }
+.scene .wake { fill: none; stroke: var(--cream-on-turq); stroke-width: 0.5; opacity: 0.3; }
+.scene .bobber { animation: bob 2.6s ease-in-out infinite; }
+.scene .ripple { fill: none; stroke: var(--cream-on-turq); stroke-width: 0.8; opacity: 0; transform-box: fill-box; transform-origin: center; animation: ripple 2.6s ease-out infinite; }
+.scene .ripple.r2 { animation-delay: 1.3s; }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(2.2px); } }
+@keyframes ripple { 0% { opacity: 0.8; transform: scale(1); } 100% { opacity: 0; transform: scale(4.5); } }
+.scene .float { transform-origin: 455px -40px; animation: line-sway 6s ease-in-out infinite; }
+.scene .line { fill: none; stroke: var(--burgundy); stroke-width: 1.2; }
+.scene .bobber { fill: var(--burgundy); }
+@keyframes line-sway { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-2.5deg); } }
+
+/* the saying: burgundy text between two hairlines, no block */
+blockquote.feature {
+  margin-block: 0 3rem; padding-block: 2.25rem;
+  border-bottom: 1px solid var(--burgundy);
+  color: var(--burgundy);
+  font-family: var(--display); font-size: clamp(1.5rem, 4vw, 2.2rem); line-height: 1.4; font-weight: 500;
+}
+header.page + blockquote.feature { margin-top: 0; }
+blockquote.feature:has(+ .lines) { margin-bottom: 0; border-bottom: 0; padding-bottom: 1.5rem; }
+blockquote.feature p { margin: 0 0 0.5rem; max-width: var(--measure); }
+blockquote.feature p::before { content: '״'; }
+blockquote.feature p::after { content: '״'; }
+blockquote.feature footer { font-family: var(--sans); font-size: 1rem; font-weight: 400; color: var(--ink-2); }
+
+/* the gateways hang like lures from fishing lines */
+.lines { position: relative; overflow: hidden; padding-block: 0 4.5rem; margin-bottom: -4rem; }
+.lines ul { position: relative; z-index: 1; }
+.sea-sound {
+  position: absolute; z-index: 2; inset-inline-start: max(1rem, calc(50vw - 50%)); bottom: 1rem;
+  font: 600 0.9rem var(--sans); color: var(--ink-strong); background: var(--bg);
+  border: 1px solid var(--burgundy); border-radius: 999px; padding: 0.3rem 1rem; cursor: pointer;
+}
+.sea-sound[aria-pressed="true"] { background: var(--mustard); }
+.sea-sound:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 2px; }
+.lines ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; row-gap: 2rem; }
+.lines li {
+  flex: 1 1 5.5rem; display: flex; justify-content: center;
+  border-top: 1px solid var(--burgundy);
+}
+.lines a, .lines .hang {
+  display: flex; flex-direction: column; align-items: center; text-decoration: none;
+  transform-origin: top center; transform: rotate(var(--tilt));
+  animation: lure-sway 7s ease-in-out var(--delay) infinite;
+}
+.lines .fl { display: block; width: 20px; height: var(--drop); overflow: visible; }
+.lines .fl path { fill: none; stroke: var(--burgundy); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.lure {
+  position: relative; margin-top: 7px;
+  display: block; padding: 0.4rem 0.85rem; border-radius: 8px;
+  font-family: var(--display); font-weight: 600; font-size: 1rem; line-height: 1.3; text-align: center; white-space: nowrap;
+  background: var(--turq); color: var(--on-turq);
+  box-shadow: 0 6px 14px -10px rgb(0 0 0 / 0.5);
+}
+.lure::before {
+  content: ''; position: absolute; top: -8px; left: 50%; translate: -50% 0;
+  width: 7px; height: 7px; border: 1px solid var(--burgundy); border-radius: 50%; background: var(--bg);
+}
+.lines li.c1 .lure { background: var(--mustard); color: var(--on-mustard); }
+.lines li.c2 .lure { background: var(--surface); color: var(--ink-strong); border: 1px solid var(--burgundy); }
+.lines li.c3 .lure { background: var(--sea-light); color: var(--on-sea-light); }
+.lines li.later .lure { background: transparent; color: var(--ink-2); border: 1px dashed var(--burgundy); font-weight: 500; }
+.lines a:hover, .lines a:focus-visible { animation-duration: 1.6s; }
+.lines a:hover .lure { box-shadow: 0 10px 18px -10px rgb(0 0 0 / 0.55); }
+.lines li { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.lines li.dragging { position: relative; z-index: 3; }
+.lines li.dragging > * { animation: none; cursor: grabbing; }
+.lines li.dragging .lure { box-shadow: 0 16px 24px -12px rgb(0 0 0 / 0.6); scale: 1.06; }
+.lines ul.sorting { cursor: grabbing; }
+.lines-hint { position: relative; z-index: 1; margin: 1.25rem 0 0; font-size: 0.85rem; color: var(--ink-2); }
+.lines-hint button { font: inherit; color: var(--burgundy); background: none; border: 0; padding: 0; text-decoration: underline; cursor: pointer; }
+@keyframes lure-sway {
+  0%, 100% { transform: rotate(var(--tilt)); }
+  50% { transform: rotate(calc(var(--tilt) * -1)); }
+}
+/* English site: Dad's words in Hebrew first, the translation beneath, marked */
+.tr-mark { display: block; font-family: var(--sans); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-2); line-height: 1.4; margin-bottom: 0.15rem; }
+.hero .epigraph .tr { display: block; margin-top: 0.35rem; font-size: 1.05rem; font-weight: 400; }
+.hero .tr-mark { color: inherit; opacity: 0.85; }
+blockquote.feature p.orig::before, blockquote.feature p.orig::after,
+blockquote.feature p.tr::before, blockquote.feature p.tr::after { content: none; }
+blockquote.feature p.tr { font-size: 0.75em; color: var(--ink-strong); margin-top: 0.75rem; }
+.quotes p.tr { font-family: var(--sans); font-size: 1.1rem; font-weight: 400; line-height: 1.5; }
+.quotes blockquote:nth-child(3n+2) .tr-mark { color: inherit; opacity: 0.8; }
+:lang(en) .quotes blockquote::before { content: '\201C'; }
+.tl-note { display: block; margin-top: 0.25rem; font-size: 0.85rem; color: var(--ink-2); }
+.sources .orig-title { display: block; font-family: var(--sans); font-size: 0.9rem; font-weight: 400; color: var(--ink-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  .lines a, .lines .hang, .scene .float, .scene .bobber, .scene .ripple { animation: none; }
+}
+
+/* fishing memory on the life page */
+.fishing blockquote { margin: 0; padding: 1rem 1.5rem; border-inline-start: 2px solid var(--burgundy); max-width: var(--measure); }
+.fishing blockquote p { margin: 0 0 0.25rem; font-family: var(--display); font-size: 1.4rem; font-weight: 500; color: var(--ink-strong); }
+.fishing blockquote footer { font-size: 0.9rem; color: var(--ink-2); }
+
+/* inner pages */
+/* the sea above runs into sand and then the cream page, with no hard edge */
+.lede { font-size: 1.25rem; color: var(--ink-2); max-width: var(--measure); margin: 0 0 1rem; }
+.note { font-size: 0.95rem; color: var(--ink); max-width: var(--measure); background: var(--mustard-soft); border-radius: 8px; padding: 0.6rem 1rem; }
+main section { margin: 3rem 0; }
+main section h2 { font-size: 1.8rem; color: var(--turq-ink); }
+main section h3 { font-size: 1.15rem; color: var(--burgundy); }
+
+.src { font-size: 0.75rem; white-space: nowrap; }
+.src a { text-decoration: none; color: var(--ink-2); border: 1px solid var(--rule); border-radius: 4px; padding: 0 0.3em; margin-inline-start: 0.15em; direction: ltr; display: inline-block; line-height: 1.5; }
+.src a:hover { color: var(--burgundy); border-color: var(--burgundy); }
+.pending { font-style: normal; font-size: 0.85rem; color: var(--on-mustard); background: var(--mustard-soft); padding: 0.05em 0.6em; border-radius: 999px; white-space: nowrap; }
+.sourceline { font-size: 0.9rem; color: var(--ink-2); }
+
+/* timeline */
+.timeline { list-style: none; padding: 0; margin: 2rem 0; border-inline-start: 3px solid var(--turq); }
+.timeline li { position: relative; padding: 0.4rem 0 1.25rem; padding-inline-start: 1.5rem; display: grid; grid-template-columns: 8rem 1fr; gap: 0.25rem 1rem; align-items: baseline; }
+.timeline li::before { content: ''; position: absolute; inset-inline-start: -9px; top: 0.95rem; width: 15px; height: 15px; border-radius: 50%; background: var(--turq); border: 3px solid var(--bg); }
+.timeline li.undated::before { background: var(--bg); border-color: var(--turq); }
+.timeline .year { justify-self: start; font-family: var(--display); font-weight: 700; font-size: 1.1rem; color: var(--on-mustard); background: var(--mustard); border-radius: 999px; padding: 0 0.75rem; font-variant-numeric: tabular-nums; }
+.timeline li.undated .year { background: transparent; padding: 0; }
+.timeline .unknown { font-family: var(--sans); font-weight: 400; font-size: 0.85rem; color: var(--ink-2); }
+.timeline .label { font-size: 1.15rem; color: var(--ink-strong); }
+.timeline .more { grid-column: 2; font-size: 0.95rem; }
+
+.wars { color: var(--on-turq); padding-block: 9rem; }
+main section.wars h2 { color: var(--on-turq); }
+.wars-list { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font-family: var(--display); font-size: 1.35rem; font-weight: 500; }
+.wars-list small { font-size: 0.75em; opacity: 0.8; }
+.wars .headings li { border-color: color-mix(in srgb, var(--on-turq) 25%, transparent); }
+.wars .src a { color: var(--on-turq); border-color: color-mix(in srgb, var(--on-turq) 35%, transparent); }
+.wars .pending { background: var(--bg); }
+
+.headings { list-style: none; padding: 0; margin: 1rem 0; }
+.headings li { padding: 0.6rem 0; border-bottom: 1px solid var(--rule); }
+.headings.large li { font-family: var(--display); font-size: 1.35rem; font-weight: 500; color: var(--ink-strong); }
+
+.quotes { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); margin: 1.5rem 0 2rem; }
+.quotes blockquote { position: relative; margin: 0; padding: 2.25rem 1.5rem 1.25rem; background: var(--surface); border-radius: 12px; border-top: 2px solid var(--burgundy); }
+.quotes blockquote::before { content: '״'; position: absolute; top: -0.1rem; inset-inline-start: 1rem; font-family: var(--display); font-size: 3.25rem; line-height: 1; color: var(--burgundy); }
+.quotes blockquote:nth-child(3n+2) { background: var(--turq); color: var(--on-turq); border-top-color: var(--on-turq); }
+.quotes blockquote:nth-child(3n+2)::before { color: var(--on-turq); }
+.quotes blockquote:nth-child(3n+2) a, .quotes blockquote:nth-child(3n+2) .src a { color: var(--on-turq); }
+.quotes p { font-family: var(--display); font-weight: 500; font-size: 1.3rem; line-height: 1.4; margin: 0 0 0.5rem; color: inherit; }
+.quotes blockquote:not(:nth-child(3n+2)) p { color: var(--ink-strong); }
+.quotes footer { font-size: 0.9rem; }
+
+.artists { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.artists li { background: var(--turq); color: var(--on-turq); border-radius: 999px; padding: 0.25rem 1rem; }
+.artists li.song { background: var(--mustard); color: var(--on-mustard); }
+
+.recipes { list-style: none; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); }
+.recipes li { padding: 1.5rem; border-radius: 12px; background: var(--surface); border-top: 2px solid var(--burgundy); }
+.recipes h2 { font-size: 1.45rem; }
+.recipes p { margin: 0 0 0.25rem; }
+
+.name-story { background: var(--surface); border-radius: 12px; padding: 1.5rem; border-inline-start: 2px solid var(--burgundy); }
+.name-story .q { font-family: var(--display); font-weight: 600; color: var(--burgundy); font-size: 1.3rem; margin-inline-end: 1rem; }
+
+aside.missing { margin: 3rem 0 0; padding: 1.5rem; border: 1px dashed var(--burgundy); border-radius: 12px; max-width: var(--measure); }
+aside.missing h2 { font-size: 1.3rem; color: var(--burgundy); }
+aside.missing ul { margin: 0 0 0.75rem; padding-inline-start: 1.25rem; }
+aside.missing p { margin: 0; color: var(--ink-2); font-size: 0.95rem; }
+
+.sources { list-style: none; padding: 0; }
+.sources li { display: flex; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--rule); scroll-margin-top: 1rem; }
+.sources li:target { background: var(--mustard-soft); }
+.sources .sid { font-family: var(--display); font-weight: 700; color: var(--burgundy); font-size: 1.3rem; min-width: 2.5rem; direction: ltr; }
+.sources h2 { font-size: 1.25rem; margin: 0; }
+.sources p { margin: 0; font-size: 0.95rem; color: var(--ink-2); }
+
+/* Dad's writing: each poem gets its own page-like stage */
+.poems { display: grid; gap: 2rem; margin: 1rem 0 2rem; }
+.poem {
+  position: relative; max-width: 42rem; margin-inline: auto; width: 100%;
+  padding: clamp(2rem, 6vw, 3.5rem) clamp(1.5rem, 6vw, 4rem);
+  background: var(--surface); border-radius: 16px;
+  border-inline-start: 2px solid var(--burgundy);
+}
+.poem:nth-child(even) { background: var(--turq); color: var(--on-turq); border-inline-start-color: var(--on-turq); }
+.poem-no { display: inline-block; font-family: var(--display); font-weight: 600; font-size: 0.85rem; letter-spacing: 0.04em; color: var(--burgundy); margin-bottom: 0.75rem; }
+.poem:nth-child(even) .poem-no { color: var(--on-turq); }
+.poem h2 { font-size: clamp(1.8rem, 5vw, 2.4rem); color: inherit; margin-bottom: 1.25rem; }
+.poem .verse p { margin: 0; font-size: 1.3rem; line-height: 1.9; }
+.poem footer { margin-top: 1.5rem; font-size: 0.9rem; }
+.poem:nth-child(even) .src a { color: var(--on-turq); border-color: color-mix(in srgb, var(--on-turq) 35%, transparent); }
+.poem.empty { min-height: 9rem; display: flex; flex-direction: column; justify-content: center; }
+.poem.empty p { margin: 0; font-size: 1.15rem; }
+.poem.has-hand { max-width: 60rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 2rem; align-items: center; }
+.poem .hand { margin: 0; }
+.poem .hand img { display: block; width: 100%; max-width: 100%; height: auto; border-radius: 4px; box-shadow: 0 12px 30px -14px rgb(0 0 0 / 0.45); transform: rotate(-1deg); }
+.poem:nth-child(even) .hand img { transform: rotate(1deg); }
+.poem .hand figcaption { margin-top: 0.75rem; font-size: 0.9rem; }
+.poem .pending-text { margin: 0; font-size: 1.05rem; }
+@media (max-width: 44rem) { .poem.has-hand { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .poem .hand img { transform: none; } }
+
+@media (max-width: 36rem) {
+  body { font-size: 1.0625rem; }
+  .timeline li { grid-template-columns: 1fr; }
+  .timeline .more { grid-column: 1; }
+  .hero { padding-bottom: 13rem; }
+  .scene { width: min(88%, 22rem); }
+  .lines li { flex-basis: 6.5rem; }
+  .lure { white-space: normal; }
+}
+
+/* films are embedded where the family published them */
+.film { margin: 1.5rem 0 0; }
+.film .frame { position: relative; display: block; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; text-decoration: none; color: #fbf6ea;
+  background: radial-gradient(120% 90% at 30% 20%, #2c8a96, #134b5a 60%, #0d3440); box-shadow: 0 18px 40px -22px rgb(19 75 90 / 0.7); }
+.film .frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.film .frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgb(10 25 30 / 0.75), transparent 55%); }
+.film .play { position: absolute; z-index: 1; top: 50%; left: 50%; width: 4.5rem; height: 4.5rem; margin: -2.25rem 0 0 -2.25rem; border-radius: 50%; background: rgb(251 246 234 / 0.92); box-shadow: 0 8px 24px rgb(0 0 0 / 0.35); transition: transform 0.2s ease; }
+.film .play::before { content: ''; position: absolute; top: 50%; left: 54%; transform: translate(-50%, -50%); border-style: solid; border-width: 0.8rem 0 0.8rem 1.3rem; border-color: transparent transparent transparent #7a3a2c; }
+.film .frame:hover .play { transform: scale(1.08); }
+.film .film-title { position: absolute; z-index: 1; inset-inline: 1.25rem; bottom: 1rem; font-family: var(--display); font-weight: 700; font-size: 1.3rem; text-shadow: 0 1px 3px rgb(0 0 0 / 0.5); }
+.film .film-title small { display: block; font-family: var(--sans); font-weight: 400; font-size: 0.9rem; opacity: 0.9; }
+.film figcaption { margin-top: 0.5rem; font-size: 0.9rem; color: var(--ink-2); }
+main section.wars { margin-block: 0; }
+
+/* Inner pages: each subject has its own quiet ground behind the title.
+   The motif sits on warm paper and fades out downward, so nothing ends in a hard edge. */
+header.page { position: relative; isolation: isolate; overflow: hidden; background: var(--bg); padding-block: 3.5rem 3rem; margin-bottom: 0; }
+header.page::before { content: ''; position: absolute; inset: 0; z-index: -1; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36  0 0 0 0 .26  0 0 0 0 .16  0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), linear-gradient(to bottom, var(--surface), var(--bg)); -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent); mask-image: linear-gradient(to bottom, #000 55%, transparent); }
+/* the motifs stay clear of the title side so the words always read cleanly */
+body[data-section="life"] header.page::before, body[data-section="love"] header.page::before, body[data-section="family"] header.page::before {
+  -webkit-mask-image: linear-gradient(to bottom, #000 50%, transparent), linear-gradient(to left, rgb(0 0 0 / 0.12) 30%, #000 75%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, #000 50%, transparent), linear-gradient(to left, rgb(0 0 0 / 0.12) 30%, #000 75%);
+  mask-composite: intersect;
+}
+:lang(en) header.page::before { scale: -1 1; }
+header.page h1 { font-size: clamp(2.2rem, 6vw, 3.25rem); color: var(--turq-ink); text-shadow: none; }
+header.page .lede { color: var(--ink); }
+header.site { box-shadow: 0 6px 18px -6px rgb(19 75 90 / 0.45); position: relative; z-index: 2; }
+/* His life's path: Moroccan tiles and an arch, for Oujda */
+body[data-section="life"] header.page::before { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36  0 0 0 0 .26  0 0 0 0 .16  0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='300' viewBox='0 0 220 300'%3E%3Cpath d='M20 300V120C20 60 60 20 110 8 160 20 200 60 200 120V300' fill='none' stroke='%23a0523d' stroke-opacity='.35' stroke-width='2'/%3E%3Cpath d='M36 300V124C36 72 70 38 110 28 150 38 184 72 184 124V300' fill='none' stroke='%231f6f80' stroke-opacity='.25' stroke-width='1.2'/%3E%3C/svg%3E") left 6% bottom / auto 92% no-repeat, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke-width='1.1'%3E%3Cg stroke='%23a0523d' stroke-opacity='.42'%3E%3Crect x='17' y='17' width='30' height='30'/%3E%3Cpath d='M32 10.8 53.2 32 32 53.2 10.8 32Z'/%3E%3C/g%3E%3Cg stroke='%231f6f80' stroke-opacity='.35'%3E%3Ccircle cx='32' cy='32' r='6'/%3E%3Cpath d='M0 0 6 6M64 0 58 6M0 64 6 58M64 64 58 58'/%3E%3Cpath d='M0 32H10.8M53.2 32H64M32 0V10.8M32 53.2V64'/%3E%3C/g%3E%3C/g%3E%3Cpath d='M32 26 38 32 32 38 26 32Z' fill='%23e9d085' fill-opacity='.55'/%3E%3C/svg%3E") center / 64px 64px, linear-gradient(to bottom, #efe2c8, var(--bg)); }
+/* Lili and David: faded 1970s colours on old photo paper */
+body[data-section="love"] header.page::before { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36  0 0 0 0 .26  0 0 0 0 .16  0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='260' viewBox='0 0 420 260'%3E%3Cg fill='none' stroke-width='26' stroke-linecap='butt'%3E%3Cpath d='M30 260A180 180 0 0 1 390 260' stroke='%237a4b2a' stroke-opacity='.55'/%3E%3Cpath d='M62 260A148 148 0 0 1 358 260' stroke='%23c2703a' stroke-opacity='.55'/%3E%3Cpath d='M94 260A116 116 0 0 1 326 260' stroke='%23d9a441' stroke-opacity='.55'/%3E%3Cpath d='M126 260A84 84 0 0 1 294 260' stroke='%23e9d085' stroke-opacity='.6'/%3E%3C/g%3E%3C/svg%3E") left 4% bottom / min(26rem, 60%) auto no-repeat, linear-gradient(to bottom, #f0dcc0, #f3e6d0 60%, var(--bg)); filter: sepia(0.15); }
+body[data-section="love"] header.page h1 { color: #7a4b2a; }
+/* The family: warm late light and the fields around Kiryat Gat */
+body[data-section="family"] header.page::before { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36  0 0 0 0 .26  0 0 0 0 .16  0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='120' viewBox='0 0 180 120'%3E%3Cg fill='none' stroke='%238a5a32' stroke-opacity='.6' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M30 120C32 90 34 60 40 34'/%3E%3Cpath d='M40 34c-6-4-8-10-6-16 5 3 7 9 6 16zm-1 10c-7-3-10-9-9-15 6 3 9 8 9 15zm1-10c6-4 9-9 8-16-6 3-8 9-8 16zm-2 11c6-3 10-8 10-15-6 2-9 8-10 15z'/%3E%3Cpath d='M96 120C97 92 100 70 104 50'/%3E%3Cpath d='M104 50c-6-4-8-10-6-16 5 3 7 9 6 16zm0 9c-6-3-9-8-9-14 6 2 9 7 9 14zm0-9c6-4 9-9 8-16-6 3-8 9-8 16z'/%3E%3Cpath d='M150 120c1-20 3-36 7-52'/%3E%3Cpath d='M157 68c-5-4-7-9-5-15 5 3 6 8 5 15zm0 0c5-4 8-9 7-15-5 3-7 8-7 15z'/%3E%3C/g%3E%3C/svg%3E") left 3% bottom / 17rem auto no-repeat, radial-gradient(ellipse at 15% 0%, #f6d7a8, transparent 60%), linear-gradient(to bottom, #f6e4cc, var(--bg)); }
+body[data-section="family"] header.page h1 { color: #8a4f2a; }
+@media (max-width: 40rem) {
+  body[data-section="life"] header.page::before { background-size: auto, 0 0, 48px 48px, auto; }
+  body[data-section="love"] header.page::before { background-size: auto, 9rem auto, auto; }
+  body[data-section="family"] header.page::before { background-size: auto, 10rem auto, auto, auto; }
+}
+
+/* Dad the fighter: contour lines of an old field map, in olive and khaki */
+body[data-section="wars"] header.page::before { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36  0 0 0 0 .26  0 0 0 0 .16  0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='240' viewBox='0 0 360 240'%3E%3Cg fill='none' stroke='%235d6b3a' stroke-opacity='.4' stroke-width='1.1'%3E%3Cpath d='M-20 60 C 60 20, 120 110, 200 70 S 330 40, 380 80'/%3E%3Cpath d='M-20 82 C 60 42, 120 130, 200 92 S 330 64, 380 102'/%3E%3Cpath d='M-20 104 C 60 64, 120 150, 200 114 S 330 88, 380 124'/%3E%3Cpath d='M-20 126 C 60 86, 120 170, 200 136 S 330 112, 380 146'/%3E%3Cpath d='M-20 148 C 60 108, 120 190, 200 158 S 330 136, 380 168'/%3E%3Cpath d='M-20 170 C 60 130, 120 210, 200 180 S 330 160, 380 190'/%3E%3Cpath d='M-20 192 C 60 152, 120 230, 200 202 S 330 184, 380 212'/%3E%3Cpath d='M-20 214 C 60 174, 120 250, 200 224 S 330 208, 380 234'/%3E%3Cellipse cx='250' cy='70' rx='26' ry='14'/%3E%3Cellipse cx='250' cy='70' rx='12' ry='6'/%3E%3C/g%3E%3C/svg%3E") left -2rem bottom / 34rem auto no-repeat, linear-gradient(to bottom, #e6e0c6, var(--bg)); }
+body[data-section="wars"] header.page h1 { color: #4e5a2f; }
+.wars { background: linear-gradient(to bottom, var(--bg) 0, #dcd7b8 2.5rem, #8f9668 5rem, #5d6b3a 7.5rem, #4e5a2f 9rem, #4e5a2f calc(100% - 9rem), #5d6b3a calc(100% - 7.5rem), #8f9668 calc(100% - 5rem), #dcd7b8 calc(100% - 2.5rem), var(--bg) 100%); }
+/* Dad's writing: a page of a notebook, ruled lines and a red margin */
+body[data-section="writing"] header.page::before { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36  0 0 0 0 .26  0 0 0 0 .16  0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='10'%3E%3Cpath d='M2 0V10M6 0V10' stroke='%23a0523d' stroke-opacity='.4'/%3E%3C/svg%3E") left 12% top / 12px 10px repeat-y, url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='32'%3E%3Cpath d='M0 31.5H40' stroke='%2393b4c4' stroke-opacity='.45'/%3E%3C/svg%3E") 0 1.4rem / 40px 32px repeat, linear-gradient(to bottom, #f6efdf, var(--bg)); }
+body[data-section="writing"] header.page h1 { color: #2f4d6b; }
+/* voice and music: the grooves of an old record */
+body[data-section="voice"] header.page::before { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36  0 0 0 0 .26  0 0 0 0 .16  0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='320' viewBox='0 0 320 320'%3E%3Ccircle cx='160' cy='160' r='158' fill='%232b2117' fill-opacity='.08'/%3E%3Cg fill='none' stroke='%232b2117' stroke-opacity='.18'%3E%3Ccircle cx='160' cy='160' r='60'/%3E%3Ccircle cx='160' cy='160' r='66'/%3E%3Ccircle cx='160' cy='160' r='72'/%3E%3Ccircle cx='160' cy='160' r='78'/%3E%3Ccircle cx='160' cy='160' r='84'/%3E%3Ccircle cx='160' cy='160' r='90'/%3E%3Ccircle cx='160' cy='160' r='96'/%3E%3Ccircle cx='160' cy='160' r='102'/%3E%3Ccircle cx='160' cy='160' r='108'/%3E%3Ccircle cx='160' cy='160' r='114'/%3E%3Ccircle cx='160' cy='160' r='120'/%3E%3Ccircle cx='160' cy='160' r='126'/%3E%3Ccircle cx='160' cy='160' r='132'/%3E%3Ccircle cx='160' cy='160' r='138'/%3E%3Ccircle cx='160' cy='160' r='144'/%3E%3Ccircle cx='160' cy='160' r='150'/%3E%3Ccircle cx='160' cy='160' r='156'/%3E%3C/g%3E%3Ccircle cx='160' cy='160' r='46' fill='%23c2703a' fill-opacity='.35'/%3E%3Ccircle cx='160' cy='160' r='4' fill='%232b2117' fill-opacity='.4'/%3E%3C/svg%3E") left 4% top 1.5rem / 17rem 17rem no-repeat, linear-gradient(to bottom, #eee3cf, var(--bg)); }
+body[data-section="voice"] header.page h1 { color: #5c3a2a; }
+/* the tastes: spices scattered on a warm counter */
+body[data-section="tastes"] header.page::before { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36  0 0 0 0 .26  0 0 0 0 .16  0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='160'%3E%3Ccircle cx='86' cy='42' r='2.2' fill='%23c2703a' fill-opacity='0.35'/%3E%3Ccircle cx='214' cy='141' r='1' fill='%23d9a441' fill-opacity='0.55'/%3E%3Ccircle cx='18' cy='133' r='1.3' fill='%23c2703a' fill-opacity='0.35'/%3E%3Ccircle cx='115' cy='111' r='1' fill='%23b5452e' fill-opacity='0.35'/%3E%3Ccircle cx='145' cy='112' r='1' fill='%23c2703a' fill-opacity='0.35'/%3E%3Ccircle cx='165' cy='153' r='1' fill='%238a5a32' fill-opacity='0.35'/%3E%3Ccircle cx='60' cy='15' r='1.3' fill='%23d9a441' fill-opacity='0.45'/%3E%3Ccircle cx='40' cy='142' r='1' fill='%23d9a441' fill-opacity='0.55'/%3E%3Ccircle cx='212' cy='50' r='1' fill='%23b5452e' fill-opacity='0.45'/%3E%3Ccircle cx='28' cy='144' r='1' fill='%23c2703a' fill-opacity='0.55'/%3E%3Ccircle cx='56' cy='131' r='2.2' fill='%23d9a441' fill-opacity='0.45'/%3E%3Ccircle cx='153' cy='120' r='1.6' fill='%23d9a441' fill-opacity='0.35'/%3E%3Ccircle cx='207' cy='50' r='1.3' fill='%23c2703a' fill-opacity='0.55'/%3E%3Ccircle cx='80' cy='138' r='2.2' fill='%23d9a441' fill-opacity='0.55'/%3E%3Ccircle cx='118' cy='77' r='1' fill='%23c2703a' fill-opacity='0.55'/%3E%3Ccircle cx='111' cy='46' r='1.6' fill='%23b5452e' fill-opacity='0.45'/%3E%3Ccircle cx='111' cy='14' r='1' fill='%23d9a441' fill-opacity='0.45'/%3E%3Ccircle cx='181' cy='93' r='2.2' fill='%238a5a32' fill-opacity='0.35'/%3E%3Ccircle cx='219' cy='27' r='1.6' fill='%238a5a32' fill-opacity='0.55'/%3E%3Ccircle cx='174' cy='20' r='1' fill='%23d9a441' fill-opacity='0.55'/%3E%3Ccircle cx='151' cy='118' r='1.6' fill='%238a5a32' fill-opacity='0.55'/%3E%3Ccircle cx='92' cy='9' r='2.2' fill='%23d9a441' fill-opacity='0.35'/%3E%3Ccircle cx='160' cy='33' r='2.2' fill='%23c2703a' fill-opacity='0.35'/%3E%3Ccircle cx='200' cy='77' r='1.3' fill='%23b5452e' fill-opacity='0.45'/%3E%3Ccircle cx='104' cy='131' r='1' fill='%23b5452e' fill-opacity='0.45'/%3E%3Ccircle cx='106' cy='144' r='1.6' fill='%23b5452e' fill-opacity='0.45'/%3E%3Ccircle cx='225' cy='144' r='1.6' fill='%238a5a32' fill-opacity='0.45'/%3E%3Ccircle cx='178' cy='101' r='1.3' fill='%23b5452e' fill-opacity='0.35'/%3E%3Ccircle cx='49' cy='42' r='1.3' fill='%23b5452e' fill-opacity='0.35'/%3E%3Ccircle cx='128' cy='154' r='1.3' fill='%23d9a441' fill-opacity='0.45'/%3E%3Ccircle cx='5' cy='41' r='2.2' fill='%23d9a441' fill-opacity='0.55'/%3E%3Ccircle cx='148' cy='85' r='1.3' fill='%23c2703a' fill-opacity='0.45'/%3E%3Ccircle cx='234' cy='147' r='2.2' fill='%238a5a32' fill-opacity='0.45'/%3E%3Ccircle cx='104' cy='30' r='2.2' fill='%238a5a32' fill-opacity='0.35'/%3E%3Ccircle cx='52' cy='21' r='1.3' fill='%238a5a32' fill-opacity='0.35'/%3E%3Ccircle cx='32' cy='91' r='1' fill='%23c2703a' fill-opacity='0.35'/%3E%3Ccircle cx='149' cy='42' r='1' fill='%23d9a441' fill-opacity='0.55'/%3E%3Ccircle cx='10' cy='22' r='1.3' fill='%238a5a32' fill-opacity='0.35'/%3E%3Ccircle cx='166' cy='68' r='1.6' fill='%23d9a441' fill-opacity='0.45'/%3E%3Ccircle cx='35' cy='33' r='2.2' fill='%238a5a32' fill-opacity='0.45'/%3E%3Ccircle cx='127' cy='83' r='1' fill='%23b5452e' fill-opacity='0.35'/%3E%3Ccircle cx='195' cy='91' r='1.6' fill='%238a5a32' fill-opacity='0.55'/%3E%3Ccircle cx='45' cy='136' r='1' fill='%23b5452e' fill-opacity='0.55'/%3E%3Ccircle cx='96' cy='41' r='1' fill='%23d9a441' fill-opacity='0.55'/%3E%3Ccircle cx='225' cy='27' r='1.6' fill='%23d9a441' fill-opacity='0.35'/%3E%3Ccircle cx='95' cy='61' r='1.6' fill='%23b5452e' fill-opacity='0.55'/%3E%3Ccircle cx='211' cy='53' r='1.3' fill='%238a5a32' fill-opacity='0.55'/%3E%3Ccircle cx='209' cy='62' r='1.3' fill='%238a5a32' fill-opacity='0.45'/%3E%3Ccircle cx='191' cy='11' r='1' fill='%23d9a441' fill-opacity='0.45'/%3E%3Ccircle cx='70' cy='53' r='1.6' fill='%238a5a32' fill-opacity='0.55'/%3E%3Ccircle cx='93' cy='97' r='1' fill='%23b5452e' fill-opacity='0.35'/%3E%3Ccircle cx='62' cy='124' r='1.3' fill='%23d9a441' fill-opacity='0.35'/%3E%3Ccircle cx='127' cy='4' r='2.2' fill='%23d9a441' fill-opacity='0.55'/%3E%3Ccircle cx='25' cy='34' r='2.2' fill='%23b5452e' fill-opacity='0.45'/%3E%3Ccircle cx='231' cy='49' r='2.2' fill='%23d9a441' fill-opacity='0.35'/%3E%3Ccircle cx='209' cy='105' r='2.2' fill='%238a5a32' fill-opacity='0.55'/%3E%3Ccircle cx='25' cy='44' r='1.3' fill='%23b5452e' fill-opacity='0.35'/%3E%3Ccircle cx='42' cy='155' r='2.2' fill='%23b5452e' fill-opacity='0.55'/%3E%3Ccircle cx='215' cy='156' r='2.2' fill='%23d9a441' fill-opacity='0.35'/%3E%3Ccircle cx='144' cy='144' r='1.3' fill='%23c2703a' fill-opacity='0.35'/%3E%3Ccircle cx='208' cy='30' r='1.3' fill='%238a5a32' fill-opacity='0.35'/%3E%3Ccircle cx='215' cy='58' r='1' fill='%23d9a441' fill-opacity='0.35'/%3E%3Ccircle cx='78' cy='132' r='1.3' fill='%23d9a441' fill-opacity='0.45'/%3E%3Ccircle cx='143' cy='111' r='1.3' fill='%23c2703a' fill-opacity='0.55'/%3E%3Ccircle cx='94' cy='121' r='2.2' fill='%23b5452e' fill-opacity='0.55'/%3E%3Ccircle cx='42' cy='138' r='1' fill='%238a5a32' fill-opacity='0.35'/%3E%3Ccircle cx='159' cy='5' r='1.3' fill='%23b5452e' fill-opacity='0.35'/%3E%3Ccircle cx='125' cy='34' r='1' fill='%23d9a441' fill-opacity='0.55'/%3E%3Ccircle cx='136' cy='139' r='2.2' fill='%23c2703a' fill-opacity='0.55'/%3E%3Ccircle cx='18' cy='67' r='1.3' fill='%23d9a441' fill-opacity='0.35'/%3E%3C/svg%3E") 0 0 / 240px 160px, radial-gradient(ellipse at 10% 10%, #f3cf9c, transparent 60%), linear-gradient(to bottom, #f5e2c6, var(--bg)); }
+body[data-section="tastes"] header.page h1 { color: #9a4a26; }
+/* the gang: a faded 1970s sunburst */
+body[data-section="friends"] header.page::before { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36  0 0 0 0 .26  0 0 0 0 .16  0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='210' viewBox='0 0 400 210'%3E%3Cpath d='M200 200 L460.0 200.0 L458.1 168.9Z' fill='%23d9a441' fill-opacity='.28'/%3E%3Cpath d='M200 200 L451.3 133.2 L441.5 103.6Z' fill='%23c2703a' fill-opacity='.28'/%3E%3Cpath d='M200 200 L425.6 70.8 L408.5 44.7Z' fill='%237a4b2a' fill-opacity='.28'/%3E%3Cpath d='M200 200 L384.8 17.1 L361.6 -3.7Z' fill='%23d9a441' fill-opacity='.28'/%3E%3Cpath d='M200 200 L331.6 -24.2 L303.8 -38.4Z' fill='%23c2703a' fill-opacity='.28'/%3E%3Cpath d='M200 200 L269.5 -50.5 L239.1 -57.0Z' fill='%237a4b2a' fill-opacity='.28'/%3E%3Cpath d='M200 200 L202.8 -60.0 L171.7 -58.5Z' fill='%23d9a441' fill-opacity='.28'/%3E%3Cpath d='M200 200 L135.9 -52.0 L106.2 -42.5Z' fill='%23c2703a' fill-opacity='.28'/%3E%3Cpath d='M200 200 L73.3 -27.0 L47.0 -10.2Z' fill='%237a4b2a' fill-opacity='.28'/%3E%3Cpath d='M200 200 L19.2 13.2 L-1.9 36.2Z' fill='%23d9a441' fill-opacity='.28'/%3E%3Cpath d='M200 200 L-22.8 66.0 L-37.2 93.6Z' fill='%23c2703a' fill-opacity='.28'/%3E%3Cpath d='M200 200 L-49.8 127.7 L-56.6 158.2Z' fill='%237a4b2a' fill-opacity='.28'/%3E%3Cpath d='M200 200 L-59.9 194.4 L-58.7 225.5Z' fill='%23d9a441' fill-opacity='.28'/%3E%3Ccircle cx='200' cy='200' r='46' fill='%23e9d085' fill-opacity='.55'/%3E%3C/svg%3E") left 3% bottom / min(26rem, 62%) auto no-repeat, linear-gradient(to bottom, #f2e0c2, var(--bg)); }
+body[data-section="friends"] header.page h1 { color: #7a4b2a; }
+body[data-section="wars"] header.page::before, body[data-section="writing"] header.page::before, body[data-section="voice"] header.page::before, body[data-section="tastes"] header.page::before, body[data-section="friends"] header.page::before {
+  -webkit-mask-image: linear-gradient(to bottom, #000 50%, transparent), linear-gradient(to left, rgb(0 0 0 / 0.15) 30%, #000 75%);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to bottom, #000 50%, transparent), linear-gradient(to left, rgb(0 0 0 / 0.15) 30%, #000 75%);
+  mask-composite: intersect;
+}
+@media (max-width: 40rem) {
+  body[data-section="voice"] header.page::before { background-size: auto, 6.5rem 6.5rem, auto; background-position: 0 0, left 3% bottom 0.5rem, 0 0; }
+  body[data-section="friends"] header.page::before { background-size: auto, 12rem auto, auto; }
+  body[data-section="wars"] header.page::before { background-size: auto, 20rem auto, auto; }
+}
+
+/* photos of Dad (cut from the family's screenshots; low resolution until originals arrive) */
+.portrait { margin: 0 0 2.5rem; max-width: 22rem; }
+.portrait-img { display: block; width: 100%; height: auto; border-radius: 6px; box-shadow: 0 10px 28px -12px rgb(60 35 15 / 0.45); }
+.portrait figcaption { margin-top: 0.4rem; font-size: 0.85rem; }
+.timeline .tl-photo { grid-column: 2; width: 9.5rem; height: auto; border-radius: 4px; margin-top: 0.4rem; box-shadow: 0 6px 16px -8px rgb(60 35 15 / 0.5); filter: sepia(0.15); }
+@media (max-width: 40rem) { .timeline .tl-photo { grid-column: 1; } }
+.src .upload { font-size: 0.75rem; color: var(--ink-2); border: 1px solid currentColor; border-radius: 3px; padding: 0 0.3rem; white-space: nowrap; }
+.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr)); gap: 1.5rem; margin: 3rem 0 2rem; align-items: start; }
+.gallery figure { margin: 0; }
+.gallery .g-img { display: block; width: 100%; height: auto; border-radius: 4px; box-shadow: 0 10px 26px -12px rgb(40 45 20 / 0.55); }
+.gallery figcaption { margin-top: 0.35rem; }
+
+/* family chapters: photo beside the words, like pages of an album */
+.chapter { margin: 4rem 0; }
+.chapter blockquote { margin: 0 0 1.5rem; padding-inline-start: 1.25rem; border-inline-start: 2px solid var(--mustard); }
+.chapter blockquote p { font-size: 1.2rem; line-height: 1.7; color: var(--ink-strong); margin: 0 0 0.35rem; }
+.chapter blockquote footer { font-size: 0.85rem; color: var(--ink-2); }
+.inscription { display: flex; flex-direction: column; align-items: center; gap: 0.2rem; padding: 1.75rem 1.25rem; background: color-mix(in srgb, var(--bg) 70%, #e9e2d3); border-radius: 6px 40px 6px 6px; font-family: var(--display); font-size: 1.1rem; color: var(--ink-strong); text-align: center; }
+.inscription span:nth-child(4) { font-size: 1.5rem; font-weight: 700; }
+.inscription span[lang="fr"] { font-family: Georgia, serif; font-style: italic; }
+
+.olives { margin: 3rem 0; }
+.olives .thumbs { margin-top: 1rem; }
+.olives blockquote p { font-size: 1.2rem; }
+
+/* Dad's kitchen: a printed menu card (cream paper, thin burgundy rules, no boxes) */
+.menu {
+  position: relative; margin: 3.5rem auto; max-width: 54rem;
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.25rem, 5vw, 4rem);
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgb(255 251 240 / 0.9), transparent 70%),
+    color-mix(in srgb, var(--bg) 82%, #fff8e6);
+  box-shadow: 0 30px 60px -40px rgb(90 50 20 / 0.55), 0 1px 0 rgb(122 58 44 / 0.15);
+  border-radius: 3px;
+}
+.menu::before { content: ''; position: absolute; inset: 0.7rem; border: 1px solid color-mix(in srgb, var(--burgundy) 55%, transparent); outline: 1px solid color-mix(in srgb, var(--burgundy) 30%, transparent); outline-offset: 4px; pointer-events: none; }
+.menu-title { text-align: center; font-size: clamp(1.9rem, 4vw, 2.6rem); color: var(--burgundy); margin: 0 0 0.25rem; letter-spacing: 0.02em; }
+.menu-title::after { content: '◆ ◇ ◆'; display: block; margin-top: 0.6rem; font-size: 0.7rem; letter-spacing: 0.6em; color: var(--mustard-ink, #b58b2a); }
+.dishes { list-style: none; padding: 0; margin: 2.25rem 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem 3.5rem; }
+.dish { position: relative; text-align: center; }
+.dish h3 { font-family: var(--display); font-size: 1.5rem; margin: 0 0 0.6rem; color: var(--ink-strong); line-height: 1.25; }
+.dish h3 small { display: block; font-family: var(--sans); font-weight: 400; font-size: 0.95rem; color: var(--ink-2); margin-top: 0.15rem; }
+.dish .ings { margin: 0 0 0.6rem; font-size: 0.98rem; color: var(--ink); line-height: 1.8; }
+.dish .ings span + span::before { content: '·'; margin-inline: 0.5em; color: var(--burgundy); font-weight: 700; }
+.dish .desc { margin: 0 auto 0.4rem; max-width: 22rem; font-size: 1.08rem; color: var(--sepia, var(--ink-2)); }
+:lang(en) .dish .desc { font-style: italic; }
+.dish .ings span { display: inline-block; }
+.dish { min-width: 0; }
+.dish .pending { background: none; padding: 0; color: var(--ink-2); font-size: 0.9rem; }
+.dish-src { margin: 0; }
+.dish-img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 2px; margin-bottom: 1rem; box-shadow: 0 12px 24px -16px rgb(60 35 15 / 0.6); }
+.dish:not(:nth-last-child(-n + 2))::after { content: ''; display: block; width: 3.5rem; height: 1px; margin: 1.75rem auto 0; background: color-mix(in srgb, var(--burgundy) 45%, transparent); }
+@media (max-width: 40rem) { .dishes { grid-template-columns: 1fr; gap: 2rem; } .dish:nth-last-child(2)::after { content: ''; display: block; width: 3.5rem; height: 1px; margin: 1.75rem auto 0; background: color-mix(in srgb, var(--burgundy) 45%, transparent); } }
+
+/* photo thumbnails with a small caption; a click opens the photo large */
+.thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(9.5rem, 1fr)); gap: 1.25rem 1rem; margin: 1.5rem 0 0; }
+.thumb { margin: 0; }
+.thumb .zoom { display: block; width: 100%; padding: 0; border: 0; background: none; cursor: zoom-in; border-radius: 4px; }
+.thumb .th-img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 50% 30%; border-radius: 4px; box-shadow: 0 8px 18px -10px rgb(60 35 15 / 0.55); transition: transform 0.2s ease; }
+.thumb .zoom:hover .th-img { transform: scale(1.03); }
+.thumb figcaption { margin-top: 0.4rem; font-size: 0.85rem; line-height: 1.4; color: var(--ink-2); }
+.lightbox { border: 0; padding: 0; background: transparent; max-width: 94vw; max-height: 94vh; overflow: visible; }
+.lightbox::backdrop { background: rgb(20 14 10 / 0.82); }
+.lightbox img { display: block; width: auto; height: auto; max-width: 94vw; max-height: 82vh; margin: 0 auto; border-radius: 3px; box-shadow: 0 20px 50px rgb(0 0 0 / 0.5); }
+.lb-cap { margin: 0.75rem auto 0; max-width: 40rem; text-align: center; color: #f3ecdd; font-size: 0.95rem; }
+.lb-close { position: absolute; top: -2.5rem; inset-inline-end: 0; width: 2.2rem; height: 2.2rem; border: 1px solid rgb(243 236 221 / 0.6); border-radius: 50%; background: transparent; color: #f3ecdd; font-size: 1.4rem; line-height: 1; cursor: pointer; }
+@media (prefers-reduced-motion: reduce) { .thumb .th-img { transition: none; } }
+
+.timeline .tl-thumbs { grid-column: 2; margin: 0.6rem 0 0.2rem; grid-template-columns: repeat(auto-fill, minmax(6.5rem, 7.5rem)); gap: 0.75rem; }
+.timeline .tl-thumbs figcaption { font-size: 0.78rem; }
+@media (max-width: 40rem) { .timeline .tl-thumbs { grid-column: 1; } }
