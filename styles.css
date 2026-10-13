@@ -85,7 +85,7 @@ header.site nav { order: 1; }
 }
 .lang-switch:hover { background: color-mix(in srgb, var(--cream-on-turq) 15%, transparent); }
 .lang-switch:focus-visible { outline-color: var(--cream-on-turq); }
-@media (max-width: 48rem) { .lang-switch { order: 0; } header.site nav { flex-basis: 100%; } }
+@media (max-width: 48rem) { .lang-switch, .sea-sound { order: 0; } header.site nav { flex-basis: 100%; } }
 body[data-section="life"] nav a[href*="life/"],
 body[data-section="wars"] nav a[href*="wars/"],
 body[data-section="love"] nav a[href*="love/"],
@@ -116,7 +116,6 @@ footer.site p { max-width: var(--measure); margin: 0; }
 .shore .lines-hint { display: inline-block; color: var(--ink-strong); background: color-mix(in srgb, var(--bg) 80%, transparent); border-radius: 999px; padding: 0.15rem 0.8rem; }
 .shore .lines-hint button { color: var(--burgundy); }
 .shore blockquote.feature .src a { color: var(--cream-on-turq); border-color: color-mix(in srgb, var(--cream-on-turq) 60%, transparent); }
-.shore .sea-sound { bottom: 3rem; }
 .shore .lines li.later .lure { background: color-mix(in srgb, var(--bg) 85%, transparent); color: var(--ink-strong); }
 
 .hero {
@@ -140,28 +139,19 @@ main section.hero { margin-block: 0; }
 .hero .memory .teller { display: block; font-size: 0.9rem; font-weight: 400; opacity: 0.9; }
 
 /* the sunset scene sits at the inline end (left in RTL) */
-.scene { position: absolute; inset-inline-end: 0; bottom: 0; width: min(46%, 26rem); height: auto; max-width: 100%; overflow: visible; }
-.scene .sun { fill: var(--mustard); }
-.scene .water path { stroke: var(--cream-on-turq); stroke-width: 1.5; stroke-linecap: round; opacity: 0.6; fill: none; }
-.scene .sun { stroke: var(--burgundy); stroke-width: 1.2; }
+.scene-photo { position: absolute; inset-inline-end: 5%; bottom: 2.5rem; width: min(44%, 27rem); margin: 0; padding: 0.45rem 0.45rem 1.6rem; background: #f7f0e1; border-radius: 3px; box-shadow: 0 14px 34px rgb(0 30 36 / 0.4); rotate: -2.5deg; }
+.scene-photo img { display: block; width: 100%; height: auto; filter: sepia(0.12) saturate(1.05); }
+/* the lump of dough on his cap, as Dad fished */
+.scene-photo .pic { position: relative; display: block; }
+.scene-photo .dough { position: absolute; left: 31.7%; top: 35.4%; width: 1.7%; aspect-ratio: 1.4; border-radius: 55% 45% 50% 50% / 60% 60% 40% 40%; background: radial-gradient(circle at 40% 35%, #fbf4e2, #e2cda2 75%); box-shadow: 0 0.5px 1px rgb(60 40 20 / 0.55); translate: -40% -45%; }
 /* the float never rests: it bobs on the water and sends out small rings */
-.scene .figure .strap { fill: none; stroke: #4d3d2d; stroke-width: 2.2; }
-.scene .figure .dough { fill: #efe2c4; }
-.scene .rod { fill: none; stroke: var(--silhouette); stroke-width: 1.4; stroke-linecap: round; }
-.scene .wake { fill: none; stroke: var(--cream-on-turq); stroke-width: 0.5; opacity: 0.3; }
-.scene .bobber { animation: bob 2.6s ease-in-out infinite; }
-.scene .ripple { fill: none; stroke: var(--cream-on-turq); stroke-width: 0.8; opacity: 0; transform-box: fill-box; transform-origin: center; animation: ripple 2.6s ease-out infinite; }
-.scene .ripple.r2 { animation-delay: 1.3s; }
 @keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(2.2px); } }
 @keyframes ripple { 0% { opacity: 0.8; transform: scale(1); } 100% { opacity: 0; transform: scale(4.5); } }
-.scene .float { transform-origin: 455px -40px; animation: line-sway 6s ease-in-out infinite; }
-.scene .line { fill: none; stroke: var(--burgundy); stroke-width: 1.2; }
-.scene .bobber { fill: var(--burgundy); }
 @keyframes line-sway { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-2.5deg); } }
 
 /* the saying: burgundy text between two hairlines, no block */
 blockquote.feature {
-  margin-block: 0 3rem; padding-block: 2.25rem;
+  margin-block: 0 2rem; padding-block: 1.5rem;
   border-bottom: 1px solid var(--burgundy);
   color: var(--burgundy);
   font-family: var(--display); font-size: clamp(1.5rem, 4vw, 2.2rem); line-height: 1.4; font-weight: 500;
@@ -177,12 +167,14 @@ blockquote.feature footer { font-family: var(--sans); font-size: 1rem; font-weig
 .lines { position: relative; overflow: hidden; padding-block: 0 4.5rem; margin-bottom: -4rem; }
 .lines ul { position: relative; z-index: 1; }
 .sea-sound {
-  position: absolute; z-index: 2; inset-inline-start: max(1rem, calc(50vw - 50%)); bottom: 1rem;
-  font: 600 0.9rem var(--sans); color: var(--ink-strong); background: var(--bg);
-  border: 1px solid var(--burgundy); border-radius: 999px; padding: 0.3rem 1rem; cursor: pointer;
+  order: 2; display: inline-grid; place-items: center; width: 2rem; height: 2rem; padding: 0; cursor: pointer;
+  color: var(--cream-on-turq); background: transparent; border: 1px solid color-mix(in srgb, var(--cream-on-turq) 70%, transparent); border-radius: 50%;
 }
-.sea-sound[aria-pressed="true"] { background: var(--mustard); }
-.sea-sound:focus-visible { outline: 2px solid var(--burgundy); outline-offset: 2px; }
+.sea-sound svg { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.sea-sound .spk { fill: currentColor; }
+.sea-sound[aria-pressed="true"] .x, .sea-sound[aria-pressed="false"] .wv { display: none; }
+.sea-sound:hover { background: color-mix(in srgb, var(--cream-on-turq) 15%, transparent); }
+.sea-sound:focus-visible { outline: 2px solid var(--cream-on-turq); outline-offset: 2px; }
 .lines ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; row-gap: 2rem; }
 .lines li {
   flex: 1 1 5.5rem; display: flex; justify-content: center;
@@ -237,8 +229,7 @@ blockquote.feature p.tr { font-size: 0.75em; color: var(--ink-strong); margin-to
 .sources .orig-title { display: block; font-family: var(--sans); font-size: 0.9rem; font-weight: 400; color: var(--ink-2); }
 
 @media (prefers-reduced-motion: reduce) {
-  .lines a, .lines .hang, .scene .float, .scene .bobber, .scene .ripple { animation: none; }
-}
+  .lines a, .lines .hang, }
 
 /* fishing memory on the life page */
 .fishing blockquote { margin: 0; padding: 1rem 1.5rem; border-inline-start: 2px solid var(--burgundy); max-width: var(--measure); }
@@ -249,7 +240,7 @@ blockquote.feature p.tr { font-size: 0.75em; color: var(--ink-strong); margin-to
 /* the sea above runs into sand and then the cream page, with no hard edge */
 .lede { font-size: 1.25rem; color: var(--ink-2); max-width: var(--measure); margin: 0 0 1rem; }
 .note { font-size: 0.95rem; color: var(--ink); max-width: var(--measure); background: var(--mustard-soft); border-radius: 8px; padding: 0.6rem 1rem; }
-main section { margin: 3rem 0; }
+main section { margin: 2rem 0; }
 main section h2 { font-size: 1.8rem; color: var(--turq-ink); }
 main section h3 { font-size: 1.15rem; color: var(--burgundy); }
 
@@ -270,7 +261,7 @@ main section h3 { font-size: 1.15rem; color: var(--burgundy); }
 .timeline .label { font-size: 1.15rem; color: var(--ink-strong); }
 .timeline .more { grid-column: 2; font-size: 0.95rem; }
 
-.wars { color: var(--on-turq); padding-block: 9rem; }
+.wars { color: var(--on-turq); padding-block: 5rem; }
 main section.wars h2 { color: var(--on-turq); }
 .wars-list { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font-family: var(--display); font-size: 1.35rem; font-weight: 500; }
 .wars-list small { font-size: 0.75em; opacity: 0.8; }
@@ -282,13 +273,13 @@ main section.wars h2 { color: var(--on-turq); }
 .headings li { padding: 0.6rem 0; border-bottom: 1px solid var(--rule); }
 .headings.large li { font-family: var(--display); font-size: 1.35rem; font-weight: 500; color: var(--ink-strong); }
 
-.quotes { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); margin: 1.5rem 0 2rem; }
-.quotes blockquote { position: relative; margin: 0; padding: 2.25rem 1.5rem 1.25rem; background: var(--surface); border-radius: 12px; border-top: 2px solid var(--burgundy); }
-.quotes blockquote::before { content: '״'; position: absolute; top: -0.1rem; inset-inline-start: 1rem; font-family: var(--display); font-size: 3.25rem; line-height: 1; color: var(--burgundy); }
+.quotes { display: grid; gap: 0.75rem; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); margin: 1rem 0 1.25rem; }
+.quotes blockquote { position: relative; margin: 0; padding: 1.6rem 1.1rem 0.75rem; background: var(--surface); border-radius: 12px; border-top: 2px solid var(--burgundy); }
+.quotes blockquote::before { content: '״'; position: absolute; top: -0.1rem; inset-inline-start: 1rem; font-family: var(--display); font-size: 2.4rem; line-height: 1; color: var(--burgundy); }
 .quotes blockquote:nth-child(3n+2) { background: var(--turq); color: var(--on-turq); border-top-color: var(--on-turq); }
 .quotes blockquote:nth-child(3n+2)::before { color: var(--on-turq); }
 .quotes blockquote:nth-child(3n+2) a, .quotes blockquote:nth-child(3n+2) .src a { color: var(--on-turq); }
-.quotes p { font-family: var(--display); font-weight: 500; font-size: 1.3rem; line-height: 1.4; margin: 0 0 0.5rem; color: inherit; }
+.quotes p { font-family: var(--display); font-weight: 500; font-size: 1.1rem; line-height: 1.4; margin: 0 0 0.35rem; color: inherit; }
 .quotes blockquote:not(:nth-child(3n+2)) p { color: var(--ink-strong); }
 .quotes footer { font-size: 0.9rem; }
 
@@ -346,14 +337,14 @@ aside.missing p { margin: 0; color: var(--ink-2); font-size: 0.95rem; }
   body { font-size: 1.0625rem; }
   .timeline li { grid-template-columns: 1fr; }
   .timeline .more { grid-column: 1; }
-  .hero { padding-bottom: 13rem; }
-  .scene { width: min(88%, 22rem); }
+  .scene-photo { position: relative; inset: auto; order: 2; width: min(86%, 20rem); margin: 1.75rem auto 0; }
+  .hero { display: flex; flex-direction: column; }
   .lines li { flex-basis: 6.5rem; }
   .lure { white-space: normal; }
 }
 
 /* films are embedded where the family published them */
-.film { margin: 1.5rem 0 0; }
+.film { margin: 1.25rem 0 0; max-width: 40rem; }
 .film .frame { position: relative; display: block; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; text-decoration: none; color: #fbf6ea;
   background: radial-gradient(120% 90% at 30% 20%, #2c8a96, #134b5a 60%, #0d3440); box-shadow: 0 18px 40px -22px rgb(19 75 90 / 0.7); }
 .film .frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
@@ -369,7 +360,7 @@ main section.wars { margin-block: 0; }
 
 /* Inner pages: each subject has its own quiet ground behind the title.
    The motif sits on warm paper and fades out downward, so nothing ends in a hard edge. */
-header.page { position: relative; isolation: isolate; overflow: hidden; background: var(--bg); padding-block: 3.5rem 3rem; margin-bottom: 0; }
+header.page { position: relative; isolation: isolate; overflow: hidden; background: var(--bg); padding-block: 2.25rem 1.5rem; margin-bottom: 0; }
 header.page::before { content: ''; position: absolute; inset: 0; z-index: -1; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36  0 0 0 0 .26  0 0 0 0 .16  0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"), linear-gradient(to bottom, var(--surface), var(--bg)); -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent); mask-image: linear-gradient(to bottom, #000 55%, transparent); }
 /* the motifs stay clear of the title side so the words always read cleanly */
 body[data-section="life"] header.page::before, body[data-section="love"] header.page::before, body[data-section="family"] header.page::before {
@@ -495,3 +486,8 @@ body[data-section="wars"] header.page::before, body[data-section="writing"] head
 .timeline .tl-thumbs { grid-column: 2; margin: 0.6rem 0 0.2rem; grid-template-columns: repeat(auto-fill, minmax(6.5rem, 7.5rem)); gap: 0.75rem; }
 .timeline .tl-thumbs figcaption { font-size: 0.78rem; }
 @media (max-width: 40rem) { .timeline .tl-thumbs { grid-column: 1; } }
+
+/* short lists of topics as small tags rather than ruled rows */
+.headings.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.headings.chips li { padding: 0.15rem 0.75rem; border: 1px solid var(--rule); border-radius: 999px; font-size: 0.95rem; }
+@media (max-width: 48rem) { header.site .sea-sound { order: 0; margin-inline-start: -1.25rem; } }
