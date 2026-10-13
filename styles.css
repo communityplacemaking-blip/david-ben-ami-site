@@ -491,3 +491,32 @@ body[data-section="wars"] header.page::before, body[data-section="writing"] head
 .headings.chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 .headings.chips li { padding: 0.15rem 0.75rem; border: 1px solid var(--rule); border-radius: 999px; font-size: 0.95rem; }
 @media (max-width: 48rem) { header.site .sea-sound { order: 0; margin-inline-start: -1.25rem; } }
+
+/* Lili and David's album: a 1970s photo album under a faded rainbow band */
+.album70 { position: relative; margin: 2.5rem 0 2rem; padding: 4.5rem clamp(1rem, 4vw, 2.5rem) 2.5rem; background: #f4e6cc; border-radius: 18px; box-shadow: inset 0 0 0 1px rgb(122 75 42 / 0.18); overflow: hidden; isolation: isolate; }
+.album70::after { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse at 80% 100%, rgb(217 164 65 / 0.18), transparent 60%); }
+.album70 .seventies { position: absolute; z-index: -1; top: 0; left: 0; width: 100%; height: 7rem; filter: sepia(0.2); }
+.album70 .daisies { position: absolute; z-index: -1; width: 7.5rem; bottom: 0.5rem; inset-inline-start: 0.5rem; opacity: 0.85; }
+main section.album70 h2 { font-family: var(--display); font-weight: 700; color: #7a4b2a; letter-spacing: 0.02em; margin: 0.75rem 0 1rem; }
+.page-song { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 0.5rem 1rem; max-width: 34rem; margin: 1.25rem 0; padding: 0.75rem 1rem; background: #fbf4e2; border: 1px solid rgb(122 75 42 / 0.3); border-radius: 12px; }
+.page-song .cassette { display: flex; align-items: center; gap: 0.4rem; width: 8.5rem; height: 3.4rem; padding: 0 0.5rem; border-radius: 6px; background: linear-gradient(to bottom, #3a2a1e 0 18%, #e9d085 18% 40%, #c2703a 40% 60%, #7a4b2a 60% 82%, #3a2a1e 82%); }
+.page-song .cassette .reel { flex: none; width: 1.3rem; height: 1.3rem; border-radius: 50%; background: repeating-conic-gradient(#3a2a1e 0 30deg, #fbf4e2 30deg 60deg); border: 2px solid #fbf4e2; }
+.page-song.playing .cassette .reel { animation: reel 2.4s linear infinite; }
+@keyframes reel { to { rotate: 1turn; } }
+.page-song .cassette .tape-label { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; font-size: 0.55rem; color: #3a2a1e; text-align: center; direction: ltr; }
+.page-song .song-meta small { display: block; color: var(--ink-2); font-size: 0.85rem; }
+.page-song .song-meta strong { font-family: var(--display); color: #7a4b2a; }
+.page-song .song-toggle { font: 600 0.9rem var(--sans); color: #7a4b2a; background: transparent; border: 1px solid #7a4b2a; border-radius: 999px; padding: 0.3rem 0.9rem; cursor: pointer; }
+.page-song .song-frame { grid-column: 1 / -1; }
+.page-song .song-frame:empty { display: none; }
+.page-song .song-frame iframe { display: block; width: min(100%, 20rem); aspect-ratio: 16 / 9; border: 0; border-radius: 8px; }
+.album70 .prints { list-style: none; margin: 0; padding: 0; columns: 3 12rem; column-gap: 1.25rem; }
+.album70 .prints li { break-inside: avoid; margin-bottom: 1.4rem; }
+.album70 .prints .zoom { display: block; width: 100%; padding: 0.55rem 0.55rem 1.4rem; background: #fdf8ec; border: 0; border-radius: 10px; box-shadow: 0 6px 16px rgb(58 42 30 / 0.22); cursor: zoom-in; rotate: var(--r, -1.5deg); transition: rotate 0.25s ease, translate 0.25s ease; }
+.album70 .prints li:nth-child(3n+2) .zoom { --r: 1.8deg; }
+.album70 .prints li:nth-child(3n) .zoom { --r: -0.6deg; }
+.album70 .prints li:nth-child(4n) .zoom { --r: 2.4deg; }
+.album70 .prints .zoom:hover, .album70 .prints .zoom:focus-visible { rotate: 0deg; translate: 0 -3px; }
+.album70 .prints img { display: block; width: 100%; height: auto; border-radius: 8px; filter: sepia(0.25) saturate(0.85) contrast(0.95); }
+@media (max-width: 36rem) { .page-song .cassette { width: 6rem; } }
+@media (prefers-reduced-motion: reduce) { .page-song.playing .cassette .reel { animation: none; } }

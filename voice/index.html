@@ -18,6 +18,7 @@
   <a class="name" href="/david-ben-ami-site/">דוד בן עמי <span>ז״ל</span></a>
   <a class="lang-switch" href="/david-ben-ami-site/en/voice/" hreflang="en" lang="en">English</a>
   
+  
   <nav aria-label="ניווט ראשי"><ul><li><a href="/david-ben-ami-site/life/">דרך חייו</a></li><li><a href="/david-ben-ami-site/love/">לילי ודוד</a></li><li><a href="/david-ben-ami-site/family/">המשפחה</a></li><li><a href="/david-ben-ami-site/writing/">הכתיבה של אבא</a></li><li><a href="/david-ben-ami-site/voice/">הקול והמוזיקה</a></li><li><a href="/david-ben-ami-site/tastes/">הטעמים</a></li><li><a href="/david-ben-ami-site/friends/">החבר&#39;ה</a></li><li><a href="/david-ben-ami-site/wars/">אבא הלוחם</a></li></ul></nav>
 </header>
 <main id="main">
@@ -61,11 +62,13 @@
   <p>האתר בבנייה. הטקסטים נאספו ממצגות ההנצחה המשפחתיות (<bdi dir="ltr">2021–2024</bdi>) ועדיין נבדקים מול המקור. <a href="/david-ben-ami-site/sources/">על המקורות</a></p>
 </footer>
 
+
 <script>
 // a click swaps the film card for the YouTube player in place; without script the card opens YouTube
 document.addEventListener('click', function (e) {
   var a = e.target.closest('a[data-yt]'); if (!a) return;
   e.preventDefault();
+  var song = document.querySelector('.song-frame'); if (song) { song.replaceChildren(); song.parentNode.classList.remove('playing'); }
   var f = document.createElement('iframe');
   f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.yt + '?autoplay=1&rel=0';
   f.title = a.querySelector('.film-title').firstChild.textContent;

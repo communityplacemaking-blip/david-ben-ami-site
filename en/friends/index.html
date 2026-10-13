@@ -18,10 +18,12 @@
   <a class="name" href="/david-ben-ami-site/en/">David Ben Ami <span>z&quot;l</span></a>
   <a class="lang-switch" href="/david-ben-ami-site/friends/" hreflang="he" lang="he">עברית</a>
   
+  
   <nav aria-label="Main navigation"><ul><li><a href="/david-ben-ami-site/en/life/">His Life&#39;s Path</a></li><li><a href="/david-ben-ami-site/en/love/">Lili and David</a></li><li><a href="/david-ben-ami-site/en/family/">The Family</a></li><li><a href="/david-ben-ami-site/en/writing/">Dad&#39;s Writing</a></li><li><a href="/david-ben-ami-site/en/voice/">Voice and Music</a></li><li><a href="/david-ben-ami-site/en/tastes/">Flavors</a></li><li><a href="/david-ben-ami-site/en/friends/">The Gang</a></li><li><a href="/david-ben-ami-site/en/wars/">Dad the Fighter</a></li></ul></nav>
 </header>
 <main id="main">
 <header class="page band"><h1>The Gang</h1><p class="lede">Dad and Mom&#39;s gang of friends, from the &#39;70s and for life.</p></header>
+
 <ul class="headings large"><li>Abale of the &#39;70s</li><li>Friends for life</li><li>Friends from those days</li></ul>
 <figure class="film" id="friends-film">
     <a class="frame" href="https://www.youtube.com/watch?v=7fhbJbDLVZw" target="_blank" rel="noopener" data-yt="7fhbJbDLVZw">
@@ -31,6 +33,7 @@
     </a>
     <figcaption><span class="src"><a href="/david-ben-ami-site/en/sources/#V3" title="Source: Film about Dad&#39;s gang">V3</a> <a href="/david-ben-ami-site/en/sources/#T1" title="Source: The project owner&#39;s testimony in conversation">T1</a></span></figcaption>
   </figure>
+
 <p class="sourceline">Sources: <span class="src"><a href="/david-ben-ami-site/en/sources/#S1" title="Source: David ben ami for ever (2021)">S1</a> <a href="/david-ben-ami-site/en/sources/#S4" title="Source: Dad&#39;s Gang">S4</a></span></p>
 <aside class="missing"><h2>What is still waiting here</h2><ul><li>The friends&#39; names and stories</li><li>The video from the gang&#39;s presentation</li><li>Photos</li></ul>
        <p>Do you have these materials? We would be glad to receive them.</p></aside>
@@ -39,11 +42,13 @@
   <p>This site is under construction. The texts were gathered from the family&#39;s memorial presentations (2021–2024) and are still being checked against the originals. The English is a draft translation awaiting family review. <a href="/david-ben-ami-site/en/sources/">About the sources</a></p>
 </footer>
 
+
 <script>
 // a click swaps the film card for the YouTube player in place; without script the card opens YouTube
 document.addEventListener('click', function (e) {
   var a = e.target.closest('a[data-yt]'); if (!a) return;
   e.preventDefault();
+  var song = document.querySelector('.song-frame'); if (song) { song.replaceChildren(); song.parentNode.classList.remove('playing'); }
   var f = document.createElement('iframe');
   f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.yt + '?autoplay=1&rel=0';
   f.title = a.querySelector('.film-title').firstChild.textContent;

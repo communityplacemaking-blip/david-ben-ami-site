@@ -18,10 +18,12 @@
   <a class="name" href="/david-ben-ami-site/">דוד בן עמי <span>ז״ל</span></a>
   <a class="lang-switch" href="/david-ben-ami-site/en/friends/" hreflang="en" lang="en">English</a>
   
+  
   <nav aria-label="ניווט ראשי"><ul><li><a href="/david-ben-ami-site/life/">דרך חייו</a></li><li><a href="/david-ben-ami-site/love/">לילי ודוד</a></li><li><a href="/david-ben-ami-site/family/">המשפחה</a></li><li><a href="/david-ben-ami-site/writing/">הכתיבה של אבא</a></li><li><a href="/david-ben-ami-site/voice/">הקול והמוזיקה</a></li><li><a href="/david-ben-ami-site/tastes/">הטעמים</a></li><li><a href="/david-ben-ami-site/friends/">החבר&#39;ה</a></li><li><a href="/david-ben-ami-site/wars/">אבא הלוחם</a></li></ul></nav>
 </header>
 <main id="main">
 <header class="page band"><h1>החבר&#39;ה</h1><p class="lede">החבר&#39;ה של אבא ואמא, משנות ה-70 ולכל החיים.</p></header>
+
 <ul class="headings large"><li>אבאלה של שנות ה 70</li><li>חברים לכל החיים</li><li>חברים מאותם הימים</li></ul>
 <figure class="film" id="friends-film">
     <a class="frame" href="https://www.youtube.com/watch?v=7fhbJbDLVZw" target="_blank" rel="noopener" data-yt="7fhbJbDLVZw">
@@ -31,6 +33,7 @@
     </a>
     <figcaption><span class="src"><a href="/david-ben-ami-site/sources/#V3" title="מקור: סרט על החבר&#39;ה של אבא">V3</a> <a href="/david-ben-ami-site/sources/#T1" title="מקור: עדות בעל הפרויקט בשיחה">T1</a></span></figcaption>
   </figure>
+
 <p class="sourceline">מקורות: <span class="src"><a href="/david-ben-ami-site/sources/#S1" title="מקור: David ben ami for ever (2021)">S1</a> <a href="/david-ben-ami-site/sources/#S4" title="מקור: החבר&#39;ה של אבא">S4</a></span></p>
 <aside class="missing"><h2>מה עוד מחכה כאן</h2><ul><li>שמות וסיפורים של החברים</li><li>הסרטון ממצגת החבר&#39;ה</li><li>תמונות</li></ul>
        <p>יש לכם את החומרים האלה? נשמח לקבל אותם.</p></aside>
@@ -39,11 +42,13 @@
   <p>האתר בבנייה. הטקסטים נאספו ממצגות ההנצחה המשפחתיות (<bdi dir="ltr">2021–2024</bdi>) ועדיין נבדקים מול המקור. <a href="/david-ben-ami-site/sources/">על המקורות</a></p>
 </footer>
 
+
 <script>
 // a click swaps the film card for the YouTube player in place; without script the card opens YouTube
 document.addEventListener('click', function (e) {
   var a = e.target.closest('a[data-yt]'); if (!a) return;
   e.preventDefault();
+  var song = document.querySelector('.song-frame'); if (song) { song.replaceChildren(); song.parentNode.classList.remove('playing'); }
   var f = document.createElement('iframe');
   f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.yt + '?autoplay=1&rel=0';
   f.title = a.querySelector('.film-title').firstChild.textContent;
