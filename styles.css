@@ -821,3 +821,23 @@ body[data-section="friends"] header.page { padding-bottom: 0.5rem; }
 .tree.ft .person small { font-size: 0.72rem; line-height: 1.25; }
 .tree.ft .person.dad { outline: 0; }
 .ft .unit:has(.dad) { outline: 3px solid var(--mustard); }
+/* family members add themselves to the tree */
+.ft-add { display: grid; gap: 0.7rem; max-width: 36rem; margin: 0 0 2rem; padding: 1.2rem 1.4rem; border-radius: 18px; background: #fffdf7; border: 1px solid rgb(138 106 69 / 0.3); box-shadow: 0 14px 30px -24px rgb(60 35 15 / 0.7); }
+.ft-add h2 { margin: 0; font-size: 1.35rem; }
+.ft-add .lede { margin: 0; color: var(--ink-2); }
+.ft-add .hp { display: none; }
+.ft-add label { display: grid; gap: 0.25rem; font-size: 0.9rem; color: var(--ink-2); }
+.ft-add .ft-row { display: grid; grid-template-columns: auto 1fr; gap: 0.7rem; }
+.ft-add input[type="text"], .ft-add select { font: inherit; color: var(--ink-strong); padding: 0.5rem 0.7rem; border: 1px solid var(--rule); border-radius: 10px; background: #fffdf7; }
+.ft-add button { justify-self: start; font: 600 1rem var(--display); padding: 0.55rem 1.4rem; border: 0; border-radius: 999px; background: #6e5134; color: #fff; cursor: pointer; }
+.ft-add button:disabled { opacity: 0.55; cursor: not-allowed; }
+.ft-add .note { margin: 0; font-size: 0.8rem; color: var(--ink-2); }
+.tree.ft .person.added .initial { background: #e4edd6; }
+@media (max-width: 30rem) { .ft-add .ft-row { grid-template-columns: 1fr; } }
+/* the family's sub-menu: the wide family tree (Tm 14.10.2026) */
+header.site nav li.has-sub { position: relative; }
+header.site nav .sub { display: none; position: absolute; z-index: 20; top: 100%; inset-inline-start: -0.8rem; min-width: max-content; padding: 0.55rem 0.8rem; margin-top: 0.2rem; border-radius: 12px; background: var(--sea-deep); box-shadow: 0 14px 28px -16px rgb(0 0 0 / 0.6); }
+header.site nav li.has-sub:hover > .sub, header.site nav li.has-sub:focus-within > .sub { display: block; }
+header.site nav .sub::before { content: ''; position: absolute; inset: -0.6rem 0 auto; height: 0.6rem; }
+header.site nav .sub a { font-size: 0.95rem; white-space: nowrap; }
+@media (hover: none) { header.site nav li.has-sub > .sub { display: none; } }
