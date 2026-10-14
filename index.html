@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=bffa5901">
+<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=be3d742b">
 </head>
 <body data-page="home">
 <a class="skip" href="#main">דלג לתוכן</a>
@@ -44,12 +44,37 @@
   <p>לעשות הכי טוב ואם לא לא לעשות</p>
   <footer>מהאמרות של אבא </footer>
 </blockquote>
-<section class="forme-home band"><form class="forme-form on-sea"  onsubmit="return false">
+<section class="forme-home bottle-home band"><div class="bottle-sea"><form class="forme-form note-paper"  onsubmit="return false">
   <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
   <label class="forme-q"><span>דוד בשבילי היה...</span><input type="text" name="answer" required maxlength="140" placeholder="השלימו את המשפט"></label>
-  <button type="submit" disabled>לתלות על העץ</button>
+  <button type="submit" disabled>לשים בבקבוק</button>
   <p class="note" data-thanks="תודה. התשובה שלכם תלויה עכשיו על העץ.">הטופס עוד לא מחובר. בקרוב אפשר יהיה לשלוח.</p>
-</form><a class="more" href="/david-ben-ami-site/for-me/">לעץ התשובות ←</a></section>
+</form><svg class="bottle" viewBox="0 0 360 150" aria-hidden="true">
+  <defs>
+    <linearGradient id="bt-glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6fff6" stop-opacity=".5"/><stop offset=".45" stop-color="#9fd6c4" stop-opacity=".28"/><stop offset="1" stop-color="#2f7a68" stop-opacity=".55"/></linearGradient>
+    <linearGradient id="bt-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a8c96" stop-opacity=".6"/><stop offset=".5" stop-color="#1d5e6c" stop-opacity=".75"/><stop offset="1" stop-color="#134b5a" stop-opacity=".5"/></linearGradient>
+    <linearGradient id="bt-cork" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c79a63"/><stop offset="1" stop-color="#8a6236"/></linearGradient>
+    <radialGradient id="bt-fade" cx=".5" cy=".55" r=".5"><stop offset=".55" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>
+    <mask id="bt-mask" maskContentUnits="userSpaceOnUse"><rect x="0" y="60" width="360" height="90" fill="url(#bt-fade)"/></mask>
+    <linearGradient id="bt-paper" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fbf3dc"/><stop offset="1" stop-color="#d9c79c"/></linearGradient>
+  </defs>
+  <ellipse class="bt-ripple" cx="185" cy="96" rx="170" ry="9" fill="none" stroke="#d4e8e2" stroke-opacity=".5"/>
+  <g class="bt-float">
+    <rect x="88" y="58" width="140" height="30" rx="14" fill="url(#bt-paper)"/>
+    <path d="M100 66 H214 M100 73 H206 M100 80 H210" stroke="#7b5e41" stroke-opacity=".35" stroke-width="1.2"/>
+    <path d="M158 58 V88" stroke="#7a3a2c" stroke-width="2"/>
+    <g class="bt-notes"></g>
+    <path d="M76 30 H220 C250 30 262 50 280 56 H316 V84 H280 C262 90 250 110 220 110 H76 C50 110 36 92 36 70 C36 48 50 30 76 30 Z" fill="url(#bt-glass)" stroke="#eafff7" stroke-opacity=".8" stroke-width="2"/>
+    <rect x="304" y="51" width="13" height="38" rx="4" fill="#bfe8da" fill-opacity=".45" stroke="#eafff7" stroke-opacity=".8" stroke-width="1.5"/>
+    <rect x="316" y="58" width="26" height="24" rx="5" fill="url(#bt-cork)"/>
+    <path d="M322 63 h2 M330 70 h2 M336 64 h2 M325 76 h2 M334 77 h2" stroke="#6a4723" stroke-width="2" stroke-linecap="round"/>
+    <path d="M84 40 H214" stroke="#fff" stroke-opacity=".7" stroke-width="5" stroke-linecap="round"/>
+    <path d="M262 52 C270 56 276 58 296 60" stroke="#fff" stroke-opacity=".55" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M50 84 C56 98 66 104 80 106" stroke="#fff" stroke-opacity=".3" stroke-width="3" stroke-linecap="round" fill="none"/>
+  </g>
+  <g mask="url(#bt-mask)"><path class="bt-water" d="M0 84 Q 22 78 45 84 T 90 84 T 135 84 T 180 84 T 225 84 T 270 84 T 315 84 T 360 84 T 405 84 V150 H0 Z" fill="url(#bt-sea)"/>
+  <path class="bt-foam" d="M0 84 Q 22 78 45 84 T 90 84 T 135 84 T 180 84 T 225 84 T 270 84 T 315 84 T 360 84 T 405 84" fill="none" stroke="#fbf6ea" stroke-opacity=".6" stroke-width="1.5"/></g>
+</svg></div><a class="more" href="/david-ben-ami-site/for-me/">לעץ התשובות ←</a></section>
 <nav class="lines band" aria-label="עולמות האתר">
 <ul>
 <li data-id="life" class="c0" style="--drop:3rem;--tilt:-2deg;--delay:0s"><a href="/david-ben-ami-site/life/" title="ממרוקו לקריית גת: תחנות, עבודה ומשפחה."><svg class="fl" viewBox="0 0 20 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10 0 C5 30 15 62 10 100"><animate attributeName="d" dur="6s" begin="-0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="M10 0 C5 30 15 62 10 100;M10 0 C13 30 7 62 10 100;M10 0 C5 30 15 62 10 100"/></path></svg><span class="lure">דרך חייו</span></a></li>
