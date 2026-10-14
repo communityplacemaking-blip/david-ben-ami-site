@@ -626,3 +626,39 @@ nav .add-link a { padding: 0.15rem 0.7rem; border: 1px solid var(--mustard); bor
 .add-form button { justify-self: start; font: 600 1.05rem var(--display); padding: 0.65rem 2rem; border: 0; border-radius: 999px; background: var(--turq); color: var(--on-turq); cursor: pointer; }
 .add-form button:disabled { opacity: 0.5; cursor: not-allowed; }
 .add-form .hp { display: none; }
+
+/* life path as a journey (Tm 14.10.2026: more attractive, bigger photos):
+   stations alternate on both sides of a sea-coloured line; each lead photo is large */
+.journey { list-style: none; padding: 0; margin: 2rem 0 3rem; position: relative; }
+.journey::before { content: ''; position: absolute; top: 0; bottom: 0; inset-inline-start: 50%; width: 3px; margin-inline-start: -1.5px; background: linear-gradient(var(--sea-light), var(--turq) 20%, var(--sea-deep) 80%, var(--sea-light)); border-radius: 3px; }
+.journey .stop { position: relative; display: flex; margin: 0 0 2.5rem; }
+.journey .stop.side-a { justify-content: flex-start; }
+.journey .stop.side-b { justify-content: flex-end; }
+.journey .stop.no-pic { margin-bottom: 1.25rem; }
+.journey .dot { position: absolute; inset-inline-start: 50%; top: 1.4rem; width: 18px; height: 18px; margin-inline-start: -9px; border-radius: 50%; background: var(--mustard); border: 3px solid var(--bg); box-shadow: 0 0 0 2px var(--turq); z-index: 1; }
+.journey .stop.undated .dot { background: var(--bg); }
+.journey .stop-card { width: calc(50% - 2.25rem); background: #fffdf7; border-radius: 14px; overflow: hidden; box-shadow: 0 18px 36px -22px rgb(19 75 90 / 0.55), 0 0 0 1px var(--rule); }
+.journey .no-pic .stop-card { background: transparent; box-shadow: none; border-radius: 0; }
+.journey .no-pic .stop-text { padding-block: 0.6rem; }
+.journey .stop-lead .thumb { margin: 0; }
+.journey .stop-lead .zoom { border-radius: 0; }
+.journey .stop-lead .th-img { aspect-ratio: 4 / 3; border-radius: 0; box-shadow: none; filter: sepia(0.08); }
+.journey .stop-lead figcaption { display: none; }
+.journey .stop-text { padding: 1rem 1.25rem 1.2rem; }
+.journey .year { display: block; font-family: var(--display); font-weight: 700; font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1; color: var(--turq); font-variant-numeric: tabular-nums; letter-spacing: 0.02em; }
+.journey .year .unknown { font-family: var(--sans); font-size: 0.9rem; font-weight: 400; color: var(--ink-2); letter-spacing: 0; }
+.journey .label { font-family: var(--display); font-size: 1.3rem; font-weight: 600; line-height: 1.35; color: var(--ink-strong); margin: 0.35rem 0 0; }
+.journey .tl-note { display: block; margin-top: 0.3rem; color: var(--ink-2); }
+.journey .stop-more { display: grid; grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr)); gap: 0.5rem; margin-top: 0.85rem; }
+.journey .stop-more figcaption { display: none; }
+.journey .more { display: inline-block; margin-top: 0.7rem; font-size: 0.95rem; }
+.journey .th-img { transition: transform 0.5s ease; }
+.journey .zoom:hover .th-img { transform: scale(1.04); }
+.journey .zoom { overflow: hidden; }
+.reveal-on .journey .stop { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal-on .journey .stop.seen { opacity: 1; transform: none; }
+@media (max-width: 44rem) {
+  .journey::before, .journey .dot { inset-inline-start: 0.6rem; }
+  .journey .stop.side-b { justify-content: flex-start; }
+  .journey .stop-card { width: auto; flex: 1; margin-inline-start: 1.9rem; }
+}
