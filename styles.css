@@ -78,14 +78,14 @@ header.site nav a { color: var(--cream-on-turq); font-weight: 500; text-decorati
 header.site nav a:hover { border-color: var(--cream-on-turq); }
 /* language switch: at the end of the header line; on narrow screens beside the name */
 header.site nav { order: 1; }
+.langs { order: 2; margin-inline-start: auto; display: flex; gap: 0.4rem; }
 .lang-switch {
-  order: 2; margin-inline-start: auto;
   color: var(--cream-on-turq); text-decoration: none; font-size: 0.9rem; font-weight: 500; line-height: 1.6;
   border: 1px solid color-mix(in srgb, var(--cream-on-turq) 70%, transparent); border-radius: 999px; padding: 0 0.75rem;
 }
 .lang-switch:hover { background: color-mix(in srgb, var(--cream-on-turq) 15%, transparent); }
 .lang-switch:focus-visible { outline-color: var(--cream-on-turq); }
-@media (max-width: 48rem) { .lang-switch, .sea-sound { order: 0; } header.site nav { flex-basis: 100%; } }
+@media (max-width: 48rem) { .langs, .sea-sound { order: 0; } header.site nav { flex-basis: 100%; } }
 body[data-section="life"] nav a[href*="life/"],
 body[data-section="wars"] nav a[href*="wars/"],
 body[data-section="love"] nav a[href*="love/"],
@@ -234,7 +234,7 @@ blockquote.feature p.tr::before, blockquote.feature p.tr::after { content: none;
 blockquote.feature p.tr { font-size: 0.75em; color: var(--ink-strong); margin-top: 0.75rem; }
 .quotes p.tr { font-family: var(--sans); font-size: 1.1rem; font-weight: 400; line-height: 1.5; }
 .quotes blockquote:nth-child(3n+2) .tr-mark { color: inherit; opacity: 0.8; }
-:lang(en) .quotes blockquote::before { content: '\201C'; }
+:is(:lang(en), :lang(fr)) .quotes blockquote::before { content: '\201C'; }
 .tl-note { display: block; margin-top: 0.25rem; font-size: 0.85rem; color: var(--ink-2); }
 .sources .orig-title { display: block; font-family: var(--sans); font-size: 0.9rem; font-weight: 400; color: var(--ink-2); }
 
@@ -295,6 +295,9 @@ main section.wars h2 { color: var(--on-turq); }
 
 .artists { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .artists li { background: var(--turq); color: var(--on-turq); border-radius: 999px; padding: 0.25rem 1rem; }
+.fav-title { margin: 1.75rem 0 0.75rem; }
+.fav-songs { display: grid; gap: 0.75rem; max-width: 40rem; }
+.fav-songs iframe { border: 0; border-radius: 12px; display: block; }
 .artists li.song { background: var(--mustard); color: var(--on-mustard); }
 
 .recipes { list-style: none; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); }
@@ -382,7 +385,7 @@ body[data-section="life"] header.page::before, body[data-section="love"] header.
   mask-image: linear-gradient(to bottom, #000 50%, transparent), linear-gradient(to left, rgb(0 0 0 / 0.12) 30%, #000 75%);
   mask-composite: intersect;
 }
-:lang(en) header.page::before { scale: -1 1; }
+:is(:lang(en), :lang(fr)) header.page::before { scale: -1 1; }
 header.page h1 { font-size: clamp(2.2rem, 6vw, 3.25rem); color: var(--turq-ink); text-shadow: none; }
 header.page .lede { color: var(--ink); }
 header.site { box-shadow: 0 6px 18px -6px rgb(19 75 90 / 0.45); position: relative; z-index: 2; }
@@ -473,7 +476,7 @@ body[data-section="wars"] header.page::before, body[data-section="writing"] head
 .dish .ings { margin: 0 0 0.6rem; font-size: 0.98rem; color: var(--ink); line-height: 1.8; }
 .dish .ings span + span::before { content: '·'; margin-inline: 0.5em; color: var(--burgundy); font-weight: 700; }
 .dish .desc { margin: 0 auto 0.4rem; max-width: 22rem; font-size: 1.08rem; color: var(--sepia, var(--ink-2)); }
-:lang(en) .dish .desc { font-style: italic; }
+:is(:lang(en), :lang(fr)) .dish .desc { font-style: italic; }
 .dish .ings span { display: inline-block; }
 .dish { min-width: 0; }
 .dish .pending { background: none; padding: 0; color: var(--ink-2); font-size: 0.9rem; }

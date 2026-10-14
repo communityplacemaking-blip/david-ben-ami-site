@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La bande · David Ben Ami z&quot;l</title>
+<meta name="description" content="Un site à la mémoire de David Ben Ami z&quot;l : le chemin de sa vie, sa famille, sa voix, sa musique et ses saveurs.">
+<link rel="alternate" hreflang="he" href="/david-ben-ami-site/friends/">
+<link rel="alternate" hreflang="en" href="/david-ben-ami-site/en/friends/">
+<link rel="alternate" hreflang="fr" href="/david-ben-ami-site/fr/friends/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/david-ben-ami-site/styles.css">
+</head>
+<body data-section="friends">
+<a class="skip" href="#main">Aller au contenu</a>
+<header class="site">
+  <a class="name" href="/david-ben-ami-site/fr/">David Ben Ami <span>z&quot;l</span></a>
+  <span class="langs"><a class="lang-switch" href="/david-ben-ami-site/friends/" hreflang="he" lang="he">עברית</a><a class="lang-switch" href="/david-ben-ami-site/en/friends/" hreflang="en" lang="en">English</a></span>
+  
+  
+  <nav aria-label="Navigation principale"><ul><li><a href="/david-ben-ami-site/fr/life/">Le chemin de sa vie</a></li><li><a href="/david-ben-ami-site/fr/love/">Lili et David</a></li><li><a href="/david-ben-ami-site/fr/family/">La famille</a></li><li><a href="/david-ben-ami-site/fr/writing/">Les écrits de papa</a></li><li><a href="/david-ben-ami-site/fr/voice/">La voix et la musique</a></li><li><a href="/david-ben-ami-site/fr/tastes/">Les saveurs</a></li><li><a href="/david-ben-ami-site/fr/friends/">La bande</a></li><li><a href="/david-ben-ami-site/fr/wars/">Papa le combattant</a></li><li class="add-link"><a href="/david-ben-ami-site/fr/add/">Ajoutez les vôtres</a></li></ul></nav>
+</header>
+<main id="main">
+<header class="page band"><h1>La bande</h1><p class="lede">La bande d&#39;amis de papa et maman, des années 70 et pour la vie.</p></header>
+<ul class="headings large"><li>Abale des années 70</li><li>Des amis pour la vie</li><li>Les amis de cette époque</li></ul>
+<figure class="film" id="friends-film">
+    <a class="frame" href="https://www.youtube.com/watch?v=7fhbJbDLVZw" target="_blank" rel="noopener" data-yt="7fhbJbDLVZw">
+      <img src="https://i.ytimg.com/vi/7fhbJbDLVZw/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">
+      <span class="play" aria-hidden="true"></span>
+      <span class="film-title">Un film sur la bande de papa<small>Cliquez pour regarder</small></span>
+    </a>
+    <figcaption></figcaption>
+  </figure>
+
+<section class="thumbs"><figure class="thumb"><button type="button" class="zoom" data-full="/david-ben-ami-site/media/family/kadoch-shoes-sign.jpg" data-cap="Papa et ses amis à leur arrivée à Kiryat Gat · Du Facebook d&#39;Avner Bar Hama (selon le filigrane)" aria-label="Agrandir: Trois garçons près d&#39;une enseigne Kadoch Chaussures"><img class="th-img" src="/david-ben-ami-site/media/family/kadoch-shoes-sign.jpg" alt="Trois garçons près d&#39;une enseigne Kadoch Chaussures" loading="lazy"></button><figcaption>Papa et ses amis à leur arrivée à Kiryat Gat </figcaption></figure></section>
+
+<aside class="missing"><h2>Ce qui manque encore ici</h2><ul><li>Les noms et les histoires des amis</li><li>La vidéo de la présentation de la bande</li><li>Des photos</li></ul>
+       <p>Vous avez ces documents ? Nous serions heureux de les recevoir.</p></aside>
+</main>
+<footer class="site">
+  <p>Ce site est en construction. Les textes ont été réunis à partir des présentations commémoratives de la famille (2021–2024) et sont encore vérifiés par rapport aux originaux. Le français est une traduction provisoire en attente de relecture par la famille. <a href="/david-ben-ami-site/fr/sources/">À propos des sources</a></p>
+</footer>
+<dialog class="lightbox" aria-label="Photo"><button type="button" class="lb-close" aria-label="Fermer">×</button><img alt=""><p class="lb-cap"></p></dialog>
+<script>
+(function () {
+  var d = document.querySelector('.lightbox'); if (!d || !d.showModal) return;
+  var img = d.querySelector('img'), cap = d.querySelector('.lb-cap');
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.zoom'); if (!b) return;
+    img.src = b.dataset.full; img.alt = b.querySelector('img').alt; cap.textContent = b.dataset.cap || '';
+    d.showModal();
+  });
+  d.addEventListener('click', function (e) { if (e.target === d || e.target.closest('.lb-close')) d.close(); });
+})();
+</script>
+
+<script>
+// a click swaps the film card for the YouTube player in place; without script the card opens YouTube
+document.addEventListener('click', function (e) {
+  var a = e.target.closest('a[data-yt]'); if (!a) return;
+  e.preventDefault();
+  var song = document.querySelector('.song-frame'); if (song) { song.replaceChildren(); song.parentNode.classList.remove('playing'); }
+  var f = document.createElement('iframe');
+  f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.yt + '?autoplay=1&rel=0';
+  f.title = a.querySelector('.film-title').firstChild.textContent;
+  f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
+  f.className = 'frame player';
+  a.replaceWith(f);
+});
+</script>
+</body>
+</html>
