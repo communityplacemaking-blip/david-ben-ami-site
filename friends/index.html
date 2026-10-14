@@ -34,6 +34,7 @@
     <figcaption><span class="src"><a href="/david-ben-ami-site/sources/#V3" title="מקור: סרט על החבר&#39;ה של אבא">V3</a> <a href="/david-ben-ami-site/sources/#T1" title="מקור: עדות בעל הפרויקט בשיחה">T1</a></span></figcaption>
   </figure>
 
+<section class="thumbs"><figure class="thumb"><button type="button" class="zoom" data-full="/david-ben-ami-site/media/family/kadoch-shoes-sign.jpg" data-cap="אבא וחבריו כשהגיעו לקריית גת · מתוך הפייסבוק של Avner Bar Hama (לפי סימן המים)" aria-label="להגדלה: שלושה נערים ליד שלט &quot;נעלי קדוש Kadoch Chaussures&quot;"><img class="th-img" src="/david-ben-ami-site/media/family/kadoch-shoes-sign.jpg" alt="שלושה נערים ליד שלט &quot;נעלי קדוש Kadoch Chaussures&quot;" loading="lazy"></button><figcaption>אבא וחבריו כשהגיעו לקריית גת <span class="src"><a href="/david-ben-ami-site/sources/#T1" title="מקור: עדות בעל הפרויקט בשיחה">T1</a> <span class="upload">מאלבום המשפחה</span></span></figcaption></figure></section>
 <p class="sourceline">מקורות: <span class="src"><a href="/david-ben-ami-site/sources/#S1" title="מקור: David ben ami for ever (2021)">S1</a> <a href="/david-ben-ami-site/sources/#S4" title="מקור: החבר&#39;ה של אבא">S4</a></span></p>
 <aside class="missing"><h2>מה עוד מחכה כאן</h2><ul><li>שמות וסיפורים של החברים</li><li>הסרטון ממצגת החבר&#39;ה</li><li>תמונות</li></ul>
        <p>יש לכם את החומרים האלה? נשמח לקבל אותם.</p></aside>
@@ -41,7 +42,19 @@
 <footer class="site">
   <p>האתר בבנייה. הטקסטים נאספו ממצגות ההנצחה המשפחתיות (<bdi dir="ltr">2021–2024</bdi>) ועדיין נבדקים מול המקור. <a href="/david-ben-ami-site/sources/">על המקורות</a></p>
 </footer>
-
+<dialog class="lightbox" aria-label="תמונה"><button type="button" class="lb-close" aria-label="סגירה">×</button><img alt=""><p class="lb-cap"></p></dialog>
+<script>
+(function () {
+  var d = document.querySelector('.lightbox'); if (!d || !d.showModal) return;
+  var img = d.querySelector('img'), cap = d.querySelector('.lb-cap');
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.zoom'); if (!b) return;
+    img.src = b.dataset.full; img.alt = b.querySelector('img').alt; cap.textContent = b.dataset.cap || '';
+    d.showModal();
+  });
+  d.addEventListener('click', function (e) { if (e.target === d || e.target.closest('.lb-close')) d.close(); });
+})();
+</script>
 
 <script>
 // a click swaps the film card for the YouTube player in place; without script the card opens YouTube

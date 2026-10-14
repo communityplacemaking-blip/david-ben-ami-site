@@ -34,6 +34,7 @@
     <figcaption><span class="src"><a href="/david-ben-ami-site/en/sources/#V3" title="Source: Film about Dad&#39;s gang">V3</a> <a href="/david-ben-ami-site/en/sources/#T1" title="Source: The project owner&#39;s testimony in conversation">T1</a></span></figcaption>
   </figure>
 
+<section class="thumbs"><figure class="thumb"><button type="button" class="zoom" data-full="/david-ben-ami-site/media/family/kadoch-shoes-sign.jpg" data-cap="Dad and his friends when they arrived in Kiryat Gat · מתוך הפייסבוק של Avner Bar Hama (לפי סימן המים)" aria-label="Enlarge: Three boys by a sign reading Kadoch Chaussures (shoes)"><img class="th-img" src="/david-ben-ami-site/media/family/kadoch-shoes-sign.jpg" alt="Three boys by a sign reading Kadoch Chaussures (shoes)" loading="lazy"></button><figcaption>Dad and his friends when they arrived in Kiryat Gat <span class="src"><a href="/david-ben-ami-site/en/sources/#T1" title="Source: The project owner&#39;s testimony in conversation">T1</a> <span class="upload">Family album</span></span></figcaption></figure></section>
 <p class="sourceline">Sources: <span class="src"><a href="/david-ben-ami-site/en/sources/#S1" title="Source: David ben ami for ever (2021)">S1</a> <a href="/david-ben-ami-site/en/sources/#S4" title="Source: Dad&#39;s Gang">S4</a></span></p>
 <aside class="missing"><h2>What is still waiting here</h2><ul><li>The friends&#39; names and stories</li><li>The video from the gang&#39;s presentation</li><li>Photos</li></ul>
        <p>Do you have these materials? We would be glad to receive them.</p></aside>
@@ -41,7 +42,19 @@
 <footer class="site">
   <p>This site is under construction. The texts were gathered from the family&#39;s memorial presentations (2021–2024) and are still being checked against the originals. The English is a draft translation awaiting family review. <a href="/david-ben-ami-site/en/sources/">About the sources</a></p>
 </footer>
-
+<dialog class="lightbox" aria-label="Photo"><button type="button" class="lb-close" aria-label="Close">×</button><img alt=""><p class="lb-cap"></p></dialog>
+<script>
+(function () {
+  var d = document.querySelector('.lightbox'); if (!d || !d.showModal) return;
+  var img = d.querySelector('img'), cap = d.querySelector('.lb-cap');
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.zoom'); if (!b) return;
+    img.src = b.dataset.full; img.alt = b.querySelector('img').alt; cap.textContent = b.dataset.cap || '';
+    d.showModal();
+  });
+  d.addEventListener('click', function (e) { if (e.target === d || e.target.closest('.lb-close')) d.close(); });
+})();
+</script>
 
 <script>
 // a click swaps the film card for the YouTube player in place; without script the card opens YouTube
