@@ -700,3 +700,4 @@ nav .add-link a { padding: 0.15rem 0.7rem; border: 1px solid var(--mustard); bor
   .feast-name { font-size: 1.05rem; }
 }
 @media (prefers-reduced-motion: reduce) { .feast-img { transition: none; } }
+.fav-top.on-life { margin: 1rem 0 0.75rem; margin-inline-start: 0; }
