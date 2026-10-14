@@ -716,3 +716,30 @@ body[data-section="friends"] header.page { padding-bottom: 0.5rem; }
 .lines .rails path { fill: none; stroke: var(--burgundy); stroke-width: 1.2; stroke-linecap: round; }
 .shore .lines .rails path { stroke: color-mix(in srgb, var(--cream-on-turq) 85%, transparent); }
 .lines:has(.rails) li, .shore .lines:has(.rails) li { border-top-color: transparent; }
+
+/* David for me was...: the great oak with the answers hanging from it */
+.oak { position: relative; margin: 1rem calc(-1 * clamp(1rem, 4vw, 3rem)) 0; border-radius: 18px; overflow: hidden; min-height: 420px; background: #eef3ea; box-shadow: 0 24px 50px -30px rgb(19 75 90 / 0.6); }
+.oak canvas { position: absolute; inset: 0; display: block; }
+.oak .answer { position: absolute; z-index: 1; margin: 0; max-width: 12rem; padding: 0.55rem 0.8rem 0.5rem; text-align: center; border-radius: 10px; background: #fffdf7; color: var(--ink-strong); box-shadow: 0 10px 22px -12px rgb(30 20 10 / 0.7); transform-origin: top center; transform: translate(-50%, var(--drop, 60px)); }
+.oak .answer::before { content: ''; position: absolute; top: -5px; left: 50%; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: var(--mustard); box-shadow: 0 0 0 1px rgb(60 40 25 / 0.5); }
+.oak .answer blockquote { margin: 0; font-family: var(--display); font-weight: 600; font-size: 1rem; line-height: 1.35; }
+.oak .answer figcaption { margin-top: 0.25rem; font-size: 0.8rem; color: var(--ink-2); }
+.oak[data-look="souls"] .answer { background: rgb(28 18 52 / 0.82); color: #f6e9ff; box-shadow: 0 0 20px rgb(220 150 255 / 0.45), inset 0 0 0 1px rgb(230 170 255 / 0.55); }
+.oak[data-look="souls"] .answer figcaption { color: #d7b8ef; }
+.oak[data-look="souls"] .answer::before { background: #f0b0ff; box-shadow: 0 0 8px #f0b0ff; }
+.oak-looks { margin: 0.6rem 0 0; font-size: 0.85rem; color: var(--ink-2); }
+.forme-form { display: grid; gap: 0.6rem; max-width: 34rem; margin: 2rem 0 1rem; }
+.forme-form .hp { display: none; }
+.forme-form .forme-q span { display: block; font-family: var(--display); font-weight: 700; font-size: 1.5rem; color: var(--ink-strong); margin-bottom: 0.35rem; }
+.forme-form input[type="text"] { width: 100%; box-sizing: border-box; font: inherit; padding: 0.6rem 0.8rem; border: 1px solid var(--rule); border-radius: 10px; background: #fffdf7; }
+.forme-form .forme-name { font-size: 0.9rem; color: var(--ink-2); }
+.forme-form button { justify-self: start; font: inherit; font-weight: 600; padding: 0.5rem 1.2rem; border: 0; border-radius: 999px; background: var(--turq); color: #fff; cursor: pointer; }
+.forme-form button:disabled { opacity: 0.55; cursor: not-allowed; }
+.forme-form .note { margin: 0; font-size: 0.8rem; color: var(--ink-2); background: none; padding: 0; }
+.forme-home { position: relative; z-index: 2; margin-block: 0 1rem; }
+.forme-home .forme-form { margin: 0; padding: 1rem 1.2rem; border-radius: 16px; background: rgb(252 249 241 / 0.88); backdrop-filter: blur(4px); box-shadow: 0 16px 30px -20px rgb(0 0 0 / 0.5); }
+.forme-home .more { display: inline-block; margin-top: 0.5rem; color: var(--cream-on-turq); font-size: 0.95rem; }
+.forme-home .forme-form .forme-name { display: none; }
+.forme-home .forme-form:focus-within .forme-name { display: block; }
+@media (max-width: 44rem) { .oak { margin-inline: -1rem; border-radius: 0; } .oak .answer { max-width: 8.5rem; padding: 0.4rem 0.55rem; } .oak .answer blockquote { font-size: 0.85rem; } }
+.oak-looks a[aria-current] { font-weight: 700; text-decoration: none; color: var(--ink-strong); }

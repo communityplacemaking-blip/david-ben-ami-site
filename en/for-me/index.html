@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>David for me was... · David Ben Ami z&quot;l</title>
+<meta name="description" content="A memorial site for David Ben Ami z&quot;l: his life&#39;s path, family, voice, music and flavors.">
+<link rel="alternate" hreflang="he" href="/david-ben-ami-site/for-me/">
+<link rel="alternate" hreflang="en" href="/david-ben-ami-site/en/for-me/">
+<link rel="alternate" hreflang="fr" href="/david-ben-ami-site/fr/for-me/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=54b130ad">
+</head>
+<body data-section="for-me">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+  <a class="name" href="/david-ben-ami-site/en/">David Ben Ami <span>z&quot;l</span></a>
+  <span class="langs"><a class="lang-switch" href="/david-ben-ami-site/for-me/" hreflang="he" lang="he">עברית</a><a class="lang-switch" href="/david-ben-ami-site/fr/for-me/" hreflang="fr" lang="fr">Français</a></span>
+  
+  
+  <nav aria-label="Main navigation"><ul><li><a href="/david-ben-ami-site/en/life/">His Life&#39;s Path</a></li><li><a href="/david-ben-ami-site/en/love/">Lili and David</a></li><li><a href="/david-ben-ami-site/en/family/">The Family</a></li><li><a href="/david-ben-ami-site/en/writing/">Dad&#39;s Writing</a></li><li><a href="/david-ben-ami-site/en/voice/">Voice and Music</a></li><li><a href="/david-ben-ami-site/en/tastes/">Flavors</a></li><li><a href="/david-ben-ami-site/en/friends/">The Gang</a></li><li><a href="/david-ben-ami-site/en/wars/">Dad the Fighter</a></li><li><a href="/david-ben-ami-site/en/for-me/">David for me was...</a></li><li class="add-link"><a href="/david-ben-ami-site/en/add/">Add your own</a></li></ul></nav>
+</header>
+<main id="main">
+<header class="page band"><h1>David for me was...</h1><p class="lede">What was David to you? Every answer hangs on the great tree.</p></header>
+<div class="oak" data-look="oak"><canvas aria-hidden="true"></canvas>
+  <figure class="answer"><blockquote>My grandpa, whom I never really got to know</blockquote><figcaption>Nadav</figcaption></figure>
+  <figure class="answer"><blockquote>My dad, who took care of everything I ever needed</blockquote><figcaption>Tomer</figcaption></figure>
+  <figure class="answer"><blockquote>A hugging dad</blockquote><figcaption>Tomer</figcaption></figure>
+</div>
+<p class="oak-looks">Two options for the tree: <a href="?tree=oak" data-look="oak">A giant oak</a> · <a href="?tree=souls" data-look="souls">The tree of souls</a></p>
+<form class="forme-form" onsubmit="return false">
+  <input type="hidden" name="_subject" value="David for me was...">
+  <input type="hidden" name="_template" value="table">
+  <input type="hidden" name="_next" value="https://communityplacemaking-blip.github.io/david-ben-ami-site/en/add/thanks/">
+  <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+  <label class="forme-q"><span>David for me was...</span><input type="text" name="answer" required maxlength="140" placeholder="Finish the sentence"></label>
+  <label class="forme-name">Your name <span class="opt">(optional)</span><input type="text" name="name" autocomplete="name"></label>
+  <button type="submit" disabled>Hang it on the tree</button>
+  <p class="note">The form is not connected yet. Sending will be possible soon.</p>
+</form>
+<script>
+// "David for me was...": a great tree drawn on a canvas, with the answers hanging
+// from its branches. Two looks (Tm 14.10.2026), picked by data-look on .oak or ?tree=:
+//   oak   – a huge, real-looking oak by day
+//   souls – a "tree of souls" at night: glowing violet threads falling from a gnarled tree
+(function () {
+  var box = document.querySelector('.oak');
+  if (!box) return;
+  var canvas = box.querySelector('canvas'), ctx = canvas.getContext('2d');
+  var tags = [].slice.call(box.querySelectorAll('.answer'));
+  var q = new URLSearchParams(location.search).get('tree');
+  var look = q === 'oak' || q === 'souls' ? q : box.dataset.look || 'oak';
+  box.dataset.look = look;
+  document.querySelectorAll('.oak-looks a').forEach(function (a) { if (a.dataset.look === look) a.setAttribute('aria-current', 'true'); });
+  var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // a seeded random, so the same tree grows every time
+  var seed = 7;
+  var rnd = function () { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; };
+  var range = function (a, b) { return a + (b - a) * rnd(); };
+
+  var W, H, dpr, branches, tips, flies;
+  var SOULS = look === 'souls';
+
+  function grow() {
+    seed = SOULS ? 11 : 7; branches = []; tips = [];
+    var base = Math.min(W * 0.06, H * 0.085) * (SOULS ? 1.25 : 1);
+    var trunkTop = H * (SOULS ? 0.62 : 0.68), cx = W / 2;
+    // the trunk: a little lean, and for the tree of souls a twist
+    branches.push({ x1: cx + base * 0.2, y1: H * 0.97, cx: cx - base * (SOULS ? 0.5 : 0.15), cy: (H + trunkTop) / 2, x2: cx, y2: trunkTop, w1: base * 1.5, w2: base, d: 0 });
+    // the trunk splits low into heavy limbs that reach out wide, as an old oak does
+    var limbs = SOULS ? [-1.1, -0.45, 0.15, 0.7, 1.2] : [-1.0, -0.66, -0.3, 0.04, 0.4, 0.72, 1.02];
+    var reach = H * (SOULS ? 0.13 : 0.15);
+    limbs.forEach(function (a) {
+      limb(cx + a * base * 0.3, trunkTop + base * 0.25, -Math.PI / 2 + a * (SOULS ? 0.85 : 0.98) + range(-0.08, 0.08), reach * range(0.9, 1.1) * (1 - Math.abs(a) * 0.1), base * range(0.5, 0.7), 1);
+    });
+    if (SOULS) {
+      // roots spreading over the ground
+      for (var r = 0; r < 9; r++) {
+        var side = r % 2 ? 1 : -1, len = range(W * 0.12, W * 0.32);
+        branches.push({ x1: cx + side * base * range(0.2, 0.7), y1: H * range(0.9, 0.97), cx: cx + side * len * 0.45, cy: H * range(0.9, 1.0), x2: cx + side * len, y2: H * range(0.93, 1.02), w1: base * range(0.35, 0.6), w2: 1, d: 0, root: true });
+      }
+    }
+  }
+  function limb(x, y, ang, len, w, d) {
+    // gnarled: each limb bends a little as it goes, and long low limbs droop
+    var bend = range(-0.32, 0.32), mid = ang + bend * 0.5;
+    var x2 = x + Math.cos(ang + bend) * len, y2 = y + Math.sin(ang + bend) * len;
+    y2 += Math.abs(Math.cos(ang)) * len * (d < 3 ? 0.07 : 0.03);
+    var w2 = w * range(0.6, 0.7);
+    branches.push({ x1: x, y1: y, cx: x + Math.cos(mid) * len * 0.55, cy: y + Math.sin(mid) * len * 0.55, x2: x2, y2: y2, w1: w, w2: w2, d: d });
+    var maxD = SOULS ? 5 : 7;
+    if (d >= 3) tips.push({ x: x2, y: y2, d: d, end: d >= maxD });
+    if (d >= maxD || len < 8) return;
+    var n = d < 2 ? 3 : rnd() < 0.5 ? 2 : 3;
+    for (var i = 0; i < n; i++) {
+      var na = ang + (i - (n - 1) / 2) * range(0.42, 0.66) + range(-0.15, 0.15);
+      na += (na - -Math.PI / 2) * 0.05; // reach out more than up
+      na = Math.max(-Math.PI + 0.25, Math.min(-0.25, na)); // but never grow down
+      limb(x2, y2, na, len * range(0.7, 0.82), w2, d + 1);
+    }
+  }
+
+  function paintSky() {
+    var g = ctx.createLinearGradient(0, 0, 0, H);
+    if (SOULS) { g.addColorStop(0, '#070b1f'); g.addColorStop(0.55, '#141a3a'); g.addColorStop(1, '#1d2348'); }
+    else { g.addColorStop(0, '#b9d6e2'); g.addColorStop(0.55, '#e4eee6'); g.addColorStop(1, '#f3efe0'); }
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    if (SOULS) {
+      // mist and a faint violet glow behind the tree
+      var m = ctx.createRadialGradient(W / 2, H * 0.45, 0, W / 2, H * 0.45, W * 0.55);
+      m.addColorStop(0, 'rgba(150,110,220,.28)'); m.addColorStop(1, 'rgba(150,110,220,0)');
+      ctx.fillStyle = m; ctx.fillRect(0, 0, W, H);
+      ctx.fillStyle = '#0d1230'; ctx.beginPath(); ctx.moveTo(0, H); ctx.lineTo(0, H * 0.86); ctx.quadraticCurveTo(W / 2, H * 0.8, W, H * 0.86); ctx.lineTo(W, H); ctx.fill();
+    } else {
+      // distant hills, then the grass the oak stands on
+      ctx.fillStyle = 'rgba(120,150,120,.35)'; ctx.beginPath(); ctx.moveTo(0, H * 0.8); ctx.quadraticCurveTo(W * 0.3, H * 0.7, W * 0.6, H * 0.79); ctx.quadraticCurveTo(W * 0.85, H * 0.74, W, H * 0.78); ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.fill();
+      var gr = ctx.createLinearGradient(0, H * 0.85, 0, H); gr.addColorStop(0, '#8fa56b'); gr.addColorStop(1, '#6f8a4e');
+      ctx.fillStyle = gr; ctx.beginPath(); ctx.moveTo(0, H); ctx.lineTo(0, H * 0.9); ctx.quadraticCurveTo(W / 2, H * 0.84, W, H * 0.9); ctx.lineTo(W, H); ctx.fill();
+      // the oak's shadow on the grass
+      ctx.fillStyle = 'rgba(40,55,25,.28)'; ctx.beginPath(); ctx.ellipse(W / 2, H * 0.95, W * 0.36, H * 0.035, 0, 0, Math.PI * 2); ctx.fill();
+    }
+  }
+
+  function paintBranches() {
+    branches.forEach(function (b) {
+      var ang = Math.atan2(b.y2 - b.y1, b.x2 - b.x1), nx = Math.sin(ang), ny = -Math.cos(ang), wm = (b.w1 + b.w2) / 4;
+      ctx.beginPath();
+      ctx.moveTo(b.x1 + nx * b.w1 / 2, b.y1 + ny * b.w1 / 2);
+      ctx.quadraticCurveTo(b.cx + nx * wm, b.cy + ny * wm, b.x2 + nx * b.w2 / 2, b.y2 + ny * b.w2 / 2);
+      ctx.lineTo(b.x2 - nx * b.w2 / 2, b.y2 - ny * b.w2 / 2);
+      ctx.quadraticCurveTo(b.cx - nx * wm, b.cy - ny * wm, b.x1 - nx * b.w1 / 2, b.y1 - ny * b.w1 / 2);
+      ctx.closePath();
+      var g = ctx.createLinearGradient(b.x1 + nx * b.w1, b.y1 + ny * b.w1, b.x1 - nx * b.w1, b.y1 - ny * b.w1);
+      if (SOULS) { g.addColorStop(0, '#1a1426'); g.addColorStop(0.6, '#3c3a4a'); g.addColorStop(1, '#151020'); }
+      else { g.addColorStop(0, '#2f2218'); g.addColorStop(0.6, '#6e5641'); g.addColorStop(1, '#2a1e15'); }
+      ctx.fillStyle = g; ctx.fill();
+      // bark furrows (and green moss on the tree of souls)
+      if (b.w1 > 5) {
+        ctx.lineWidth = 1;
+        for (var k = 0; k < Math.min(7, b.w1 / 4); k++) {
+          var o = range(-0.42, 0.42);
+          ctx.strokeStyle = SOULS && rnd() < 0.35 ? 'rgba(110,160,80,.45)' : 'rgba(20,12,8,.35)';
+          ctx.beginPath(); ctx.moveTo(b.x1 + nx * b.w1 * o, b.y1 + ny * b.w1 * o); ctx.quadraticCurveTo(b.cx + nx * wm * o * 2, b.cy + ny * wm * o * 2, b.x2 + nx * b.w2 * o, b.y2 + ny * b.w2 * o); ctx.stroke();
+        }
+      }
+    });
+  }
+
+  // the oak's crown: soft masses of shade first, then thousands of small lobed leaves
+  function leaf(x, y, r, a) {
+    ctx.save(); ctx.translate(x, y); ctx.rotate(a); ctx.beginPath();
+    for (var i = 0; i <= 16; i++) { var t = i / 16 * Math.PI * 2, lob = 1 + 0.2 * Math.sin(t * 5); ctx.lineTo(Math.cos(t) * r * 0.55 * lob, Math.sin(t) * r * lob); }
+    ctx.fill(); ctx.restore();
+  }
+  // an oak's crown reads as a broad dome of leaf clumps; the clumps fill it in
+  // between the branch tips, leaving the lower limbs and trunk in view
+  function addClumps() {
+    var cx = W / 2, cy = H * 0.34, rx = W * 0.36, ry = H * 0.25;
+    for (var i = 0; i < 150; i++) {
+      var a = range(0, Math.PI * 2), r = Math.sqrt(rnd());
+      var x = cx + Math.cos(a) * rx * r * range(0.9, 1.08), y = cy + Math.sin(a) * ry * r * range(0.9, 1.1);
+      if (y > cy + ry * 0.55 && Math.abs(x - cx) < rx * 0.55) continue; // keep the underside open
+      tips.push({ x: x, y: y, d: 5, end: rnd() < 0.5, clump: true });
+    }
+  }
+  function paintCrownShade() {
+    tips.forEach(function (t) {
+      if (t.d < 3) return;
+      var r = Math.max(16, W / 26) * (t.end ? 1.3 : 1);
+      var g = ctx.createRadialGradient(t.x, t.y, 0, t.x, t.y, r);
+      g.addColorStop(0, 'rgba(38,62,26,.55)'); g.addColorStop(1, 'rgba(38,62,26,0)');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.arc(t.x, t.y, r, 0, Math.PI * 2); ctx.fill();
+    });
+  }
+  function paintLeaves(front) {
+    var s = Math.max(2.2, W / 300);
+    var greens = ['#2f4a22', '#3f5f2a', '#4d6e31', '#5f803b', '#76964a', '#8fae5c'];
+    tips.forEach(function (t) {
+      var n = t.end ? 30 : t.d >= 4 ? 16 : 10;
+      for (var k = 0; k < n; k++) {
+        var rr = range(0, s * (t.end ? 10 : 7)), a = range(0, Math.PI * 2);
+        var x = t.x + Math.cos(a) * rr * 1.3, y = t.y + Math.sin(a) * rr;
+        // light from the upper left: leaves up there are lighter
+        var lit = (y < t.y ? 2 : 0) + (x < t.x ? 1 : 0);
+        var idx = Math.min(greens.length - 1, Math.floor(range(0, 3)) + lit);
+        if (front !== (k % 4 !== 0)) continue;
+        ctx.fillStyle = greens[front ? idx : Math.max(0, idx - 2)];
+        ctx.globalAlpha = range(0.8, 1);
+        leaf(x, y, range(s * 0.8, s * 1.4), range(0, Math.PI));
+      }
+    });
+    ctx.globalAlpha = 1;
+  }
+
+  // the tree of souls: curtains of glowing threads fall from the crown almost to the ground
+  function paintSouls() {
+    ctx.globalCompositeOperation = 'lighter';
+    tips.forEach(function (t) {
+      var n = t.end ? 5 : t.d >= 4 ? 2 : 1;
+      for (var k = 0; k < n; k++) {
+        var x = t.x + range(-W * 0.012, W * 0.012), y = t.y + range(-6, 6);
+        var len = range(H * 0.18, H * 0.82 - y * 0.25);
+        if (y + len > H * 0.9) len = H * 0.9 - y;
+        if (len < 20) continue;
+        var g = ctx.createLinearGradient(0, y, 0, y + len);
+        g.addColorStop(0, 'rgba(240,170,255,.0)'); g.addColorStop(0.12, 'rgba(240,170,255,.2)');
+        g.addColorStop(0.7, 'rgba(200,130,240,.12)'); g.addColorStop(1, 'rgba(160,110,240,0)');
+        ctx.strokeStyle = g; ctx.lineWidth = range(0.5, 1.2);
+        ctx.beginPath(); ctx.moveTo(x, y); ctx.quadraticCurveTo(x + range(-3, 3), y + len / 2, x + range(-5, 5), y + len); ctx.stroke();
+      }
+    });
+    // a soft violet bloom where the threads are thickest
+    var b = ctx.createRadialGradient(W / 2, H * 0.35, 0, W / 2, H * 0.35, W * 0.32);
+    b.addColorStop(0, 'rgba(220,150,255,.1)'); b.addColorStop(1, 'rgba(220,150,255,0)');
+    ctx.fillStyle = b; ctx.fillRect(0, 0, W, H);
+    ctx.globalCompositeOperation = 'source-over';
+    // golden lights scattered on the ground around the roots
+    flies = [];
+    for (var i = 0; i < 160; i++) {
+      var a = range(0, Math.PI * 2), r = Math.sqrt(rnd()) * W * 0.55;
+      flies.push({ x: W / 2 + Math.cos(a) * r, y: H * 0.93 + Math.sin(a) * r * 0.12 - range(0, H * 0.06), r: range(0.8, 2), ph: range(0, 6) });
+    }
+  }
+  function paintFlies(t) {
+    if (!flies) return;
+    flies.forEach(function (f) {
+      var a = still ? 0.8 : 0.45 + 0.45 * Math.sin(t * 0.0015 + f.ph);
+      ctx.fillStyle = 'rgba(255,200,90,' + a.toFixed(2) + ')';
+      ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2); ctx.fill();
+    });
+  }
+
+  // answers hang on threads from branch tips spread across the crown, each at its own depth
+  var spots = [];
+  function placeTags() {
+    var pool = tips.filter(function (t) { return !t.clump && t.y > H * 0.2 && t.y < H * 0.55 && t.x > W * 0.1 && t.x < W * 0.9; });
+    if (!pool.length) pool = tips;
+    var n = tags.length; spots = [];
+    tags.forEach(function (el, i) {
+      var target = W * (0.16 + 0.68 * (n === 1 ? 0.5 : i / (n - 1)));
+      var best = pool.reduce(function (m, t) { return Math.abs(t.x - target) < Math.abs(m.x - target) ? t : m; }, pool[0]);
+      var drop = 45 + ((i * 41) % 80);
+      // keep the card inside the picture; its thread slants to reach it
+      var half = el.offsetWidth / 2 + 6, tx = Math.max(half, Math.min(W - half, best.x));
+      spots.push({ x: best.x, y: best.y, tx: tx, drop: drop, ph: i * 1.3 });
+      el.style.left = tx + 'px'; el.style.top = best.y + 'px';
+    });
+  }
+  var scene = document.createElement('canvas');
+  function size() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = box.clientWidth; H = Math.max(440, Math.min(W * 0.72, 780));
+    box.style.height = H + 'px';
+    canvas.width = scene.width = W * dpr; canvas.height = scene.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    var main = ctx; ctx = scene.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    grow(); flies = null;
+    paintSky();
+    if (SOULS) { paintBranches(); paintSouls(); }
+    else { addClumps(); paintCrownShade(); paintLeaves(false); paintBranches(); paintLeaves(true); }
+    ctx = main; placeTags(); draw(0);
+  }
+  function draw(t) {
+    ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.drawImage(scene, 0, 0);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    paintFlies(t);
+    ctx.strokeStyle = SOULS ? 'rgba(240,190,255,.9)' : 'rgba(60,40,25,.75)'; ctx.lineWidth = 1;
+    spots.forEach(function (s, i) {
+      var sway = still ? 0 : Math.sin(t * 0.0012 + s.ph) * 5;
+      ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.quadraticCurveTo((s.x + s.tx) / 2 + sway * 0.5, s.y + s.drop / 2, s.tx + sway, s.y + s.drop); ctx.stroke();
+      tags[i].style.transform = 'translate(calc(-50% + ' + sway.toFixed(1) + 'px), ' + s.drop + 'px) rotate(' + (sway * 0.6).toFixed(1) + 'deg)';
+    });
+  }
+  function frame(t) { draw(t); requestAnimationFrame(frame); }
+  size();
+  if (!still) requestAnimationFrame(frame);
+  var rt; addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(size, 150); });
+})();
+
+</script>
+</main>
+<footer class="site">
+  <p>This site is under construction. The texts were gathered from the family&#39;s memorial presentations (2021–2024) and are still being checked against the originals. The English is a draft translation awaiting family review. <a href="/david-ben-ami-site/en/sources/">About the sources</a></p>
+</footer>
+
+
+
+</body>
+</html>
