@@ -143,6 +143,12 @@ main section.hero { margin-block: 0; }
 .scene-photo img { display: block; width: 100%; height: auto; filter: sepia(0.12) saturate(1.05); }
 /* the fisherman cut out of the family's photo, as a soft white figure over the sea */
 .scene-sil { position: absolute; inset-inline-end: 4%; bottom: 1.5rem; width: min(46%, 30rem); margin: 0; pointer-events: none; }
+.scene-sil .tackle { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.scene-sil .fline { fill: none; stroke: #fcf9f2; stroke-width: 1.6; opacity: 0.75; }
+.scene-sil .float .bob { fill: #fcf9f2; }
+.scene-sil .float .tip { fill: #c0523a; }
+.scene-sil .float .ring { fill: none; stroke: #fcf9f2; stroke-width: 1.2; }
+.scene-sil .float > path { animation: bob 1.4s ease-in-out infinite; }
 .scene-sil img { display: block; width: 100%; height: auto; filter: drop-shadow(0 0 6px rgb(255 255 255 / 0.35)) drop-shadow(0 6px 14px rgb(0 30 36 / 0.25)); }
 /* the lump of dough on his cap, as Dad fished */
 .scene-photo .pic { position: relative; display: block; }
