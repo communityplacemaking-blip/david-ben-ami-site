@@ -552,6 +552,7 @@ body[data-section="life"] .timeline { margin-top: 1.25rem; }
 .tree .person strong { font-family: var(--display); color: var(--ink-strong); }
 .tree .person .zl { font-weight: 400; font-size: 0.8em; }
 .tree .person small { font-size: 0.8rem; color: var(--ink-2); }
+.tree .person .about { font-style: italic; }
 .tree .person details { font-size: 0.8rem; text-align: start; }
 .tree .person summary { cursor: pointer; color: #8a4f2a; text-align: center; }
 .tree .person details p { margin: 0.4rem 0 0; line-height: 1.45; }
