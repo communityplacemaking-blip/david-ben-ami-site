@@ -25,58 +25,74 @@
 <main id="main">
 <section class="fav-top slim" aria-label="שירים שאבא אהב"><p class="fav-title">שירים שאבא אהב</p><iframe class="spotify" title="José Feliciano · Rain (Listen to the Falling Rain)" src="https://open.spotify.com/embed/track/2ym3AgGBfFOHFuUMy5AU7C?utm_source=generator" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></section><header class="page band"><h1>הטעמים</h1><p class="lede">המתכונים של אבא, ומה שהוא אמר עליהם.</p></header>
 <blockquote class="feature band"><p>זה טעים כי עשיתי בכוונה שיהיה טעים</p><footer></footer></blockquote>
-<section class="menu" aria-labelledby="menu-title">
+<section class="feast" aria-labelledby="menu-title">
   <h2 id="menu-title" class="menu-title">המטבח של אבא</h2>
-  <ol class="dishes">
-  <li class="dish" id="david-salad">
-    <figure class="dish-fig"><img class="dish-img" src="/david-ben-ami-site/media/tastes/dish-david-salad.jpg" alt="קערה אובלית לבנה של סלט עגבניות אדום עם פלפל חריף ירוק קלוי ושום קצוץ" loading="lazy"><span class="illus">להמחשה</span></figure>
-    <h3>סלט דוד <small>סלט דודו</small></h3>
+  <ul class="feast-grid">
+    <li class="feast-item f0" id="david-salad"><button type="button" class="feast-open" data-dish="david-salad" aria-label="סלט דוד"><img class="feast-img" src="/david-ben-ami-site/media/tastes/dish-david-salad.jpg" alt="קערה אובלית לבנה של סלט עגבניות אדום עם פלפל חריף ירוק קלוי ושום קצוץ" loading="lazy"><span class="feast-cap"><span class="feast-name">סלט דוד</span><small>סלט דודו</small></span><span class="illus">להמחשה</span></button></li>
+    <li class="feast-item f1" id="ten-minute-soup"><button type="button" class="feast-open" data-dish="ten-minute-soup" aria-label="מרק 10 דקות"><img class="feast-img" src="/david-ben-ami-site/media/tastes/dish-ten-minute-soup.jpg" alt="צלחת מרק ירוק חלק עם קרוטונים וזילוף שמן זית" loading="lazy"><span class="feast-cap"><span class="feast-name">מרק 10 דקות</span></span><span class="illus">להמחשה</span></button></li>
+    <li class="feast-item f2" id="chicken-ragu"><button type="button" class="feast-open" data-dish="chicken-ragu" aria-label="ראגו עוף ותפו&quot;א"><img class="feast-img" src="/david-ben-ami-site/media/tastes/dish-chicken-ragu.jpg" alt="סיר של כרעי עוף שחומות ותפוחי אדמה ברוטב צהוב" loading="lazy"><span class="feast-cap"><span class="feast-name">ראגו עוף ותפו&quot;א</span><small>עוף בתפו&quot;א ברוטב כורכום</small></span><span class="illus">להמחשה</span></button></li>
+    <li class="feast-item f3" id="meatballs-peas"><button type="button" class="feast-open" data-dish="meatballs-peas" aria-label="קציצות בשר עם אפונה וסלרי"><img class="feast-img" src="/david-ben-ami-site/media/tastes/dish-meatballs-peas.jpg" alt="מחבת של קציצות ברוטב עם אפונה ירוקה וסלרי" loading="lazy"><span class="feast-cap"><span class="feast-name">קציצות בשר עם אפונה וסלרי</span></span><span class="illus">להמחשה</span></button></li>
+    <li class="feast-item f4" id="yom-kippur-brioche"><button type="button" class="feast-open" data-dish="yom-kippur-brioche" aria-label="בריוש יום כיפור"><img class="feast-img" src="/david-ben-ami-site/media/tastes/dish-yom-kippur-brioche.jpg" alt="לחמניות בריוש שחומות עם שוקולד בתבנית מאפינס" loading="lazy"><span class="feast-cap"><span class="feast-name">בריוש יום כיפור</span><small>בריוש שוקולד</small></span><span class="illus">להמחשה</span></button></li>
+    <li class="feast-item f5" id="poireau-matbucha"><button type="button" class="feast-open" data-dish="poireau-matbucha" aria-label="פוארו ומטבוחה"><img class="feast-img" src="/david-ben-ami-site/media/tastes/dish-poireau-matbucha.jpg" alt="קערה של כרישה מבושלת עם שומשום" loading="lazy"><span class="feast-cap"><span class="feast-name">פוארו ומטבוחה</span></span><span class="illus">להמחשה</span></button></li>
+    <li class="feast-item f6" id="friday-fish"><button type="button" class="feast-open" data-dish="friday-fish" aria-label="דג יום שישי"><img class="feast-img" src="/david-ben-ami-site/media/tastes/dish-friday-fish.jpg" alt="סיר של נתחי דג ברוטב אדום עם חומוס, פלפלים וכוסברה" loading="lazy"><span class="feast-cap"><span class="feast-name">דג יום שישי</span></span><span class="illus">להמחשה</span></button></li>
+    <li class="feast-item f7" id="fried-fish"><button type="button" class="feast-open" data-dish="fried-fish" aria-label="דגים מטוגנים"><img class="feast-img" src="/david-ben-ami-site/media/tastes/dish-fried-fish.jpg" alt="דגים קטנים מטוגנים בבלילה על עלי רוקט, עם פלח לימון" loading="lazy"><span class="feast-cap"><span class="feast-name">דגים מטוגנים</span></span><span class="illus">להמחשה</span></button></li>
+  </ul>
+  <dialog class="dish-win" id="dish-david-salad" aria-label="סלט דוד"><button type="button" class="pw-close" aria-label="סגירה">×</button>
+    <figure><img class="dw-img" src="/david-ben-ami-site/media/tastes/dish-david-salad.jpg" alt="קערה אובלית לבנה של סלט עגבניות אדום עם פלפל חריף ירוק קלוי ושום קצוץ" loading="lazy"><span class="illus">להמחשה</span></figure>
+    <div class="dw-text"><h3>סלט דוד <small>סלט דודו</small></h3>
     <p class="ings"><span>עגבניות מקולפות</span><span>שום טרי חתוך קטן</span><span>פלפל חריף ירוק על האש</span><span>שמן זית</span><span>מלח</span></p>
     <p class="desc">זה הסלט הכי טעים לצד על האש או אומלט.</p>
-    
-    <p class="dish-src"></p>
-  </li>
-  <li class="dish" id="ten-minute-soup">
-    <figure class="dish-fig"><img class="dish-img" src="/david-ben-ami-site/media/tastes/dish-ten-minute-soup.jpg" alt="צלחת מרק ירוק חלק עם קרוטונים וזילוף שמן זית" loading="lazy"><span class="illus">להמחשה</span></figure>
-    <h3>מרק 10 דקות</h3>
+    </div></dialog>
+  <dialog class="dish-win" id="dish-ten-minute-soup" aria-label="מרק 10 דקות"><button type="button" class="pw-close" aria-label="סגירה">×</button>
+    <figure><img class="dw-img" src="/david-ben-ami-site/media/tastes/dish-ten-minute-soup.jpg" alt="צלחת מרק ירוק חלק עם קרוטונים וזילוף שמן זית" loading="lazy"><span class="illus">להמחשה</span></figure>
+    <div class="dw-text"><h3>מרק 10 דקות</h3>
     <p class="ings"><span>ירקות טריים</span><span>מלא ירוקים</span></p>
     <p class="desc">הוא היה טוחן ירקות הכי טריים עם מלא ירוקים ומבשל את זה, והמרק הנהדר מוכן תוך כמה דקות.</p>
-    
-    <p class="dish-src"></p>
-  </li>
-  <li class="dish" id="chicken-ragu">
-    <figure class="dish-fig"><img class="dish-img" src="/david-ben-ami-site/media/tastes/dish-chicken-ragu.jpg" alt="סיר של כרעי עוף שחומות ותפוחי אדמה ברוטב צהוב" loading="lazy"><span class="illus">להמחשה</span></figure>
-    <h3>ראגו עוף ותפו&quot;א <small>עוף בתפו&quot;א ברוטב כורכום</small></h3>
+    </div></dialog>
+  <dialog class="dish-win" id="dish-chicken-ragu" aria-label="ראגו עוף ותפו&quot;א"><button type="button" class="pw-close" aria-label="סגירה">×</button>
+    <figure><img class="dw-img" src="/david-ben-ami-site/media/tastes/dish-chicken-ragu.jpg" alt="סיר של כרעי עוף שחומות ותפוחי אדמה ברוטב צהוב" loading="lazy"><span class="illus">להמחשה</span></figure>
+    <div class="dw-text"><h3>ראגו עוף ותפו&quot;א <small>עוף בתפו&quot;א ברוטב כורכום</small></h3>
     <p class="ings"><span>עוף</span><span>תפוחי אדמה</span><span>רוטב כורכום</span></p>
     <p class="desc">בישול מסורתי שהיה מכין כשחוזרים מבית ספר.</p>
-    
-    <p class="dish-src"></p>
-  </li>
-  <li class="dish" id="meatballs-peas">
-    <figure class="dish-fig"><img class="dish-img" src="/david-ben-ami-site/media/tastes/dish-meatballs-peas.jpg" alt="מחבת של קציצות ברוטב עם אפונה ירוקה וסלרי" loading="lazy"><span class="illus">להמחשה</span></figure>
-    <h3>קציצות בשר עם אפונה וסלרי</h3>
+    </div></dialog>
+  <dialog class="dish-win" id="dish-meatballs-peas" aria-label="קציצות בשר עם אפונה וסלרי"><button type="button" class="pw-close" aria-label="סגירה">×</button>
+    <figure><img class="dw-img" src="/david-ben-ami-site/media/tastes/dish-meatballs-peas.jpg" alt="מחבת של קציצות ברוטב עם אפונה ירוקה וסלרי" loading="lazy"><span class="illus">להמחשה</span></figure>
+    <div class="dw-text"><h3>קציצות בשר עם אפונה וסלרי</h3>
     <p class="ings"><span>קציצות בשר</span><span>אפונה ירוקה קטנה</span><span>מלא סלרי</span></p>
     
-    
-    <p class="dish-src"></p>
-  </li>
-  <li class="dish" id="yom-kippur-brioche">
-    <figure class="dish-fig"><img class="dish-img" src="/david-ben-ami-site/media/tastes/dish-yom-kippur-brioche.jpg" alt="לחמניות בריוש שחומות עם שוקולד בתבנית מאפינס" loading="lazy"><span class="illus">להמחשה</span></figure>
-    <h3>בריוש יום כיפור <small>בריוש שוקולד</small></h3>
+    </div></dialog>
+  <dialog class="dish-win" id="dish-yom-kippur-brioche" aria-label="בריוש יום כיפור"><button type="button" class="pw-close" aria-label="סגירה">×</button>
+    <figure><img class="dw-img" src="/david-ben-ami-site/media/tastes/dish-yom-kippur-brioche.jpg" alt="לחמניות בריוש שחומות עם שוקולד בתבנית מאפינס" loading="lazy"><span class="illus">להמחשה</span></figure>
+    <div class="dw-text"><h3>בריוש יום כיפור <small>בריוש שוקולד</small></h3>
     <p class="ings"><span>שוקולד</span></p>
     
-    
-    <p class="dish-src"></p>
-  </li>
-  <li class="dish" id="poireau-matbucha">
-    <figure class="dish-fig"><img class="dish-img" src="/david-ben-ami-site/media/tastes/dish-poireau-matbucha.jpg" alt="קערה של כרישה מבושלת עם שומשום" loading="lazy"><span class="illus">להמחשה</span></figure>
-    <h3>פוארו ומטבוחה</h3>
+    </div></dialog>
+  <dialog class="dish-win" id="dish-poireau-matbucha" aria-label="פוארו ומטבוחה"><button type="button" class="pw-close" aria-label="סגירה">×</button>
+    <figure><img class="dw-img" src="/david-ben-ami-site/media/tastes/dish-poireau-matbucha.jpg" alt="קערה של כרישה מבושלת עם שומשום" loading="lazy"><span class="illus">להמחשה</span></figure>
+    <div class="dw-text"><h3>פוארו ומטבוחה</h3>
     
     
-    <p class="pending">המתכון המלא עוד לא הועבר</p>
-    <p class="dish-src"></p>
-  </li>
-  </ol>
+    <p class="pending">המתכון המלא עוד לא הועבר</p></div></dialog>
+  <dialog class="dish-win" id="dish-friday-fish" aria-label="דג יום שישי"><button type="button" class="pw-close" aria-label="סגירה">×</button>
+    <figure><img class="dw-img" src="/david-ben-ami-site/media/tastes/dish-friday-fish.jpg" alt="סיר של נתחי דג ברוטב אדום עם חומוס, פלפלים וכוסברה" loading="lazy"><span class="illus">להמחשה</span></figure>
+    <div class="dw-text"><h3>דג יום שישי</h3>
+    
+    
+    <p class="pending">המתכון המלא עוד לא הועבר</p></div></dialog>
+  <dialog class="dish-win" id="dish-fried-fish" aria-label="דגים מטוגנים"><button type="button" class="pw-close" aria-label="סגירה">×</button>
+    <figure><img class="dw-img" src="/david-ben-ami-site/media/tastes/dish-fried-fish.jpg" alt="דגים קטנים מטוגנים בבלילה על עלי רוקט, עם פלח לימון" loading="lazy"><span class="illus">להמחשה</span></figure>
+    <div class="dw-text"><h3>דגים מטוגנים</h3>
+    
+    
+    <p class="pending">המתכון המלא עוד לא הועבר</p></div></dialog>
+<script>
+document.addEventListener('click', function (e) {
+  var b = e.target.closest('[data-dish]');
+  if (b) { var w = document.getElementById('dish-' + b.dataset.dish); if (w && w.showModal) w.showModal(); return; }
+  var d = e.target.closest('.dish-win');
+  if (d && (e.target === d || e.target.closest('.pw-close'))) d.close();
+});
+</script>
 </section>
 <section id="olives" class="olives">
   <h2>הזיתים של אבא</h2>

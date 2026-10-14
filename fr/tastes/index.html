@@ -25,58 +25,74 @@
 <main id="main">
 <section class="fav-top slim" aria-label="Les chansons que papa aimait"><p class="fav-title">Les chansons que papa aimait</p><iframe class="spotify" title="José Feliciano · Rain (Listen to the Falling Rain)" src="https://open.spotify.com/embed/track/2ym3AgGBfFOHFuUMy5AU7C?utm_source=generator" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></section><header class="page band"><h1>Les saveurs</h1><p class="lede">Les recettes de papa, et ce qu&#39;il en disait.</p></header>
 <blockquote class="feature band"><p class="orig" lang="he"><bdi dir="rtl">״זה טעים כי עשיתי בכוונה שיהיה טעים״</bdi></p><p class="tr"><span class="tr-mark">Traduction française</span>“C&#39;est bon parce que je l&#39;ai fait exprès pour que ce soit bon.”</p><footer></footer></blockquote>
-<section class="menu" aria-labelledby="menu-title">
+<section class="feast" aria-labelledby="menu-title">
   <h2 id="menu-title" class="menu-title">La cuisine de papa</h2>
-  <ol class="dishes">
-  <li class="dish" id="david-salad">
-    <figure class="dish-fig"><img class="dish-img" src="/david-ben-ami-site/media/tastes/dish-david-salad.jpg" alt="Un plat ovale blanc de salade de tomates rouges avec piment vert grillé et ail haché" loading="lazy"><span class="illus">Illustration</span></figure>
-    <h3>Salade David <small>La salade de Doudou</small></h3>
+  <ul class="feast-grid">
+    <li class="feast-item f0" id="david-salad"><button type="button" class="feast-open" data-dish="david-salad" aria-label="Salade David"><img class="feast-img" src="/david-ben-ami-site/media/tastes/dish-david-salad.jpg" alt="Un plat ovale blanc de salade de tomates rouges avec piment vert grillé et ail haché" loading="lazy"><span class="feast-cap"><span class="feast-name">Salade David</span><small>La salade de Doudou</small></span><span class="illus">Illustration</span></button></li>
+    <li class="feast-item f1" id="ten-minute-soup"><button type="button" class="feast-open" data-dish="ten-minute-soup" aria-label="Soupe de 10 minutes"><img class="feast-img" src="/david-ben-ami-site/media/tastes/dish-ten-minute-soup.jpg" alt="Une assiette de soupe verte veloutée avec des croûtons et un filet d&#39;huile d&#39;olive" loading="lazy"><span class="feast-cap"><span class="feast-name">Soupe de 10 minutes</span></span><span class="illus">Illustration</span></button></li>
+    <li class="feast-item f2" id="chicken-ragu"><button type="button" class="feast-open" data-dish="chicken-ragu" aria-label="Ragoût de poulet et pommes de terre"><img class="feast-img" src="/david-ben-ami-site/media/tastes/dish-chicken-ragu.jpg" alt="Une marmite de cuisses de poulet dorées et de pommes de terre dans une sauce jaune" loading="lazy"><span class="feast-cap"><span class="feast-name">Ragoût de poulet et pommes de terre</span><small>Poulet aux pommes de terre, sauce au curcuma</small></span><span class="illus">Illustration</span></button></li>
+    <li class="feast-item f3" id="meatballs-peas"><button type="button" class="feast-open" data-dish="meatballs-peas" aria-label="Boulettes aux petits pois et céleri"><img class="feast-img" src="/david-ben-ami-site/media/tastes/dish-meatballs-peas.jpg" alt="Une poêle de boulettes en sauce avec des petits pois et du céleri" loading="lazy"><span class="feast-cap"><span class="feast-name">Boulettes aux petits pois et céleri</span></span><span class="illus">Illustration</span></button></li>
+    <li class="feast-item f4" id="yom-kippur-brioche"><button type="button" class="feast-open" data-dish="yom-kippur-brioche" aria-label="Brioche de Kippour"><img class="feast-img" src="/david-ben-ami-site/media/tastes/dish-yom-kippur-brioche.jpg" alt="Des brioches au chocolat bien dorées dans un moule à muffins" loading="lazy"><span class="feast-cap"><span class="feast-name">Brioche de Kippour</span><small>Brioche au chocolat</small></span><span class="illus">Illustration</span></button></li>
+    <li class="feast-item f5" id="poireau-matbucha"><button type="button" class="feast-open" data-dish="poireau-matbucha" aria-label="Poireaux et matboukha"><img class="feast-img" src="/david-ben-ami-site/media/tastes/dish-poireau-matbucha.jpg" alt="Un bol de poireaux cuits au sésame" loading="lazy"><span class="feast-cap"><span class="feast-name">Poireaux et matboukha</span></span><span class="illus">Illustration</span></button></li>
+    <li class="feast-item f6" id="friday-fish"><button type="button" class="feast-open" data-dish="friday-fish" aria-label="Le poisson du vendredi"><img class="feast-img" src="/david-ben-ami-site/media/tastes/dish-friday-fish.jpg" alt="Une marmite de morceaux de poisson en sauce rouge avec pois chiches, poivrons et coriandre" loading="lazy"><span class="feast-cap"><span class="feast-name">Le poisson du vendredi</span></span><span class="illus">Illustration</span></button></li>
+    <li class="feast-item f7" id="fried-fish"><button type="button" class="feast-open" data-dish="fried-fish" aria-label="Les poissons frits"><img class="feast-img" src="/david-ben-ami-site/media/tastes/dish-fried-fish.jpg" alt="Des petits poissons frits en beignet sur de la roquette, avec un quartier de citron" loading="lazy"><span class="feast-cap"><span class="feast-name">Les poissons frits</span></span><span class="illus">Illustration</span></button></li>
+  </ul>
+  <dialog class="dish-win" id="dish-david-salad" aria-label="Salade David"><button type="button" class="pw-close" aria-label="Fermer">×</button>
+    <figure><img class="dw-img" src="/david-ben-ami-site/media/tastes/dish-david-salad.jpg" alt="Un plat ovale blanc de salade de tomates rouges avec piment vert grillé et ail haché" loading="lazy"><span class="illus">Illustration</span></figure>
+    <div class="dw-text"><h3>Salade David <small>La salade de Doudou</small></h3>
     <p class="ings"><span>Tomates pelées</span><span>Ail frais haché fin</span><span>Piment vert grillé au feu</span><span>Huile d&#39;olive</span><span>Sel</span></p>
     <p class="desc">La salade la plus savoureuse, à côté d&#39;un barbecue ou d&#39;une omelette.</p>
-    
-    <p class="dish-src"></p>
-  </li>
-  <li class="dish" id="ten-minute-soup">
-    <figure class="dish-fig"><img class="dish-img" src="/david-ben-ami-site/media/tastes/dish-ten-minute-soup.jpg" alt="Une assiette de soupe verte veloutée avec des croûtons et un filet d&#39;huile d&#39;olive" loading="lazy"><span class="illus">Illustration</span></figure>
-    <h3>Soupe de 10 minutes</h3>
+    </div></dialog>
+  <dialog class="dish-win" id="dish-ten-minute-soup" aria-label="Soupe de 10 minutes"><button type="button" class="pw-close" aria-label="Fermer">×</button>
+    <figure><img class="dw-img" src="/david-ben-ami-site/media/tastes/dish-ten-minute-soup.jpg" alt="Une assiette de soupe verte veloutée avec des croûtons et un filet d&#39;huile d&#39;olive" loading="lazy"><span class="illus">Illustration</span></figure>
+    <div class="dw-text"><h3>Soupe de 10 minutes</h3>
     <p class="ings"><span>Les légumes les plus frais</span><span>Beaucoup de verdure</span></p>
     <p class="desc">Il mixait les légumes les plus frais avec beaucoup de verdure, les faisait cuire, et la merveilleuse soupe était prête en quelques minutes.</p>
-    
-    <p class="dish-src"></p>
-  </li>
-  <li class="dish" id="chicken-ragu">
-    <figure class="dish-fig"><img class="dish-img" src="/david-ben-ami-site/media/tastes/dish-chicken-ragu.jpg" alt="Une marmite de cuisses de poulet dorées et de pommes de terre dans une sauce jaune" loading="lazy"><span class="illus">Illustration</span></figure>
-    <h3>Ragoût de poulet et pommes de terre <small>Poulet aux pommes de terre, sauce au curcuma</small></h3>
+    </div></dialog>
+  <dialog class="dish-win" id="dish-chicken-ragu" aria-label="Ragoût de poulet et pommes de terre"><button type="button" class="pw-close" aria-label="Fermer">×</button>
+    <figure><img class="dw-img" src="/david-ben-ami-site/media/tastes/dish-chicken-ragu.jpg" alt="Une marmite de cuisses de poulet dorées et de pommes de terre dans une sauce jaune" loading="lazy"><span class="illus">Illustration</span></figure>
+    <div class="dw-text"><h3>Ragoût de poulet et pommes de terre <small>Poulet aux pommes de terre, sauce au curcuma</small></h3>
     <p class="ings"><span>Poulet</span><span>Pommes de terre</span><span>Sauce au curcuma</span></p>
     <p class="desc">Une cuisine traditionnelle qu&#39;il préparait pour notre retour de l&#39;école.</p>
-    
-    <p class="dish-src"></p>
-  </li>
-  <li class="dish" id="meatballs-peas">
-    <figure class="dish-fig"><img class="dish-img" src="/david-ben-ami-site/media/tastes/dish-meatballs-peas.jpg" alt="Une poêle de boulettes en sauce avec des petits pois et du céleri" loading="lazy"><span class="illus">Illustration</span></figure>
-    <h3>Boulettes aux petits pois et céleri</h3>
+    </div></dialog>
+  <dialog class="dish-win" id="dish-meatballs-peas" aria-label="Boulettes aux petits pois et céleri"><button type="button" class="pw-close" aria-label="Fermer">×</button>
+    <figure><img class="dw-img" src="/david-ben-ami-site/media/tastes/dish-meatballs-peas.jpg" alt="Une poêle de boulettes en sauce avec des petits pois et du céleri" loading="lazy"><span class="illus">Illustration</span></figure>
+    <div class="dw-text"><h3>Boulettes aux petits pois et céleri</h3>
     <p class="ings"><span>Boulettes de viande</span><span>Petits pois</span><span>Beaucoup de céleri</span></p>
     
-    
-    <p class="dish-src"></p>
-  </li>
-  <li class="dish" id="yom-kippur-brioche">
-    <figure class="dish-fig"><img class="dish-img" src="/david-ben-ami-site/media/tastes/dish-yom-kippur-brioche.jpg" alt="Des brioches au chocolat bien dorées dans un moule à muffins" loading="lazy"><span class="illus">Illustration</span></figure>
-    <h3>Brioche de Kippour <small>Brioche au chocolat</small></h3>
+    </div></dialog>
+  <dialog class="dish-win" id="dish-yom-kippur-brioche" aria-label="Brioche de Kippour"><button type="button" class="pw-close" aria-label="Fermer">×</button>
+    <figure><img class="dw-img" src="/david-ben-ami-site/media/tastes/dish-yom-kippur-brioche.jpg" alt="Des brioches au chocolat bien dorées dans un moule à muffins" loading="lazy"><span class="illus">Illustration</span></figure>
+    <div class="dw-text"><h3>Brioche de Kippour <small>Brioche au chocolat</small></h3>
     <p class="ings"><span>Chocolat</span></p>
     
-    
-    <p class="dish-src"></p>
-  </li>
-  <li class="dish" id="poireau-matbucha">
-    <figure class="dish-fig"><img class="dish-img" src="/david-ben-ami-site/media/tastes/dish-poireau-matbucha.jpg" alt="Un bol de poireaux cuits au sésame" loading="lazy"><span class="illus">Illustration</span></figure>
-    <h3>Poireaux et matboukha</h3>
+    </div></dialog>
+  <dialog class="dish-win" id="dish-poireau-matbucha" aria-label="Poireaux et matboukha"><button type="button" class="pw-close" aria-label="Fermer">×</button>
+    <figure><img class="dw-img" src="/david-ben-ami-site/media/tastes/dish-poireau-matbucha.jpg" alt="Un bol de poireaux cuits au sésame" loading="lazy"><span class="illus">Illustration</span></figure>
+    <div class="dw-text"><h3>Poireaux et matboukha</h3>
     
     
-    <p class="pending">La recette complète n'a pas encore été transmise</p>
-    <p class="dish-src"></p>
-  </li>
-  </ol>
+    <p class="pending">La recette complète n'a pas encore été transmise</p></div></dialog>
+  <dialog class="dish-win" id="dish-friday-fish" aria-label="Le poisson du vendredi"><button type="button" class="pw-close" aria-label="Fermer">×</button>
+    <figure><img class="dw-img" src="/david-ben-ami-site/media/tastes/dish-friday-fish.jpg" alt="Une marmite de morceaux de poisson en sauce rouge avec pois chiches, poivrons et coriandre" loading="lazy"><span class="illus">Illustration</span></figure>
+    <div class="dw-text"><h3>Le poisson du vendredi</h3>
+    
+    
+    <p class="pending">La recette complète n'a pas encore été transmise</p></div></dialog>
+  <dialog class="dish-win" id="dish-fried-fish" aria-label="Les poissons frits"><button type="button" class="pw-close" aria-label="Fermer">×</button>
+    <figure><img class="dw-img" src="/david-ben-ami-site/media/tastes/dish-fried-fish.jpg" alt="Des petits poissons frits en beignet sur de la roquette, avec un quartier de citron" loading="lazy"><span class="illus">Illustration</span></figure>
+    <div class="dw-text"><h3>Les poissons frits</h3>
+    
+    
+    <p class="pending">La recette complète n'a pas encore été transmise</p></div></dialog>
+<script>
+document.addEventListener('click', function (e) {
+  var b = e.target.closest('[data-dish]');
+  if (b) { var w = document.getElementById('dish-' + b.dataset.dish); if (w && w.showModal) w.showModal(); return; }
+  var d = e.target.closest('.dish-win');
+  if (d && (e.target === d || e.target.closest('.pw-close'))) d.close();
+});
+</script>
 </section>
 <section id="olives" class="olives">
   <h2>Les olives de papa</h2>

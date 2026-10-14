@@ -662,3 +662,41 @@ nav .add-link a { padding: 0.15rem 0.7rem; border: 1px solid var(--mustard); bor
   .journey .stop.side-b { justify-content: flex-start; }
   .journey .stop-card { width: auto; flex: 1; margin-inline-start: 1.9rem; }
 }
+
+/* Dad's kitchen as a photo spread (Tm 14.10.2026): a bento grid of dishes, each opens large */
+.feast { margin: 2.5rem 0 3rem; }
+.feast .menu-title { margin-bottom: 1.5rem; }
+.feast-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 13rem; grid-auto-flow: dense; gap: 0.9rem; }
+.feast-item { min-width: 0; }
+.feast-grid { grid-template-areas: "a a b c" "a a d c" "e f f g" "e h h g"; }
+.feast-item.f0 { grid-area: a; } .feast-item.f1 { grid-area: b; } .feast-item.f2 { grid-area: c; } .feast-item.f3 { grid-area: d; }
+.feast-item.f4 { grid-area: e; } .feast-item.f5 { grid-area: f; } .feast-item.f6 { grid-area: g; } .feast-item.f7 { grid-area: h; }
+.feast-open { position: relative; display: block; width: 100%; height: 100%; padding: 0; border: 0; border-radius: 14px; overflow: hidden; cursor: zoom-in; background: var(--surface); box-shadow: 0 16px 30px -20px rgb(60 35 15 / 0.75); font: inherit; text-align: start; }
+.feast-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease, filter 0.7s ease; filter: saturate(1.08); }
+.feast-open:hover .feast-img, .feast-open:focus-visible .feast-img { transform: scale(1.06); filter: saturate(1.2); }
+.feast-open::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgb(30 18 8 / 0.78), rgb(30 18 8 / 0.15) 45%, transparent 70%); }
+.feast-cap { position: absolute; z-index: 1; inset-inline: 1rem; bottom: 0.85rem; color: #fff; text-shadow: 0 1px 6px rgb(0 0 0 / 0.5); }
+.feast-name { display: block; font-family: var(--display); font-weight: 700; font-size: 1.25rem; line-height: 1.2; }
+.feast-item.f0 .feast-name { font-size: clamp(1.6rem, 3vw, 2.2rem); }
+.feast-cap small { display: block; font-size: 0.85rem; opacity: 0.9; margin-top: 0.15rem; }
+.feast-open .illus, .dish-win .illus { position: absolute; z-index: 1; top: 0.6rem; inset-inline-end: 0.6rem; padding: 0.05rem 0.5rem; border-radius: 99px; font-size: 0.7rem; color: #fff; background: rgb(40 25 15 / 0.5); }
+.feast-item.no-pic .feast-open { background: var(--mustard-soft); }
+.feast-item.no-pic .feast-open::after { display: none; }
+.feast-item.no-pic .feast-cap { color: var(--ink-strong); text-shadow: none; }
+.dish-win { width: min(44rem, 94vw); max-height: 92vh; padding: 0; border: 0; border-radius: 16px; overflow: auto; background: #fffdf7; box-shadow: 0 30px 60px -20px rgb(0 0 0 / 0.5); }
+.dish-win::backdrop { background: rgb(20 30 35 / 0.7); backdrop-filter: blur(3px); }
+.dish-win figure { position: relative; margin: 0; }
+.dish-win .dw-img { display: block; width: 100%; max-height: 62vh; object-fit: cover; }
+.dish-win .dw-text { padding: 1.1rem 1.5rem 1.5rem; text-align: center; }
+.dish-win h3 { font-family: var(--display); font-size: 1.7rem; margin: 0 0 0.5rem; color: var(--ink-strong); }
+.dish-win h3 small { display: block; font-family: var(--sans); font-weight: 400; font-size: 1rem; color: var(--ink-2); }
+.dish-win .ings span { display: inline-block; }
+.dish-win .ings span + span::before { content: '·'; margin-inline: 0.5em; color: var(--burgundy); font-weight: 700; }
+.dish-win .desc { font-size: 1.1rem; color: var(--sepia, var(--ink-2)); margin: 0.4rem auto 0; max-width: 30rem; }
+.dish-win .pending { background: none; padding: 0; color: var(--ink-2); }
+.dish-win .pw-close { position: absolute; z-index: 2; top: 0.6rem; inset-inline-start: 0.6rem; width: 2.2rem; height: 2.2rem; border: 0; border-radius: 50%; background: rgb(255 253 247 / 0.92); color: #8a4f2a; font-size: 1.4rem; line-height: 1; cursor: pointer; box-shadow: 0 2px 8px rgb(0 0 0 / 0.25); }
+@media (max-width: 44rem) {
+  .feast-grid { grid-template-columns: 1fr 1fr; grid-auto-rows: 10rem; gap: 0.6rem; grid-template-areas: "a a" "a a" "b c" "d e" "f f" "g h"; }
+  .feast-name { font-size: 1.05rem; }
+}
+@media (prefers-reduced-motion: reduce) { .feast-img { transition: none; } }
