@@ -148,7 +148,8 @@ main section.hero { margin-block: 0; }
 .scene-sil .float .bob { fill: #fcf9f2; }
 .scene-sil .float .tip { fill: #c0523a; }
 .scene-sil .float .ring { fill: none; stroke: #fcf9f2; stroke-width: 1.2; }
-.scene-sil .float > path { animation: bob 1.4s ease-in-out infinite; }
+.scene-sil .float > g { animation: bob 1.4s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .scene-sil .float > g { animation: none; } }
 .scene-sil img { display: block; width: 100%; height: auto; filter: drop-shadow(0 0 6px rgb(255 255 255 / 0.35)) drop-shadow(0 6px 14px rgb(0 30 36 / 0.25)); }
 /* the lump of dough on his cap, as Dad fished */
 .scene-photo .pic { position: relative; display: block; }
