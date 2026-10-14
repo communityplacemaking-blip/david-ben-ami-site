@@ -429,7 +429,7 @@ body[data-section="wars"] header.page::before, body[data-section="writing"] head
 }
 
 /* photos of Dad (cut from the family's screenshots; low resolution until originals arrive) */
-.portrait { margin: 1rem 0 0.5rem; max-width: 16rem; }
+.portrait { margin: 0.5rem 0 0.5rem; max-width: 16rem; }
 .portrait-img { display: block; width: 100%; height: auto; border-radius: 6px; box-shadow: 0 10px 28px -12px rgb(60 35 15 / 0.45); }
 .portrait figcaption { margin-top: 0.4rem; font-size: 0.85rem; }
 .timeline .tl-photo { grid-column: 2; width: 9.5rem; height: auto; border-radius: 4px; margin-top: 0.4rem; box-shadow: 0 6px 16px -8px rgb(60 35 15 / 0.5); filter: sepia(0.15); }
@@ -515,7 +515,12 @@ main section.album70 h2 { font-family: var(--display); font-weight: 700; color: 
 .page-song .cassette { display: flex; align-items: center; justify-content: space-between; gap: 0.3rem; aspect-ratio: 1; padding: 0 0.6rem; border-radius: 6px; background: linear-gradient(to bottom, #3a2a1e 0 22%, #e9d085 22% 40%, #c2703a 40% 60%, #7a4b2a 60% 78%, #3a2a1e 78%); }
 .page-song .cassette .reel { flex: none; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: repeating-conic-gradient(#3a2a1e 0 30deg, #fbf4e2 30deg 60deg); border: 2px solid #fbf4e2; }
 .page-song.playing .cassette .reel { animation: reel 2.4s linear infinite; }
-.page-song .cassette .tape-label { display: none; }
+.page-song .cassette { position: relative; width: 100%; border: 0; cursor: pointer; font: inherit; }
+.page-song .cassette .play { position: absolute; inset: 50% auto auto 50%; translate: -50% -50%; width: 2.6rem; height: 2.6rem; border-radius: 50%; background: rgb(251 244 226 / 0.95); box-shadow: 0 3px 10px rgb(0 0 0 / 0.35); }
+.page-song .cassette .play::after { content: ''; position: absolute; inset: 50% auto auto 54%; translate: -50% -50%; border-style: solid; border-width: 0.6rem 0 0.6rem 0.95rem; border-color: transparent transparent transparent #c0523a; }
+.page-song .cassette:hover .play, .page-song .cassette:focus-visible .play { scale: 1.08; }
+/* the song square sits beside the heading without pushing the page down */
+@media (min-width: 36.01rem) { .page-song { float: none; position: absolute; top: 1rem; inset-inline-end: calc(max(0px, (100vw - 64rem) / 2) + clamp(1rem, 4vw, 3rem)); margin: 0; } header.page:has(.page-song) { overflow: visible; } }
 .page-song.playing .cassette { display: none; }
 .page-song .song-meta { font-size: 0.72rem; line-height: 1.3; text-align: center; }
 .page-song .song-meta strong { display: block; font-family: var(--display); font-weight: 600; color: #7a4b2a; }

@@ -133,6 +133,7 @@
   const wake = () => { if (!muted) apply(); ['pointerdown', 'keydown', 'touchstart'].forEach((ev) => removeEventListener(ev, wake, true)); };
   ['pointerdown', 'keydown', 'touchstart'].forEach((ev) => addEventListener(ev, wake, true));
   show(); apply();
+  box.querySelector('.cassette').addEventListener('click', () => { if (muted) btn.click(); else play(); });
   btn.addEventListener('click', () => {
     muted = !muted;
     try { localStorage.setItem('sea-muted', muted ? '1' : '0'); } catch {}

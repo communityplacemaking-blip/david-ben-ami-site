@@ -23,7 +23,7 @@
 </header>
 <main id="main">
 <header class="page band"><div class="page-song" data-yt="ySZBnMukO8g">
-  <div class="cassette" aria-hidden="true"><span class="reel"></span><span class="tape-label">Jean-Jacques Goldman – Comme toi</span><span class="reel"></span></div>
+  <button type="button" class="cassette" aria-label="Play the song: Jean-Jacques Goldman – Comme toi"><span class="reel"></span><span class="play" aria-hidden="true"></span><span class="reel"></span></button>
   <div class="song-meta"><strong lang="fr" dir="ltr">Jean-Jacques Goldman – Comme toi</strong> <span class="src"><a href="/david-ben-ami-site/en/sources/#T1" title="Source: The project owner&#39;s testimony in conversation">T1</a></span></div>
   <div class="song-frame"></div>
 </div><h1>His Life&#39;s Path</h1><p class="lede">From Morocco to Kiryat Gat: milestones, work and family.</p></header>
@@ -136,6 +136,7 @@
   const show = () => { btn.setAttribute('aria-pressed', String(!muted)); const t = muted ? btn.dataset.off : btn.dataset.on; btn.setAttribute('aria-label', t); btn.title = t; };
   const wake = (e) => { if (!muted && !btn.contains(e.target)) play(); ['pointerdown', 'keydown', 'touchstart'].forEach((ev) => removeEventListener(ev, wake, true)); };
   ['pointerdown', 'keydown', 'touchstart'].forEach((ev) => addEventListener(ev, wake, true));
+  box.querySelector('.cassette').addEventListener('click', () => { if (muted) btn.click(); else play(); });
   btn.addEventListener('click', () => {
     muted = !muted;
     try { localStorage.setItem('song-muted', muted ? '1' : '0'); } catch {}
