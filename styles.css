@@ -781,3 +781,4 @@ body[data-section="friends"] header.page { padding-bottom: 0.5rem; }
 @media (prefers-reduced-motion: reduce) { .bottle *, .bottle-home .note-paper { animation: none !important; } }
 .forme-form.note-paper .to-tree { justify-self: start; display: inline-flex; align-items: center; gap: 0.35rem; margin-top: 0.2rem; padding: 0.4rem 1rem; border: 1.5px solid var(--sea-deep); border-radius: 999px; color: var(--sea-deep); font-weight: 600; text-decoration: none; }
 .forme-form.note-paper .to-tree:hover, .forme-form.note-paper .to-tree.lit { background: var(--mustard); border-color: var(--mustard); color: #3d2f1f; }
+.lines-hint:has(> button[hidden]) { display: none; }
