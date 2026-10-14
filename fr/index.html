@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/david-ben-ami-site/styles.css">
+<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=32b12713">
 </head>
 <body data-page="home">
 <a class="skip" href="#main">Aller au contenu</a>
@@ -225,6 +225,9 @@
   const NS = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(NS, 'svg');
   svg.setAttribute('class', 'rails'); svg.setAttribute('aria-hidden', 'true');
+  // styles set here too, so a stale cached stylesheet can never paint the lines as filled shapes
+  svg.style.cssText = 'position:absolute;z-index:1;pointer-events:none;overflow:visible';
+  const ink = document.querySelector('.shore') ? 'rgba(251,246,234,.85)' : '#7a3a2c';
   ul.parentNode.insertBefore(svg, ul);
   const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let rows = [];
@@ -237,12 +240,13 @@
     rows = Object.keys(by).map(Number).sort((a, b) => a - b).map((y, k) => {
       const items = by[y], x0 = Math.min.apply(null, items.map((o) => o.l)), x1 = Math.max.apply(null, items.map((o) => o.r));
       let path = svg.children[k];
-      if (!path) { path = document.createElementNS(NS, 'path'); svg.appendChild(path); }
+      if (!path) { path = document.createElementNS(NS, 'path'); path.setAttribute('fill', 'none'); path.setAttribute('stroke', ink); path.setAttribute('stroke-width', '1.2'); path.setAttribute('stroke-linecap', 'round'); svg.appendChild(path); }
       return { y, x0, x1, items, path, k };
     });
     while (svg.children.length > rows.length) svg.lastChild.remove();
     svg.setAttribute('width', ul.offsetWidth); svg.setAttribute('height', ul.offsetHeight + 40);
     svg.style.left = ul.offsetLeft + 'px'; svg.style.top = ul.offsetTop + 'px';
+    [...ul.children].forEach((li) => { li.style.borderTopColor = 'transparent'; });
   };
   // height of the line at x: a slack sag between the ends, plus a slow swell travelling along it
   const at = (row, x, t) => {
