@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=54b130ad">
+<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=bffa5901">
 </head>
 <body data-section="for-me">
 <a class="skip" href="#main">דלג לתוכן</a>
@@ -24,20 +24,16 @@
 </header>
 <main id="main">
 <header class="page band"><h1>דוד בשבילי היה...</h1><p class="lede">מה דוד היה בשבילכם? כל תשובה נתלית על העץ הגדול.</p></header>
-<div class="oak" data-look="oak"><canvas aria-hidden="true"></canvas>
+<div class="oak" data-look="souls"><canvas aria-hidden="true"></canvas>
   <figure class="answer"><blockquote>סבא שלי שלא ממש זכיתי להכיר</blockquote></figure>
   <figure class="answer"><blockquote>אבא שלי שדאג לכל מחסורי בעולם</blockquote></figure>
   <figure class="answer"><blockquote>אבא מחבק</blockquote></figure>
 </div>
-<p class="oak-looks">שתי חלופות לעץ: <a href="?tree=oak" data-look="oak">אלון ענק</a> · <a href="?tree=souls" data-look="souls">עץ הנשמות</a></p>
-<form class="forme-form" onsubmit="return false">
-  <input type="hidden" name="_subject" value="דוד בשבילי היה...">
-  <input type="hidden" name="_template" value="table">
-  <input type="hidden" name="_next" value="https://communityplacemaking-blip.github.io/david-ben-ami-site/add/thanks/">
+<form class="forme-form"  onsubmit="return false">
   <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
   <label class="forme-q"><span>דוד בשבילי היה...</span><input type="text" name="answer" required maxlength="140" placeholder="השלימו את המשפט"></label>
   <button type="submit" disabled>לתלות על העץ</button>
-  <p class="note">הטופס עוד לא מחובר. בקרוב אפשר יהיה לשלוח.</p>
+  <p class="note" data-thanks="תודה. התשובה שלכם תלויה עכשיו על העץ.">הטופס עוד לא מחובר. בקרוב אפשר יהיה לשלוח.</p>
 </form>
 <script>
 // "David for me was...": a great tree drawn on a canvas, with the answers hanging
@@ -50,7 +46,7 @@
   var canvas = box.querySelector('canvas'), ctx = canvas.getContext('2d');
   var tags = [].slice.call(box.querySelectorAll('.answer'));
   var q = new URLSearchParams(location.search).get('tree');
-  var look = q === 'oak' || q === 'souls' ? q : box.dataset.look || 'oak';
+  var look = q === 'oak' || q === 'souls' ? q : box.dataset.look || 'souls';
   box.dataset.look = look;
   document.querySelectorAll('.oak-looks a').forEach(function (a) { if (a.dataset.look === look) a.setAttribute('aria-current', 'true'); });
   var still = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -65,13 +61,13 @@
 
   function grow() {
     seed = SOULS ? 11 : 7; branches = []; tips = [];
-    var base = Math.min(W * 0.06, H * 0.085) * (SOULS ? 1.25 : 1);
-    var trunkTop = H * (SOULS ? 0.62 : 0.68), cx = W / 2;
+    var base = Math.min(W * 0.06, H * 0.085) * (SOULS ? 1.6 : 1);
+    var trunkTop = H * (SOULS ? 0.6 : 0.68), cx = W / 2;
     // the trunk: a little lean, and for the tree of souls a twist
     branches.push({ x1: cx + base * 0.2, y1: H * 0.97, cx: cx - base * (SOULS ? 0.5 : 0.15), cy: (H + trunkTop) / 2, x2: cx, y2: trunkTop, w1: base * 1.5, w2: base, d: 0 });
     // the trunk splits low into heavy limbs that reach out wide, as an old oak does
-    var limbs = SOULS ? [-1.1, -0.45, 0.15, 0.7, 1.2] : [-1.0, -0.66, -0.3, 0.04, 0.4, 0.72, 1.02];
-    var reach = H * (SOULS ? 0.13 : 0.15);
+    var limbs = SOULS ? [-1.15, -0.7, -0.25, 0.2, 0.65, 1.15] : [-1.0, -0.66, -0.3, 0.04, 0.4, 0.72, 1.02];
+    var reach = H * (SOULS ? 0.18 : 0.15);
     limbs.forEach(function (a) {
       limb(cx + a * base * 0.3, trunkTop + base * 0.25, -Math.PI / 2 + a * (SOULS ? 0.85 : 0.98) + range(-0.08, 0.08), reach * range(0.9, 1.1) * (1 - Math.abs(a) * 0.1), base * range(0.5, 0.7), 1);
     });
@@ -232,26 +228,51 @@
     });
   }
 
-  // answers hang on threads from branch tips spread across the crown, each at its own depth
+  // answers hang on threads from branch tips spread across the crown; each card looks
+  // for a tip and a thread length where it covers no other card, so many answers fit
   var spots = [];
   function placeTags() {
-    var pool = tips.filter(function (t) { return !t.clump && t.y > H * 0.2 && t.y < H * 0.55 && t.x > W * 0.1 && t.x < W * 0.9; });
+    var pool = tips.filter(function (t) { return !t.clump && t.y > H * 0.16 && t.y < H * 0.6 && t.x > W * 0.06 && t.x < W * 0.94; });
     if (!pool.length) pool = tips;
-    var n = tags.length; spots = [];
+    var n = tags.length, placed = []; spots = [];
     tags.forEach(function (el, i) {
-      var target = W * (0.16 + 0.68 * (n === 1 ? 0.5 : i / (n - 1)));
-      var best = pool.reduce(function (m, t) { return Math.abs(t.x - target) < Math.abs(m.x - target) ? t : m; }, pool[0]);
-      var drop = 45 + ((i * 41) % 80);
-      // keep the card inside the picture; its thread slants to reach it
-      var half = el.offsetWidth / 2 + 6, tx = Math.max(half, Math.min(W - half, best.x));
-      spots.push({ x: best.x, y: best.y, tx: tx, drop: drop, ph: i * 1.3 });
-      el.style.left = tx + 'px'; el.style.top = best.y + 'px';
+      var w = el.offsetWidth, h = el.offsetHeight, half = w / 2 + 6;
+      var target = W * (n <= 3 ? 0.16 + 0.68 * (n === 1 ? 0.5 : i / (n - 1)) : 0.1 + 0.8 * ((i * 0.618034) % 1));
+      var best = null, bestCost = Infinity;
+      pool.forEach(function (t) {
+        var tx = Math.max(half, Math.min(W - half, t.x));
+        for (var drop = 40; drop < H * 0.6; drop += 28) {
+          var top = t.y + drop - 6, r = { l: tx - w / 2 - 6, r: tx + w / 2 + 6, t: top, b: top + h + 10 };
+          if (r.b > H - 6) break;
+          var hit = placed.some(function (o) { return r.l < o.r && r.r > o.l && r.t < o.b && r.b > o.t; });
+          var cost = Math.abs(t.x - target) + drop * 0.6 + (hit ? 1e5 : 0);
+          if (cost < bestCost) { bestCost = cost; best = { t: t, tx: tx, drop: drop, r: r }; }
+        }
+      });
+      placed.push(best.r);
+      spots.push({ x: best.t.x, y: best.t.y, tx: best.tx, drop: best.drop, ph: i * 1.3 });
+      el.style.left = best.tx + 'px'; el.style.top = best.t.y + 'px';
     });
   }
+  // new answers: from the shared answers sheet, and the visitor's own right after sending
+  function addTag(text) {
+    var f = document.createElement('figure'), q = document.createElement('blockquote');
+    f.className = 'answer'; q.textContent = text; f.appendChild(q); box.appendChild(f);
+    tags.push(f);
+  }
+  if (box.dataset.answers) {
+    fetch(box.dataset.answers).then(function (r) { return r.json(); }).then(function (list) {
+      list.forEach(function (t) { if (typeof t === 'string' && t.trim()) addTag(t.trim()); });
+      size();
+    }).catch(function () {});
+  }
+  document.addEventListener('forme:new', function (e) { addTag(e.detail); size(); });
   var scene = document.createElement('canvas');
   function size() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = box.clientWidth; H = Math.max(440, Math.min(W * 0.72, 780));
+    W = box.clientWidth; H = SOULS ? Math.max(560, Math.min(W * 0.82, 900)) : Math.max(440, Math.min(W * 0.72, 780));
+    // many answers need room: on a narrow screen the tree grows taller to hold them
+    H = Math.max(H, Math.min(2400, 260 + tags.length * (W < 600 ? 52 : 26)));
     box.style.height = H + 'px';
     canvas.width = scene.width = W * dpr; canvas.height = scene.height = H * dpr;
     canvas.style.width = W + 'px'; canvas.style.height = H + 'px';

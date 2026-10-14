@@ -732,14 +732,11 @@ body[data-section="friends"] header.page { padding-bottom: 0.5rem; }
 .forme-form .hp { display: none; }
 .forme-form .forme-q span { display: block; font-family: var(--display); font-weight: 700; font-size: 1.5rem; color: var(--ink-strong); margin-bottom: 0.35rem; }
 .forme-form input[type="text"] { width: 100%; box-sizing: border-box; font: inherit; padding: 0.6rem 0.8rem; border: 1px solid var(--rule); border-radius: 10px; background: #fffdf7; }
-.forme-form .forme-name { font-size: 0.9rem; color: var(--ink-2); }
 .forme-form button { justify-self: start; font: inherit; font-weight: 600; padding: 0.5rem 1.2rem; border: 0; border-radius: 999px; background: var(--turq); color: #fff; cursor: pointer; }
 .forme-form button:disabled { opacity: 0.55; cursor: not-allowed; }
 .forme-form .note { margin: 0; font-size: 0.8rem; color: var(--ink-2); background: none; padding: 0; }
 .forme-home { position: relative; z-index: 2; margin-block: 0 1rem; }
 .forme-home .forme-form { margin: 0; padding: 1rem 1.2rem; border-radius: 16px; background: rgb(252 249 241 / 0.88); backdrop-filter: blur(4px); box-shadow: 0 16px 30px -20px rgb(0 0 0 / 0.5); }
 .forme-home .more { display: inline-block; margin-top: 0.5rem; color: var(--cream-on-turq); font-size: 0.95rem; }
-.forme-home .forme-form .forme-name { display: none; }
-.forme-home .forme-form:focus-within .forme-name { display: block; }
 @media (max-width: 44rem) { .oak { margin-inline: -1rem; border-radius: 0; } .oak .answer { max-width: 8.5rem; padding: 0.4rem 0.55rem; } .oak .answer blockquote { font-size: 0.85rem; } }
 .oak-looks a[aria-current] { font-weight: 700; text-decoration: none; color: var(--ink-strong); }
