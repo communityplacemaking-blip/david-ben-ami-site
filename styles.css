@@ -418,7 +418,7 @@ body[data-section="wars"] header.page::before, body[data-section="writing"] head
 }
 
 /* photos of Dad (cut from the family's screenshots; low resolution until originals arrive) */
-.portrait { margin: 0 0 2.5rem; max-width: 22rem; }
+.portrait { margin: 1rem 0 0.5rem; max-width: 16rem; }
 .portrait-img { display: block; width: 100%; height: auto; border-radius: 6px; box-shadow: 0 10px 28px -12px rgb(60 35 15 / 0.45); }
 .portrait figcaption { margin-top: 0.4rem; font-size: 0.85rem; }
 .timeline .tl-photo { grid-column: 2; width: 9.5rem; height: auto; border-radius: 4px; margin-top: 0.4rem; box-shadow: 0 6px 16px -8px rgb(60 35 15 / 0.5); filter: sepia(0.15); }
