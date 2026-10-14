@@ -216,6 +216,58 @@
   ul.addEventListener('click', (e) => { if (moved) { e.preventDefault(); moved = false; } }, true);
   ul.addEventListener('dragstart', (e) => e.preventDefault());
 })();
+
+// The rails are slack fishing lines (Tm 14.10.2026): each row of lures hangs on a
+// sagging line that sways with the sea, and the lures ride up and down with it.
+(() => {
+  const ul = document.querySelector('.lines ul');
+  if (!ul) return;
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(NS, 'svg');
+  svg.setAttribute('class', 'rails'); svg.setAttribute('aria-hidden', 'true');
+  ul.parentNode.insertBefore(svg, ul);
+  const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let rows = [];
+  const measure = () => {
+    const box = ul.getBoundingClientRect(), by = {};
+    [...ul.children].forEach((li) => {
+      const r = li.getBoundingClientRect(), top = Math.round(r.top - box.top);
+      (by[top] = by[top] || []).push({ li, x: r.left - box.left + r.width / 2, l: r.left - box.left, r: r.right - box.left });
+    });
+    rows = Object.keys(by).map(Number).sort((a, b) => a - b).map((y, k) => {
+      const items = by[y], x0 = Math.min.apply(null, items.map((o) => o.l)), x1 = Math.max.apply(null, items.map((o) => o.r));
+      let path = svg.children[k];
+      if (!path) { path = document.createElementNS(NS, 'path'); svg.appendChild(path); }
+      return { y, x0, x1, items, path, k };
+    });
+    while (svg.children.length > rows.length) svg.lastChild.remove();
+    svg.setAttribute('width', ul.offsetWidth); svg.setAttribute('height', ul.offsetHeight + 40);
+    svg.style.left = ul.offsetLeft + 'px'; svg.style.top = ul.offsetTop + 'px';
+  };
+  // height of the line at x: a slack sag between the ends, plus a slow swell travelling along it
+  const at = (row, x, t) => {
+    const w = row.x1 - row.x0 || 1, u = (x - row.x0) / w;
+    const sag = (still ? 24 : 24 + 8 * Math.sin(t * 0.0007 + row.k)) * 4 * u * (1 - u);
+    const swell = still ? 0 : 7 * Math.sin(u * 5.5 - t * 0.0016 + row.k * 1.7) * Math.sin(Math.PI * u);
+    return sag + swell;
+  };
+  const draw = (t) => {
+    rows.forEach((row) => {
+      let d = '';
+      for (let i = 0; i <= 40; i++) {
+        const x = row.x0 - 8 + (row.x1 - row.x0 + 16) * i / 40;
+        d += (i ? ' L' : 'M') + x.toFixed(1) + ' ' + (row.y + at(row, Math.min(Math.max(x, row.x0), row.x1), t)).toFixed(1);
+      }
+      row.path.setAttribute('d', d);
+      row.items.forEach((o) => { const a = o.li.firstElementChild; if (a) a.style.translate = '0 ' + at(row, o.x, t).toFixed(1) + 'px'; });
+    });
+  };
+  const loop = (t) => { draw(t); if (!still) requestAnimationFrame(loop); };
+  measure(); requestAnimationFrame(loop);
+  addEventListener('resize', measure);
+  new MutationObserver(measure).observe(ul, { childList: true });
+  addEventListener('load', measure);
+})();
 </script>
 </main>
 <footer class="site">

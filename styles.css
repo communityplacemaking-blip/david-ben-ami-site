@@ -710,3 +710,9 @@ nav .add-link a { padding: 0.15rem 0.7rem; border: 1px solid var(--mustard); bor
 .friends-top .film { margin: 0; max-width: none; position: relative; z-index: 1; }
 body[data-section="friends"] header.page { padding-bottom: 0.5rem; }
 @media (max-width: 44rem) { .friends-top { grid-template-columns: 1fr; } .friends-top .film { margin-top: 1rem !important; } }
+
+/* the rails: slack, moving fishing lines drawn by script instead of straight borders */
+.lines .rails { position: absolute; z-index: 1; pointer-events: none; overflow: visible; }
+.lines .rails path { fill: none; stroke: var(--burgundy); stroke-width: 1.2; stroke-linecap: round; }
+.shore .lines .rails path { stroke: color-mix(in srgb, var(--cream-on-turq) 85%, transparent); }
+.lines:has(.rails) li, .shore .lines:has(.rails) li { border-top-color: transparent; }
