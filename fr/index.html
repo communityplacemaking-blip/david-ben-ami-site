@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=133a5fd1">
+<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=e2ed5d4e">
 </head>
 <body data-page="home">
 <a class="skip" href="#main">Aller au contenu</a>
@@ -48,7 +48,7 @@
   <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
   <label class="forme-q"><span>David, pour moi, c'était...</span><input type="text" name="answer" required maxlength="140" placeholder="Complétez la phrase"></label>
   <button type="submit">La glisser dans la bouteille</button>
-  <p class="note" data-thanks="Merci. Votre réponse est maintenant accrochée à l&#39;arbre.">Votre réponse est accrochée à l'arbre tout de suite, sans nom.</p>
+  <p class="note" data-thanks="Merci. Votre réponse est maintenant accrochée à l&#39;arbre.">Votre réponse est accrochée à l'arbre tout de suite, sans nom.</p><a class="to-tree" href="/david-ben-ami-site/fr/for-me/">Vers l'arbre des réponses →</a>
 </form><script>document.querySelectorAll('form.forme-form[data-answers]').forEach(function (f) {
   if (f.dataset.on) return; f.dataset.on = 1;
   f.addEventListener('submit', function (e) {
@@ -57,6 +57,7 @@
     if (!text || f.querySelector('[name=_honey]').value) return;
     fetch(f.dataset.answers, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ answer: text, lang: document.documentElement.lang }) });
     inp.value = ''; note.textContent = note.dataset.thanks;
+    var tree = f.querySelector('.to-tree'); if (tree) tree.classList.add('lit');
     document.dispatchEvent(new CustomEvent('forme:new', { detail: text }));
     var sea = f.closest('.bottle-home');
     if (sea) { sea.classList.remove('sent'); void sea.offsetWidth; sea.classList.add('sent'); setTimeout(function () { sea.classList.remove('sent'); }, 3200); }
@@ -86,7 +87,7 @@
   </g>
   <g mask="url(#bt-mask)"><path class="bt-water" d="M0 84 Q 22 78 45 84 T 90 84 T 135 84 T 180 84 T 225 84 T 270 84 T 315 84 T 360 84 T 405 84 V150 H0 Z" fill="url(#bt-sea)"/>
   <path class="bt-foam" d="M0 84 Q 22 78 45 84 T 90 84 T 135 84 T 180 84 T 225 84 T 270 84 T 315 84 T 360 84 T 405 84" fill="none" stroke="#fbf6ea" stroke-opacity=".6" stroke-width="1.5"/></g>
-</svg></div><a class="more" href="/david-ben-ami-site/fr/for-me/">Vers l'arbre des réponses →</a></section>
+</svg></div></section>
 <nav class="lines band" aria-label="Les parties du site">
 <ul>
 <li data-id="life" class="c0" style="--drop:3rem;--tilt:-2deg;--delay:0s"><a href="/david-ben-ami-site/fr/life/" title="Du Maroc à Kiryat Gat : les étapes, le travail et la famille."><svg class="fl" viewBox="0 0 20 100" preserveAspectRatio="none" aria-hidden="true"><path d="M10 0 C5 30 15 62 10 100"><animate attributeName="d" dur="6s" begin="-0s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1" values="M10 0 C5 30 15 62 10 100;M10 0 C13 30 7 62 10 100;M10 0 C5 30 15 62 10 100"/></path></svg><span class="lure">Le chemin de sa vie</span></a></li>

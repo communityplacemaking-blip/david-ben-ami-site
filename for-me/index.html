@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=133a5fd1">
+<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=e2ed5d4e">
 </head>
 <body data-section="for-me">
 <a class="skip" href="#main">דלג לתוכן</a>
@@ -42,6 +42,7 @@
     if (!text || f.querySelector('[name=_honey]').value) return;
     fetch(f.dataset.answers, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ answer: text, lang: document.documentElement.lang }) });
     inp.value = ''; note.textContent = note.dataset.thanks;
+    var tree = f.querySelector('.to-tree'); if (tree) tree.classList.add('lit');
     document.dispatchEvent(new CustomEvent('forme:new', { detail: text }));
     var sea = f.closest('.bottle-home');
     if (sea) { sea.classList.remove('sent'); void sea.offsetWidth; sea.classList.add('sent'); setTimeout(function () { sea.classList.remove('sent'); }, 3200); }
