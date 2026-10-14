@@ -18,12 +18,16 @@
 <header class="site">
   <a class="name" href="/david-ben-ami-site/en/">David Ben Ami <span>z&quot;l</span></a>
   <span class="langs"><a class="lang-switch" href="/david-ben-ami-site/writing/" hreflang="he" lang="he">עברית</a><a class="lang-switch" href="/david-ben-ami-site/fr/writing/" hreflang="fr" lang="fr">Français</a></span>
-  
+  <button type="button" class="sea-sound" id="song-sound" aria-pressed="true" data-on="Stop the song" data-off="Play the song" aria-label="Stop the song" title="Stop the song"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="spk" d="M4 9h4l5-4v14l-5-4H4z"/><path class="wv" d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12"/><path class="x" d="M16.5 9.5l5 5M21.5 9.5l-5 5"/></svg></button>
   
   <nav aria-label="Main navigation"><ul><li><a href="/david-ben-ami-site/en/life/">His Life&#39;s Path</a></li><li><a href="/david-ben-ami-site/en/love/">Lili and David</a></li><li><a href="/david-ben-ami-site/en/family/">The Family</a></li><li><a href="/david-ben-ami-site/en/writing/">Dad&#39;s Writing</a></li><li><a href="/david-ben-ami-site/en/voice/">Voice and Music</a></li><li><a href="/david-ben-ami-site/en/tastes/">Flavors</a></li><li><a href="/david-ben-ami-site/en/friends/">The Gang</a></li><li><a href="/david-ben-ami-site/en/wars/">Dad the Fighter</a></li><li class="add-link"><a href="/david-ben-ami-site/en/add/">Add your own</a></li></ul></nav>
 </header>
 <main id="main">
-<header class="page band"><h1>Dad&#39;s Writing</h1><p class="lede">The poems Dad wrote.</p></header>
+<header class="page band"><div class="page-song" data-yt="m5qXr9lLdwA">
+  <button type="button" class="cassette" aria-label="Play the song"><span class="reel"></span><span class="play" aria-hidden="true"></span><span class="reel"></span></button>
+  <div class="song-meta"><strong>A song Dad loved</strong> </div>
+  <div class="song-frame"></div>
+</div><h1>Dad&#39;s Writing</h1><p class="lede">The poems Dad wrote.</p></header>
 
 <div class="poems">
   <article class="poem has-hand" id="poem-1">
@@ -46,7 +50,35 @@
   <p>This site is under construction. The texts were gathered from the family&#39;s memorial presentations (2021–2024) and are still being checked against the originals. The English is a draft translation awaiting family review. <a href="/david-ben-ami-site/en/sources/">About the sources</a></p>
 </footer>
 
-
+<script>
+// The page's song starts with the first tap, click or key (browsers allow no
+// sound before that). The speaker in the header stops it; the choice is remembered.
+(() => {
+  const box = document.querySelector('.page-song'), btn = document.getElementById('song-sound');
+  if (!box || !btn) return;
+  const frame = box.querySelector('.song-frame'), id = box.dataset.yt;
+  let muted = false;
+  try { muted = localStorage.getItem('song-muted') === '1'; } catch {}
+  const play = () => {
+    if (frame.firstChild) return;
+    const f = document.createElement('iframe');
+    f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&loop=1&playlist=' + id + '&rel=0';
+    f.allow = 'autoplay; encrypted-media'; f.title = box.querySelector('.song-meta strong').textContent;
+    frame.appendChild(f); box.classList.add('playing');
+  };
+  const stop = () => { frame.replaceChildren(); box.classList.remove('playing'); };
+  const show = () => { btn.setAttribute('aria-pressed', String(!muted)); const t = muted ? btn.dataset.off : btn.dataset.on; btn.setAttribute('aria-label', t); btn.title = t; };
+  const wake = (e) => { if (!muted && !btn.contains(e.target)) play(); ['pointerdown', 'keydown', 'touchstart'].forEach((ev) => removeEventListener(ev, wake, true)); };
+  ['pointerdown', 'keydown', 'touchstart'].forEach((ev) => addEventListener(ev, wake, true));
+  box.querySelector('.cassette').addEventListener('click', () => { if (muted) btn.click(); else play(); });
+  btn.addEventListener('click', () => {
+    muted = !muted;
+    try { localStorage.setItem('song-muted', muted ? '1' : '0'); } catch {}
+    muted ? stop() : play(); show();
+  });
+  show();
+})();
+</script>
 
 </body>
 </html>
