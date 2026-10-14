@@ -148,6 +148,9 @@ main section.hero { margin-block: 0; }
 .scene-sil .float .bob { fill: #fcf9f2; }
 .scene-sil .float .tip { fill: #c0523a; }
 .scene-sil .float .ring { fill: none; stroke: #fcf9f2; stroke-width: 1.2; }
+.scene-sil .float .still { fill: rgb(10 40 50 / 0.35); stroke: #fcf9f2; stroke-width: 1.4; stroke-opacity: 0.85; }
+.scene-sil .float .still-front { fill: none; stroke: #fcf9f2; stroke-width: 1.4; stroke-opacity: 0.9; }
+.scene-sil .float .still2 { fill: none; stroke: #fcf9f2; stroke-width: 1; stroke-opacity: 0.45; }
 .scene-sil .float .bobber { animation: bob 1.4s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) { .scene-sil .float .bobber { animation: none; } }
 .scene-sil img { display: block; width: 100%; height: auto; filter: drop-shadow(0 0 6px rgb(255 255 255 / 0.35)) drop-shadow(0 6px 14px rgb(0 30 36 / 0.25)); }
