@@ -701,3 +701,12 @@ nav .add-link a { padding: 0.15rem 0.7rem; border: 1px solid var(--mustard); bor
 }
 @media (prefers-reduced-motion: reduce) { .feast-img { transition: none; } }
 .fav-top.on-life { margin: 1rem 0 0.75rem; margin-inline-start: 0; }
+
+/* the gang: the film sits on the left under the 70s sunburst, beside the headings (Tm 14.10.2026) */
+.friends-top { display: grid; grid-template-columns: 1fr minmax(0, 1.25fr); gap: 0 2.5rem; align-items: start; }
+.friends-top .film { margin-top: -2.75rem !important; }
+.ft-side .thumbs { margin-top: 1rem; grid-template-columns: repeat(auto-fill, minmax(8rem, 10rem)); }
+.friends-top .headings { margin: 0.5rem 0 0; }
+.friends-top .film { margin: 0; max-width: none; position: relative; z-index: 1; }
+body[data-section="friends"] header.page { padding-bottom: 0.5rem; }
+@media (max-width: 44rem) { .friends-top { grid-template-columns: 1fr; } .friends-top .film { margin-top: 1rem !important; } }
