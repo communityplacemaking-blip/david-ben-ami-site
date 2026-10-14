@@ -594,3 +594,24 @@ body[data-section="life"] .timeline { margin-top: 1.25rem; }
 
 /* a thin 1970s stripe (sea, mustard, terracotta) under the header of the inner pages */
 body:not([data-page="home"]) header.site { background: linear-gradient(to top, #c2703a 0 2px, var(--mustard) 2px 4px, var(--sea-mid) 4px 6px, transparent 6px) bottom / 100% 6px no-repeat, var(--sea-deep); padding-bottom: calc(1rem + 6px); }
+
+/* "Add your own" */
+nav .add-link a { padding: 0.15rem 0.7rem; border: 1px solid var(--mustard); border-radius: 999px; }
+.add-form { display: grid; gap: 1rem; max-width: var(--measure); margin: 1.5rem 0 3rem; }
+.add-form label { display: grid; gap: 0.35rem; font-weight: 600; color: var(--ink-strong); }
+.add-form .opt { font-weight: 400; color: var(--ink-2); font-size: 0.9em; }
+.add-form input[type=text], .add-form input[type=url], .add-form textarea { font: inherit; padding: 0.6rem 0.75rem; border: 1px solid var(--rule); border-radius: 8px; background: #fffdf7; color: var(--ink-strong); }
+.add-form input:focus-visible, .add-form textarea:focus-visible { outline: 2px solid var(--sea-mid); outline-offset: 1px; }
+.add-form fieldset { border: 0; padding: 0; margin: 0; }
+.add-form legend { font-weight: 600; color: var(--ink-strong); margin-bottom: 0.4rem; }
+.add-form .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.add-form .tag { display: inline-flex; font-weight: 400; cursor: pointer; }
+.add-form .tag { position: relative; }
+.add-form .tag input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.add-form .tag span { padding: 0.3rem 0.85rem; border: 1px solid var(--rule); border-radius: 999px; background: #fffdf7; }
+.add-form .tag input:checked + span { background: var(--turq); border-color: var(--turq); color: var(--on-turq); }
+.add-form .tag input:focus-visible + span { outline: 2px solid var(--sea-mid); outline-offset: 2px; }
+.add-form .hint { margin: -0.4rem 0 -0.4rem; font-size: 0.9rem; color: var(--ink-2); }
+.add-form button { justify-self: start; font: 600 1.05rem var(--display); padding: 0.65rem 2rem; border: 0; border-radius: 999px; background: var(--turq); color: var(--on-turq); cursor: pointer; }
+.add-form button:disabled { opacity: 0.5; cursor: not-allowed; }
+.add-form .hp { display: none; }
