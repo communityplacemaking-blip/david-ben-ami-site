@@ -38,7 +38,6 @@
     <p class="epigraph"><span lang="he" dir="rtl">ודוד יפה עיניים הוא רועה בשושנים</span><span class="tr"><span class="tr-mark">English translation</span>And David, fair of eyes, is a shepherd among the lilies</span></p>
     <h1>David Ben Ami <span>z&quot;l</span></h1>
     <p class="years">1943 – 2021</p>
-    <section class="fav-top on-hero" aria-label="Songs Dad loved"><p class="fav-title">Songs Dad loved</p><iframe class="spotify" title="José Feliciano · Rain (Listen to the Falling Rain)" src="https://open.spotify.com/embed/track/2ym3AgGBfFOHFuUMy5AU7C?utm_source=generator" width="100%" height="80" frameborder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></section>
   </div>
 </section>
 <blockquote class="feature band">
@@ -60,13 +59,6 @@
 <p class="lines-hint">You can drag the lures to rearrange them. <button type="button" id="lures-reset" hidden>Back to the original order</button></p>
 </nav>
 </div>
-<script>
-// Starting Dad's song (a click inside the Spotify player) quiets the sea
-window.addEventListener('blur', function () {
-  var f = document.activeElement, b = document.getElementById('sea-sound');
-  if (f && f.classList && f.classList.contains('spotify') && b && b.getAttribute('aria-pressed') === 'true') b.click();
-});
-</script>
 <script>
 // Sea sound: waves breaking on a shore, synthesised in the browser on the same
 // 9-second cycle. A crash of filtered noise that opens up

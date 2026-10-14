@@ -299,8 +299,6 @@ main section.wars h2 { color: var(--on-turq); }
 .fav-top .fav-title { margin: 0 0 0.35rem; font-size: 0.9rem; color: var(--ink-2); }
 .fav-top iframe { border: 0; border-radius: 12px; display: block; }
 .fav-top iframe + iframe { margin-top: 0.5rem; }
-.fav-top.on-hero { margin: 1rem 0 0; max-width: 22rem; }
-.fav-top.on-hero .fav-title { color: var(--cream-on-turq, #fff); opacity: 0.9; }
 .artists li.song { background: var(--mustard); color: var(--on-mustard); }
 
 .recipes { list-style: none; padding: 0; display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); }
