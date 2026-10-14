@@ -56,12 +56,24 @@
   <p class="orig" lang="he"><bdi dir="rtl">״לעשות הכי טוב ואם לא לא לעשות״</bdi></p><p class="tr"><span class="tr-mark">English translation</span>“Do it the very best, and if not, don&#39;t do it.”</p>
   <footer>From Dad's sayings </footer>
 </blockquote>
-<section class="forme-home bottle-home band"><div class="bottle-sea"><form class="forme-form note-paper"  onsubmit="return false">
+<section class="forme-home bottle-home band"><div class="bottle-sea"><form class="forme-form note-paper" data-answers="https://script.google.com/macros/s/AKfycbwiMu_egscLLAbuSil41JbmBbg_ewIsv2FdOD_D7oF-Pt_IpIk5f6DFTkZRRvyG6ew/exec" onsubmit="return false">
   <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
   <label class="forme-q"><span>David for me was...</span><input type="text" name="answer" required maxlength="140" placeholder="Finish the sentence"></label>
-  <button type="submit" disabled>Put it in the bottle</button>
-  <p class="note" data-thanks="Thank you. Your answer is hanging on the tree now.">The form is not connected yet. Sending will be possible soon.</p>
-</form><svg class="bottle" viewBox="0 0 360 150" aria-hidden="true">
+  <button type="submit">Put it in the bottle</button>
+  <p class="note" data-thanks="Thank you. Your answer is hanging on the tree now.">Your answer hangs on the tree straight away, without a name.</p>
+</form><script>document.querySelectorAll('form.forme-form[data-answers]').forEach(function (f) {
+  if (f.dataset.on) return; f.dataset.on = 1;
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var inp = f.querySelector('[name=answer]'), text = inp.value.replace(/\s+/g, ' ').trim(), note = f.querySelector('.note');
+    if (!text || f.querySelector('[name=_honey]').value) return;
+    fetch(f.dataset.answers, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ answer: text, lang: document.documentElement.lang }) });
+    inp.value = ''; note.textContent = note.dataset.thanks;
+    document.dispatchEvent(new CustomEvent('forme:new', { detail: text }));
+    var sea = f.closest('.bottle-home');
+    if (sea) { sea.classList.remove('sent'); void sea.offsetWidth; sea.classList.add('sent'); setTimeout(function () { sea.classList.remove('sent'); }, 3200); }
+  });
+});</script><svg class="bottle" viewBox="0 0 360 150" aria-hidden="true">
   <defs>
     <linearGradient id="bt-glass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6fff6" stop-opacity=".5"/><stop offset=".45" stop-color="#9fd6c4" stop-opacity=".28"/><stop offset="1" stop-color="#2f7a68" stop-opacity=".55"/></linearGradient>
     <linearGradient id="bt-sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a8c96" stop-opacity=".6"/><stop offset=".5" stop-color="#1d5e6c" stop-opacity=".75"/><stop offset="1" stop-color="#134b5a" stop-opacity=".5"/></linearGradient>

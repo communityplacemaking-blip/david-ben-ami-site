@@ -24,17 +24,29 @@
 </header>
 <main id="main">
 <header class="page band"><h1>David for me was...</h1><p class="lede">What was David to you? Every answer hangs on the great tree.</p></header>
-<div class="oak" data-look="souls"><canvas aria-hidden="true"></canvas>
+<div class="oak" data-look="souls" data-answers="https://script.google.com/macros/s/AKfycbwiMu_egscLLAbuSil41JbmBbg_ewIsv2FdOD_D7oF-Pt_IpIk5f6DFTkZRRvyG6ew/exec"><canvas aria-hidden="true"></canvas>
   <figure class="answer"><blockquote>My grandpa, whom I never really got to know</blockquote></figure>
   <figure class="answer"><blockquote>My dad, who took care of everything I ever needed</blockquote></figure>
   <figure class="answer"><blockquote>A hugging dad</blockquote></figure>
 </div>
-<form class="forme-form"  onsubmit="return false">
+<form class="forme-form" data-answers="https://script.google.com/macros/s/AKfycbwiMu_egscLLAbuSil41JbmBbg_ewIsv2FdOD_D7oF-Pt_IpIk5f6DFTkZRRvyG6ew/exec" onsubmit="return false">
   <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
   <label class="forme-q"><span>David for me was...</span><input type="text" name="answer" required maxlength="140" placeholder="Finish the sentence"></label>
-  <button type="submit" disabled>Hang it on the tree</button>
-  <p class="note" data-thanks="Thank you. Your answer is hanging on the tree now.">The form is not connected yet. Sending will be possible soon.</p>
-</form>
+  <button type="submit">Hang it on the tree</button>
+  <p class="note" data-thanks="Thank you. Your answer is hanging on the tree now.">Your answer hangs on the tree straight away, without a name.</p>
+</form><script>document.querySelectorAll('form.forme-form[data-answers]').forEach(function (f) {
+  if (f.dataset.on) return; f.dataset.on = 1;
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var inp = f.querySelector('[name=answer]'), text = inp.value.replace(/\s+/g, ' ').trim(), note = f.querySelector('.note');
+    if (!text || f.querySelector('[name=_honey]').value) return;
+    fetch(f.dataset.answers, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ answer: text, lang: document.documentElement.lang }) });
+    inp.value = ''; note.textContent = note.dataset.thanks;
+    document.dispatchEvent(new CustomEvent('forme:new', { detail: text }));
+    var sea = f.closest('.bottle-home');
+    if (sea) { sea.classList.remove('sent'); void sea.offsetWidth; sea.classList.add('sent'); setTimeout(function () { sea.classList.remove('sent'); }, 3200); }
+  });
+});</script>
 <script>
 // "David for me was...": a great tree drawn on a canvas, with the answers hanging
 // from its branches. Two looks (Tm 14.10.2026), picked by data-look on .oak or ?tree=:
