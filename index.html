@@ -116,8 +116,9 @@
     src.connect(master).connect(ctx.destination);
     src.start();
   }
+  // On by default for every visit (Tm 14.10.2026); a mute lasts only for this visit
   let muted = false;
-  try { muted = localStorage.getItem('sea-muted') === '1'; } catch {}
+  try { muted = sessionStorage.getItem('sea-muted') === '1'; } catch {}
   const show = () => {
     btn.setAttribute('aria-pressed', String(!muted));
     const t = muted ? btn.dataset.off : btn.dataset.on;
@@ -131,12 +132,17 @@
       master.gain.setTargetAtTime(muted ? 0 : 0.6, ctx.currentTime, 0.8);
     } catch { btn.hidden = true; }
   };
-  const wake = () => { if (!muted) apply(); ['pointerdown', 'keydown', 'touchstart'].forEach((ev) => removeEventListener(ev, wake, true)); };
-  ['pointerdown', 'keydown', 'touchstart'].forEach((ev) => addEventListener(ev, wake, true));
+  // Browsers allow sound only after the first touch, click or key; start on the very first one
+  const evs = ['pointerdown', 'pointerup', 'touchend', 'click', 'keydown'];
+  const wake = () => {
+    if (!muted) apply();
+    if (!ctx || ctx.state === 'running' || muted) evs.forEach((ev) => removeEventListener(ev, wake, true));
+  };
+  evs.forEach((ev) => addEventListener(ev, wake, true));
   show(); apply();
   btn.addEventListener('click', () => {
     muted = !muted;
-    try { localStorage.setItem('sea-muted', muted ? '1' : '0'); } catch {}
+    try { sessionStorage.setItem('sea-muted', muted ? '1' : '0'); } catch {}
     show(); apply();
   });
 })();
