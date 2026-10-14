@@ -553,6 +553,21 @@ body[data-section="life"] .timeline { margin-top: 1.25rem; }
 .tree .person .zl { font-weight: 400; font-size: 0.8em; }
 .tree .person small { font-size: 0.8rem; color: var(--ink-2); }
 .tree .person .about { font-style: italic; }
+.tree .person .open-person { padding: 0; border: 0; background: none; cursor: pointer; border-radius: 50%; box-shadow: 0 0 0 2px var(--mustard); }
+.tree .pw-more { border: 0; background: none; padding: 0; font: inherit; font-size: 0.8rem; color: #8a4f2a; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
+.person-win { width: min(34rem, 92vw); max-height: 90vh; padding: 1.25rem; border: 0; border-radius: 14px; background: #fbf4e2; color: var(--ink); text-align: start; box-shadow: 0 24px 60px rgb(0 0 0 / 0.45); }
+.person-win::backdrop { background: rgb(20 14 10 / 0.7); }
+.person-win .pw-close { position: absolute; top: 0.6rem; inset-inline-end: 0.6rem; width: 2rem; height: 2rem; border: 1px solid #c9b48f; border-radius: 50%; background: transparent; color: #8a4f2a; font-size: 1.3rem; line-height: 1; cursor: pointer; }
+.person-win .pw-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.75rem; }
+.person-win .pw-head img { width: 6rem; height: 6rem; border-radius: 50%; object-fit: cover; object-position: 50% 25%; flex: none; }
+.person-win h2 { margin: 0; font-family: var(--display); color: var(--ink-strong); font-size: 1.4rem; }
+.person-win .pw-head small { display: block; color: var(--ink-2); }
+.person-win blockquote { margin: 0 0 1rem; padding-inline-start: 0.9rem; border-inline-start: 2px solid var(--mustard); line-height: 1.6; }
+.person-win blockquote p { margin: 0; }
+.person-win .pw-family { margin: 0 0 0.75rem; }
+.person-win .pw-family img { display: block; width: 100%; height: auto; border-radius: 6px; }
+.person-win .pw-family figcaption { margin-top: 0.35rem; font-size: 0.85rem; color: var(--ink-2); }
+.person-win .src-line { margin: 0; font-size: 0.75rem; }
 .tree .person details { font-size: 0.8rem; text-align: start; }
 .tree .person summary { cursor: pointer; color: #8a4f2a; text-align: center; }
 .tree .person details p { margin: 0.4rem 0 0; line-height: 1.45; }
