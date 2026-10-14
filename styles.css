@@ -589,3 +589,5 @@ body[data-section="life"] .timeline { margin-top: 1.25rem; }
 .tree .person details p { margin: 0.4rem 0 0; line-height: 1.45; }
 .tree .person .src-line { font-size: 0.7rem; }
 .tree .person details[open] { width: 100%; }
+
+.src-line:empty, .src:empty { display: none; }
