@@ -789,3 +789,35 @@ body[data-section="friends"] header.page { padding-bottom: 0.5rem; }
 .forme-form.note-paper input[type="text"] { font-size: 1rem; padding-block: 0.4rem; }
 .forme-form.note-paper button { padding: 0.45rem 1.1rem; font-size: 0.95rem; }
 .forme-form.note-paper .to-tree { padding: 0.3rem 0.9rem; font-size: 0.9rem; }
+/* the family tree drawn as a tree (Tm 14.10.2026): the grandparents at the trunk at the
+   bottom, each generation branching upwards, the youngest at the leafy top */
+.ft-hint { margin: 1rem 0 0.4rem; font-size: 0.85rem; color: var(--ink-2); }
+.ft-scroll { direction: ltr; overflow-x: auto; margin: 0 calc(-1 * clamp(1rem, 4vw, 3rem)) 1.5rem; padding: 1.25rem 0 0; border-radius: 18px; cursor: grab; scrollbar-width: thin;
+  background: radial-gradient(ellipse 60% 45% at 50% 30%, rgb(124 156 84 / 0.22), transparent 72%), linear-gradient(#f7f3e6, #efe6cf 85%, #e2d3b2); }
+.ft-scroll.panning { cursor: grabbing; user-select: none; }
+.tree.ft { --br: #8a6a45; display: flex; justify-content: center; width: max-content; min-width: 100%; margin: 0; padding: 0 1rem; direction: ltr; text-align: center; }
+.ft ul { position: relative; display: flex; justify-content: center; padding-bottom: 1.6rem; }
+.ft li { position: relative; display: flex; flex-direction: column-reverse; align-items: center; padding: 0 0.3rem 1.6rem; }
+.ft > li { padding-bottom: 2.6rem; }
+.ft ul::before { content: ''; position: absolute; bottom: 0; left: 50%; height: 1.6rem; border-left: 3px solid var(--br); margin-left: -1.5px; }
+.ft li::before, .ft li::after { content: ''; position: absolute; bottom: 0; width: 50%; height: 1.6rem; }
+.ft li::before { right: 50%; border-bottom: 3px solid var(--br); }
+.ft li::after { left: 50%; border-left: 3px solid var(--br); border-bottom: 3px solid var(--br); margin-left: -1.5px; }
+.ft li:first-child::before { border: 0; }
+.ft li:first-child::after { border-bottom-left-radius: 16px; }
+.ft li:last-child::after { border-bottom: 0; border-radius: 0; }
+.ft li:last-child::before { border-right: 3px solid var(--br); border-bottom-right-radius: 16px; margin-right: -1.5px; }
+.ft li:only-child::before { display: none; }
+.ft li:only-child::after { border-bottom: 0; border-radius: 0; }
+/* the trunk under the grandparents, thick and rooted in the ground */
+.ft > li::after { height: 2.6rem; border-left: 14px solid #6e5134; margin-left: -7px; border-radius: 0 0 6px 6px; }
+.ft > li > ul::before { border-left-width: 7px; margin-left: -3.5px; }
+.ft > li > ul > li::before, .ft > li > ul > li::after { border-width: 5px; }
+.ft .unit { display: flex; align-items: flex-start; gap: 0.3rem; padding: 0.35rem; border-radius: 16px; background: rgb(255 253 247 / 0.85); border: 1px solid rgb(138 106 69 / 0.3); box-shadow: 0 8px 18px -14px rgb(60 35 15 / 0.6); }
+.ft li:not(:has(ul)) > .unit { background: rgb(236 243 224 / 0.92); border-color: rgb(96 128 64 / 0.35); }
+.tree.ft .person { width: 6.4rem; padding: 0.4rem 0.2rem; box-shadow: none; background: transparent; }
+.tree.ft .person img, .tree.ft .person .initial { width: 3.6rem; height: 3.6rem; font-size: 1.3rem; }
+.tree.ft .person strong { font-size: 0.95rem; }
+.tree.ft .person small { font-size: 0.72rem; line-height: 1.25; }
+.tree.ft .person.dad { outline: 0; }
+.ft .unit:has(.dad) { outline: 3px solid var(--mustard); }
