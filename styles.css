@@ -845,3 +845,8 @@ header.site nav li.has-sub:hover > .sub, header.site nav li.has-sub:focus-within
 header.site nav .sub::before { content: ''; position: absolute; inset: -0.6rem 0 auto; height: 0.6rem; }
 header.site nav .sub a { font-size: 0.95rem; white-space: nowrap; }
 @media (hover: none) { header.site nav li.has-sub > .sub { display: none; } }
+
+/* a visitor's own answer glows for a while after it is hung on the tree */
+.oak .answer.fresh blockquote { animation: fresh 1.6s ease-in-out 4; }
+@keyframes fresh { 50% { box-shadow: 0 0 0 3px rgb(233 208 133 / 0.9), 0 0 24px 6px rgb(233 208 133 / 0.6); } }
+@media (prefers-reduced-motion: reduce) { .oak .answer.fresh blockquote { animation: none; box-shadow: 0 0 0 3px rgb(233 208 133 / 0.9); } }

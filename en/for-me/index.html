@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=d9d5da7f">
+<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=bcb9db60">
 </head>
 <body data-section="for-me">
 <a class="skip" href="#main">Skip to content</a>
@@ -279,7 +279,12 @@
       size();
     }).catch(function () {});
   }
-  document.addEventListener('forme:new', function (e) { addTag(e.detail); size(); });
+  // a visitor's own answer: hang it, then bring it into view and let it glow, since the form sits under the tree
+  document.addEventListener('forme:new', function (e) {
+    addTag(e.detail); size();
+    var f = tags[tags.length - 1]; f.classList.add('fresh');
+    setTimeout(function () { f.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 60);
+  });
   var scene = document.createElement('canvas');
   function size() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
