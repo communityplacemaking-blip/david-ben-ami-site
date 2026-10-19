@@ -5,13 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>דוד בשבילי היה... · דוד בן עמי ז״ל</title>
 <meta name="description" content="אתר זיכרון לדוד בן עמי ז״ל: דרך חייו, המשפחה, הקול, המוזיקה והטעמים.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="אתר ההנצחה של דוד בן עמי ז״ל">
+<meta property="og:title" content="דוד בשבילי היה... · דוד בן עמי ז״ל">
+<meta property="og:description" content="אתר זיכרון לדוד בן עמי ז״ל: דרך חייו, המשפחה, הקול, המוזיקה והטעמים.">
+<meta property="og:url" content="https://communityplacemaking-blip.github.io/david-ben-ami-site/for-me/">
+<meta property="og:image" content="https://communityplacemaking-blip.github.io/david-ben-ami-site/media/family/tree/david.jpg">
 <link rel="alternate" hreflang="he" href="/david-ben-ami-site/for-me/">
 <link rel="alternate" hreflang="en" href="/david-ben-ami-site/en/for-me/">
 <link rel="alternate" hreflang="fr" href="/david-ben-ami-site/fr/for-me/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=bcb9db60">
+<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=d37d4f90">
 </head>
 <body data-section="for-me">
 <a class="skip" href="#main">דלג לתוכן</a>
@@ -288,9 +294,9 @@
   var scene = document.createElement('canvas');
   function size() {
     dpr = Math.min(window.devicePixelRatio || 1, 2);
-    W = box.clientWidth; H = SOULS ? Math.max(560, Math.min(W * 0.82, 900)) : Math.max(440, Math.min(W * 0.72, 780));
+    W = box.clientWidth; H = SOULS ? Math.max(680, Math.min(W * 0.9, 1100)) : Math.max(440, Math.min(W * 0.72, 780));
     // many answers need room: on a narrow screen the tree grows taller to hold them
-    H = Math.max(H, Math.min(2400, 260 + tags.length * (W < 600 ? 52 : 26)));
+    H = Math.max(H, Math.min(6000, 300 + tags.length * (W < 600 ? 25 : SOULS ? 11 : 26)));
     box.style.height = H + 'px';
     canvas.width = scene.width = W * dpr; canvas.height = scene.height = H * dpr;
     canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
