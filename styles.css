@@ -865,28 +865,33 @@ header.site nav .sub a { font-size: 0.95rem; white-space: nowrap; }
 @media (max-width: 44rem) { .oak .answer:hover, .oak .answer:focus { scale: 1.7; } }
 @media (prefers-reduced-motion: reduce) { .oak .answer { transition: none; } }
 
-/* the family tree as a eucalyptus at sunset (Tm 19.10.2026): pale bark, grey-green drooping leaves, a grove behind */
+/* the family tree as a living tree on cream (Tm 19.10.2026): brown bark, feathery green leaves, a little flame-tree red */
 .ft-wrap { position: relative; }
-.tree.ft { position: relative; padding-top: 1.25rem; padding-bottom: 7rem; }
-.ft-wrap .ft-scroll { padding-top: 0; }
+.tree.ft { position: relative; padding-top: 1.25rem; padding-bottom: 6rem; }
+.ft-wrap .ft-scroll { padding-top: 0; background: radial-gradient(ellipse 70% 55% at 50% 40%, rgb(150 180 110 / 0.14), transparent 75%), linear-gradient(#fbf7ec, #f5eedb 85%, #ece0c2); }
 .tree.ft > li { position: relative; z-index: 1; }
 .ft ul::before, .ft li::before, .ft li::after, .ft > li::after { display: none; }
 .ft-art { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: visible; }
-.ft-art .bark { fill: url(#ft-bark); stroke: rgb(90 70 50 / 0.45); stroke-width: 0.8; }
-.ft-art .patch { fill: #b48a64; opacity: 0.28; }
-.ft-art .leaf { stroke: rgb(40 60 40 / 0.25); stroke-width: 0.4; }
-.ft-art .l0 { fill: #7f9a7c; } .ft-art .l1 { fill: #9bb196; } .ft-art .l2 { fill: #637f62; } .ft-art .l3 { fill: #b3b98c; }
-.ft-art .bloom line { stroke: #fffaf0; stroke-width: 1.1; stroke-linecap: round; }
-.ft-art .bloom .heart { fill: #f3e2a8; }
-.ft-art .bloom.blue line { stroke: #9cc4ec; }
-.ft-art .bloom.blue .heart { fill: #dbe9f7; }
-.ft-art .far path, .ft-art .far ellipse { fill: #a3a99a; opacity: 0.35; }
-.ft-art .far.t1 path, .ft-art .far.t1 ellipse { fill: #7f8c78; opacity: 0.42; }
-.ft-art .far.t1 path { fill: #b9b0a0; }
+.ft-art .bark { fill: url(#ft-bark); stroke: rgb(50 35 20 / 0.5); stroke-width: 0.7; }
+.ft-art .furrow { fill: none; stroke: rgb(40 28 16 / 0.35); stroke-width: 1; }
+.ft-art .shade { fill: rgb(90 110 50 / 0.18); }
+.ft-art .frond { stroke: rgb(40 80 30 / 0.5); stroke-width: 0.7; }
+.ft-art .f0 { fill: #6fae4a; } .ft-art .f1 { fill: #4f9a3c; } .ft-art .f2 { fill: #8cc25a; } .ft-art .f3 { fill: #3f7f33; }
+.ft-art .flame ellipse { fill: #e04a2a; stroke: rgb(140 30 10 / 0.35); stroke-width: 0.4; }
+.ft-art .flame ellipse.banner { fill: #f6d9a8; }
+.ft .ph { padding-bottom: 2.2rem; }
+.ft .ghost .unit { background: rgb(255 253 247 / 0.55); border: 1.5px dashed rgb(110 81 52 / 0.55); box-shadow: none; }
+.ghost-add { display: flex; flex-direction: column; align-items: center; gap: 0.15rem; width: 4.9rem; padding: 0.25rem 0.1rem; border: 0; background: none; font: inherit; color: var(--ink-2); cursor: pointer; }
+.ghost-add .initial { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1.5px dashed rgb(110 81 52 / 0.5); color: #6e5134; font: 600 1.3rem var(--display); }
+.ghost-add small { font-size: 0.6rem; line-height: 1.2; }
+.ghost-add:hover .initial, .ghost-add:focus-visible .initial { background: #fff; border-style: solid; }
+.ft-zoom { position: absolute; top: 0.6rem; left: 0.6rem; z-index: 4; display: flex; gap: 0.3rem; direction: ltr; }
+.ft-zoom button { min-width: 2.3rem; height: 2.3rem; padding: 0 0.6rem; border: 0; border-radius: 999px; background: rgb(110 81 52 / 0.88); color: #fffdf7; font: 700 1.2rem/1 var(--display); cursor: pointer; box-shadow: 0 6px 16px -8px rgb(40 25 10 / 0.7); }
+.ft-zoom button.fit { font-size: 0.8rem; }
 .ft .unit { position: relative; z-index: 1; gap: 0.1rem; padding: 0.2rem; border-radius: 14px; background: rgb(255 253 247 / 0.9); }
 .ft li:not(:has(ul)) > .unit { background: rgb(246 250 238 / 0.92); }
 .ft ul { padding-bottom: 2.2rem; }
-.ft li { padding: 0 0.7rem 3.4rem; }
+.ft li { padding: 0 0.6rem 2.6rem; }
 .tree.ft .person { width: 4.9rem; padding: 0.25rem 0.1rem; gap: 0.1rem; }
 .tree.ft .person img, .tree.ft .person .initial { width: 2.6rem; height: 2.6rem; font-size: 1rem; }
 .tree.ft .person strong { font-size: 0.8rem; }
