@@ -907,3 +907,8 @@ header.site nav .sub a { font-size: 0.95rem; white-space: nowrap; }
 .ft-pan { direction: ltr; unicode-bidi: isolate; position: absolute; top: 50%; z-index: 3; translate: 0 -50%; width: 2.6rem; height: 2.6rem; border: 0; border-radius: 50%; background: rgb(110 81 52 / 0.88); color: #fffdf7; font: 700 1.6rem/1 var(--display); cursor: pointer; box-shadow: 0 6px 16px -8px rgb(40 25 10 / 0.7); }
 .ft-pan.prev { left: 0.4rem; } .ft-pan.next { right: 0.4rem; }
 .ft-pan:hover { background: #6e5134; }
+
+.ft-art .on-photo .bark { fill: #4a3524; stroke: rgb(30 20 10 / 0.6); opacity: 0.88; }
+.ft-art .on-photo .furrow { display: none; }
+.photo-credit { margin: 0.2rem 0 1.5rem; font-size: 0.72rem; color: var(--ink-2); }
+.photo-credit a { color: inherit; }
