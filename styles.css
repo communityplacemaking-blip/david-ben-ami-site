@@ -885,6 +885,7 @@ header.site nav .sub a { font-size: 0.95rem; white-space: nowrap; }
 .ghost-add .initial { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: 50%; border: 1.5px dashed rgb(110 81 52 / 0.5); color: #6e5134; font: 600 1.3rem var(--display); }
 .ghost-add small { font-size: 0.6rem; line-height: 1.2; }
 .ghost-add:hover .initial, .ghost-add:focus-visible .initial { background: #fff; border-style: solid; }
+.ft-wrap .ft-scroll { touch-action: pan-x pan-y; }
 .ft-zoom { position: absolute; top: 0.6rem; left: 0.6rem; z-index: 4; display: flex; gap: 0.3rem; direction: ltr; }
 .ft-zoom button { min-width: 2.3rem; height: 2.3rem; padding: 0 0.6rem; border: 0; border-radius: 999px; background: rgb(110 81 52 / 0.88); color: #fffdf7; font: 700 1.2rem/1 var(--display); cursor: pointer; box-shadow: 0 6px 16px -8px rgb(40 25 10 / 0.7); }
 .ft-zoom button.fit { font-size: 0.8rem; }
