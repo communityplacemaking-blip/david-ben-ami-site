@@ -857,3 +857,10 @@ header.site nav .sub a { font-size: 0.95rem; white-space: nowrap; }
 .oak[data-look="souls"] .answer blockquote { font-size: 0.74rem; line-height: 1.3; font-weight: 500; }
 .oak[data-look="souls"] .answer::before { top: -4px; width: 6px; height: 6px; margin-left: -3px; }
 @media (max-width: 44rem) { .oak[data-look="souls"] { width: 100vw; margin-inline: calc(50% - 50vw); } .oak[data-look="souls"] .answer { max-width: 6.5rem; padding: 0.22rem 0.38rem; } .oak[data-look="souls"] .answer blockquote { font-size: 0.66rem; } }
+
+/* hovering, tapping or tabbing to a note enlarges it, so it reads easily (Tm 19.10.2026) */
+.oak .answer { transition: scale 0.2s ease; cursor: zoom-in; }
+.oak .answer:hover, .oak .answer:focus { scale: 1.9; z-index: 5; outline: none; }
+.oak[data-look="souls"] .answer:hover, .oak[data-look="souls"] .answer:focus { background: rgb(28 18 52 / 0.96); box-shadow: 0 0 24px rgb(64 224 208 / 0.55), inset 0 0 0 1px rgb(64 224 208 / 0.8); }
+@media (max-width: 44rem) { .oak .answer:hover, .oak .answer:focus { scale: 1.7; } }
+@media (prefers-reduced-motion: reduce) { .oak .answer { transition: none; } }
