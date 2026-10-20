@@ -920,3 +920,7 @@ header.site nav .sub a { font-size: 0.95rem; white-space: nowrap; }
 @media (max-width: 700px), (pointer: coarse) {
   .ft-wrap .ft-scroll { overflow: auto; height: min(78vh, 46rem); overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
 }
+/* a card without a photo: its letter carries a small '+' for adding one */
+.tree.ft .add-pic { position: relative; border: 0; padding: 0; font: inherit; cursor: pointer; }
+.tree.ft .add-pic::after { content: '+'; position: absolute; right: -0.2rem; bottom: -0.2rem; display: grid; place-items: center; width: 1.05rem; height: 1.05rem; border-radius: 50%; background: #6e5134; color: #fffdf7; font: 700 0.8rem/1 var(--display); box-shadow: 0 0 0 2px #fffdf7; }
+.tree.ft .add-pic:hover, .tree.ft .add-pic:focus-visible { outline: 2px solid #6e5134; outline-offset: 2px; }
