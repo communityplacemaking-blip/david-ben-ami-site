@@ -832,6 +832,7 @@ body[data-section="friends"] header.page { padding-bottom: 0.5rem; }
 .ft-add .hp { display: none; }
 .ft-add label { display: grid; gap: 0.25rem; font-size: 0.9rem; color: var(--ink-2); }
 .ft-add .ft-row { display: grid; grid-template-columns: auto 1fr; gap: 0.7rem; }
+.ft-add input[type="file"] { font: inherit; font-size: 0.9rem; }
 .ft-add input[type="text"], .ft-add select { font: inherit; color: var(--ink-strong); padding: 0.5rem 0.7rem; border: 1px solid var(--rule); border-radius: 10px; background: #fffdf7; }
 .ft-add button { justify-self: start; font: 600 1rem var(--display); padding: 0.55rem 1.4rem; border: 0; border-radius: 999px; background: #6e5134; color: #fff; cursor: pointer; }
 .ft-add button:disabled { opacity: 0.55; cursor: not-allowed; }

@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=b796be84">
+<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=360b5d48">
 </head>
 <body data-section="family">
 <a class="skip" href="#main">Aller au contenu</a>
@@ -41,6 +41,7 @@
   <div class="ft-row"><label>Je suis<select name="kind"><option value="child">l'enfant de</option><option value="partner">le/la partenaire de</option></select></label>
   <label>Qui dans l'arbre<select name="of" required><option value="">Choisir</option><option value="albert">Albert</option><option value="miriam">Miriam</option><option value="lucette">Lucette (Albert)</option><option value="braham">Avraham</option><option value="david">David (Albert)</option><option value="lili">Lili</option><option value="vivian">Vivian (Albert)</option><option value="eli">Eli</option><option value="polo">Polo (Albert)</option><option value="pnina">Pnina</option><option value="mimi">Mimi (Lucette)</option><option value="roi">Roi (Lucette)</option><option value="shai">Shai (Lucette)</option><option value="itay">Itay (Vivian)</option><option value="osherat">Osherat (Vivian)</option><option value="elad">Elad (Vivian)</option><option value="ori">Ori (Vivian)</option><option value="hanit">Hanit (Polo)</option><option value="nimrod">Nimrod (Polo)</option><option value="gilad">Gilad (Polo)</option><option value="shimrit">Shimrit (Polo)</option><option value="miri">Miri (David)</option><option value="avner">Avner</option><option value="noam">Noam (Miri)</option><option value="shahar">Shahar (Miri)</option><option value="ori-k">Ori (Miri)</option><option value="karnit">Karnit (David)</option><option value="eyal">Eyal</option><option value="ella">Ella Belle (Karnit)</option><option value="maya">Maya Li (Karnit)</option><option value="liel">Liel (David)</option><option value="itay-l">Itay</option><option value="alon">Alon (Liel)</option><option value="agam">Agam (Liel)</option><option value="nave">Naveh (Liel)</option><option value="tomer">Tomer (David)</option><option value="dikla">Dikla</option><option value="nadav">Nadav (Tomer)</option></select></label></div>
   <label>Quelques mots sur vous (facultatif)<input type="text" name="note" maxlength="120"></label>
+  <label>Votre photo (facultatif)<input type="file" name="photo" accept="image/*"></label>
   <button type="submit">Ajouter à l'arbre</button>
   <p class="note" data-thanks="Vous êtes maintenant dans l&#39;arbre. Remontez pour voir." data-of="l&#39;enfant de|le/la partenaire de">Votre nom sera visible par tous les visiteurs du site.</p>
 </form>
@@ -67,17 +68,37 @@ document.addEventListener('click', function (e) {
     card.className = 'person added'; card.id = id;
     i.className = 'initial'; i.textContent = e.name.trim().charAt(0); b.textContent = e.name;
     s.textContent = (e.kind === 'partner' ? words[1] : words[0]) + ' ' + nameOf(e.of);
+    if (/^(https:|data:image\/)/.test(e.photo || '')) {
+      // their own photo: hovers larger and opens like the others
+      i = document.createElement('button'); i.type = 'button'; i.className = 'zoom'; i.dataset.full = e.photo; i.dataset.cap = e.name;
+      var im = document.createElement('img'); im.src = e.photo; im.alt = e.name; im.loading = 'lazy'; im.addEventListener('load', function () { if (window.ftDraw) window.ftDraw(); }); i.append(im);
+    }
     card.append(i, b, s);
     if (e.note) { var a = document.createElement('small'); a.className = 'about'; a.textContent = e.note; card.append(a); }
     var unit = host.closest('.unit'), li = unit.parentElement;
     if (e.kind === 'partner') { unit.append(card); unit.classList.add('pair'); }
     else {
-      var ul = li.querySelector(':scope > ul'); if (!ul) { ul = document.createElement('ul'); li.prepend(ul); }
+      var ul = li.querySelector(':scope > ul'); if (!ul) { ul = document.createElement('ul'); li.append(ul); }
       if (ul.classList.contains('ph')) { ul.classList.remove('ph'); ul.replaceChildren(); }
       var nli = document.createElement('li'), u = document.createElement('div'); u.className = 'unit'; u.dir = unit.dir; u.append(card); nli.append(u); ul.append(nli);
     }
     if (window.ftDraw) window.ftDraw();
     if (e.id) { var o = document.createElement('option'); o.value = id; o.textContent = e.name; sel.append(o); }
+  }
+  // a chosen photo is made small (about 500px, JPEG) in the browser before it is sent
+  function shrink(file) {
+    return new Promise(function (done) {
+      if (!file || !/^image\//.test(file.type)) return done('');
+      var img = new Image(), u = URL.createObjectURL(file);
+      img.onload = function () {
+        var k = Math.min(1, 500 / Math.max(img.width, img.height)), c = document.createElement('canvas');
+        c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(u);
+        done(c.toDataURL('image/jpeg', 0.82));
+      };
+      img.onerror = function () { done(''); };
+      img.src = u;
+    });
   }
   tree.addEventListener('click', function (ev) {
     var g = ev.target.closest('.ghost-add'); if (!g) return;
@@ -90,8 +111,12 @@ document.addEventListener('click', function (e) {
     if (form.elements._honey.value) return;
     var f = form.elements, e = { kind: f.kind.value, of: sel.value, name: f.name.value.replace(/\s+/g, ' ').trim(), note: f.note.value.replace(/\s+/g, ' ').trim() };
     if (!e.name || !e.of) return;
-    fetch(url, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ type: 'tree', kind: e.kind, of: e.of, name: e.name, note: e.note }) });
-    add(e); form.reset(); note.textContent = note.dataset.thanks;
+    var btn = form.querySelector('button[type=submit]'); btn.disabled = true;
+    shrink(f.photo.files[0]).then(function (photo) {
+      e.photo = photo;
+      fetch(url, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify({ type: 'tree', kind: e.kind, of: e.of, name: e.name, note: e.note, photo: photo }) });
+      add(e); form.reset(); note.textContent = note.dataset.thanks; btn.disabled = false;
+    });
   });
 })();
 </script>
