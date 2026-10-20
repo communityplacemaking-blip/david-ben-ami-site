@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Assistant:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=da975733">
+<link rel="stylesheet" href="/david-ben-ami-site/styles.css?v=e044a3d8">
 </head>
 <body data-section="family" data-page="tribe">
 <a class="skip" href="#main">Skip to content</a>
@@ -226,9 +226,8 @@ document.addEventListener('click', function (e) {
       var mask = el('mask', { id: 'ft-mask', maskContentUnits: 'objectBoundingBox' }, d2);
       el('rect', { x: 0, y: 0, width: 1, height: 1, fill: 'url(#ft-fade)' }, mask);
       el('rect', { x: 0, y: 0, width: W, height: H, fill: 'url(#ft-wood)' });
-      // a blur on a phone makes every move of the tree heavy, so there the sides are only faded
-      var coarse = matchMedia('(pointer: coarse)').matches;
-      var x0 = root.cx - iw * geo[1], side = el('g', coarse ? { opacity: 0.9 } : { filter: 'url(#ft-blur)', opacity: 0.8 });
+      // the same photo, mirrored, on both sides: sharp and full, like the middle (Tm 20.10.2026)
+      var x0 = root.cx - iw * geo[1], side = el('g', {});
       for (var k = -Math.ceil(x0 / iw) - 1; x0 + k * iw < W; k++) {
         if (!k) continue;
         var x = x0 + k * iw;

@@ -917,10 +917,8 @@ header.site nav .sub a { font-size: 0.95rem; white-space: nowrap; }
 
 /* the tree page and its windows stay light even when the phone is in dark mode (Tm 20.10.2026: pale text in the window) */
 .ft-wrap, .person-win, .dish-win, .ft-add { --ink: #3b2b1d; --ink-2: #6b5440; --ink-strong: #2a1c10; --mustard: #c9a43a; --rule: #e2d7c0; --burgundy: #7a3a2c; color-scheme: light; color: var(--ink); }
-/* on a phone the tree is a window of its own: one finger moves it any way, like a map (Tm 20.10.2026) */
-@media (max-width: 700px), (pointer: coarse) {
-  .ft-wrap .ft-scroll { overflow: auto; height: min(70vh, 42rem); overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
-}
+/* the tree moves sideways in its box; up and down is the page's own scroll (Tm 20.10.2026: no box inside a box) */
+.ft-wrap .ft-scroll { overflow-y: hidden; overscroll-behavior-x: contain; }
 /* a card without a photo: its letter carries a small '+' for adding one */
 .tree.ft .add-pic { position: relative; border: 0; padding: 0; font: inherit; cursor: pointer; }
 .tree.ft .add-pic::after { content: '+'; position: absolute; right: -0.2rem; bottom: -0.2rem; display: grid; place-items: center; width: 1.05rem; height: 1.05rem; border-radius: 50%; background: #6e5134; color: #fffdf7; font: 700 0.8rem/1 var(--display); box-shadow: 0 0 0 2px #fffdf7; }
