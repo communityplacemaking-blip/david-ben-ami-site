@@ -89,7 +89,8 @@ header.site nav { order: 1; }
 body[data-section="life"] nav a[href*="life/"],
 body[data-section="wars"] nav a[href*="wars/"],
 body[data-section="love"] nav a[href*="love/"],
-body[data-section="family"] nav a[href*="family/"],
+body[data-section="family"]:not([data-page="tribe"]) nav a[href$="family/"],
+body[data-page="tribe"] nav a[href*="tribe/"],
 body[data-section="writing"] nav a[href*="writing/"],
 body[data-section="voice"] nav a[href*="voice/"],
 body[data-section="tastes"] nav a[href*="tastes/"],
@@ -928,3 +929,4 @@ header.site nav .sub a { font-size: 0.95rem; white-space: nowrap; }
 .ft-to-form:hover, .ft-to-form:focus-visible { background: #6e5134; }
 html { scroll-behavior: smooth; }
 #add-me { scroll-margin-top: 1rem; }
+.shore .lines li.tribe .lure { background: #6e5134; color: #fffdf7; }
