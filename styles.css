@@ -913,3 +913,10 @@ header.site nav .sub a { font-size: 0.95rem; white-space: nowrap; }
 .ft-art .on-photo .furrow { display: none; }
 .photo-credit { margin: 0.2rem 0 1.5rem; font-size: 0.72rem; color: var(--ink-2); }
 .photo-credit a { color: inherit; }
+
+/* the tree page and its windows stay light even when the phone is in dark mode (Tm 20.10.2026: pale text in the window) */
+.ft-wrap, .person-win, .dish-win, .ft-add { --ink: #3b2b1d; --ink-2: #6b5440; --ink-strong: #2a1c10; --mustard: #c9a43a; --rule: #e2d7c0; --burgundy: #7a3a2c; color-scheme: light; color: var(--ink); }
+/* on a phone the tree is a window of its own: one finger moves it any way, like a map (Tm 20.10.2026) */
+@media (max-width: 700px), (pointer: coarse) {
+  .ft-wrap .ft-scroll { overflow: auto; height: min(78vh, 46rem); overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+}
