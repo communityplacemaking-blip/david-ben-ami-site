@@ -43,14 +43,7 @@
 </section>
 <section class="films-first">
   <h2>Enregistrements et films</h2>
-<figure class="film" id="itay-film">
-    <a class="frame" href="https://www.youtube.com/watch?v=EzQtXzoZZkc" target="_blank" rel="noopener" data-yt="EzQtXzoZZkc">
-      <img src="https://i.ytimg.com/vi/EzQtXzoZZkc/hqdefault.jpg" alt="" loading="lazy" onerror="this.remove()">
-      <span class="play" aria-hidden="true"></span>
-      <span class="film-title">Le film d&#39;Itay sur papa<small>Cliquez pour regarder</small></span>
-    </a>
-    <figcaption></figcaption>
-  </figure>
+
   <figure class="film playlist">
     <figcaption>La playlist de papa</figcaption>
     <div class="playlist-frame"><iframe title="La playlist de papa" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLLOd54ID2dZO4WG0y_ROLgeZx7rIwgMlj" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
@@ -72,19 +65,6 @@
 </footer>
 
 
-<script>
-// a click swaps the film card for the YouTube player in place; without script the card opens YouTube
-document.addEventListener('click', function (e) {
-  var a = e.target.closest('a[data-yt]'); if (!a) return;
-  e.preventDefault();
-  var song = document.querySelector('.song-frame'); if (song) { song.replaceChildren(); song.parentNode.classList.remove('playing'); }
-  var f = document.createElement('iframe');
-  f.src = 'https://www.youtube-nocookie.com/embed/' + a.dataset.yt + '?autoplay=1&rel=0';
-  f.title = a.querySelector('.film-title').firstChild.textContent;
-  f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
-  f.className = 'frame player';
-  a.replaceWith(f);
-});
-</script>
+
 </body>
 </html>
